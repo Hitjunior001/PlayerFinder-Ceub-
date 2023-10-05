@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+}
+
+/* Header */
+.div-logo {
+  display: flex;
+}
+
+.App-logo {
+  height: 5vmin;
+  width: 15vmin;
+  margin-left: 5vmin;
+  margin-top: 5vmin;
+  pointer-events: none;
+}
+
+.tittle {
+  margin-block-start: 0em;
+  margin-block-end: 1em;
+}
+
+.div-link {
+  right: 7vmin;
+  position: absolute;
+  top: 5vmin;
+}
+
+.cadastra-cand {
+  font-size: medium;
+  height: fit-content;
+  text-align: right;
+  text-decoration: underline;
+  color: white;
+}
+
+.cadastra-cand:hover {
+  color: #29AFBD;
+}
+
+.App-header {
+  background-color: #202020;
+  min-height: fit-content;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  font-size: larger;
+  color: white;
+}
+
+/* Nav-Bar */
+
+.div-nav-bar{
+  background-color: #353535;
+    height: 80vh;
+    left: 0px;
+    position: absolute;
+    top: 19.6vh;
+    width: 25vw;
+}
