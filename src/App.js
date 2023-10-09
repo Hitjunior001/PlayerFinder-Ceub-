@@ -1,4 +1,6 @@
 import './App.css';
+import React, { useState } from "react";
+import { NavBar } from './components/nav-bar';
 
 function App() {
   return (
@@ -19,9 +21,7 @@ function App() {
         </div>
       </header>
       <div className='div-nav-bar'>
-        <nav className='nav-bar'>
-        
-        </nav>
+        <NavBar/>
       </div>
     </div>
   );

@@ -3,21 +3,37 @@
 }
 
 /* Header */
+.App-header {
+  background-color: #202020;
+  min-width: 100vw;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  color: white;
+}
+
 .div-logo {
   display: flex;
+  width: 33.3%;
 }
 
 .App-logo {
   height: 5vmin;
   width: 15vmin;
   margin-left: 5vmin;
-  margin-top: 5vmin;
+  margin-top: 8vmin;
   pointer-events: none;
 }
 
+.div-tittle {
+  display: flex;
+  width: 33.3%;
+  margin-left: 40%;
+}
+
 .tittle {
-  margin-block-start: 0em;
-  margin-block-end: 1em;
+  font-size: calc(1.5vw + 1vh);
 }
 
 .div-link {
@@ -27,7 +43,7 @@
 }
 
 .cadastra-cand {
-  font-size: medium;
+  font-size: calc(0.5vw + 0.7vh);
   height: fit-content;
   text-align: right;
   text-decoration: underline;
@@ -38,25 +54,30 @@
   color: #29AFBD;
 }
 
-.App-header {
-  background-color: #202020;
-  min-height: fit-content;
-  min-width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  font-size: larger;
-  color: white;
-}
 
 /* Nav-Bar */
 
 .div-nav-bar{
   background-color: #353535;
-    height: 80vh;
-    left: 0px;
-    position: absolute;
-    top: 19.6vh;
-    width: 25vw;
+  min-height: 85vh;
+  max-height: fit-content;
+  left: 0px;
+  position: fixed;
+  bottom: 0;
+  width: 25vw;
+}
+
+.div-nav-bar .busca {
+  background-color: #29AFBD;
+  height: fit-content;
+  border-bottom-style: solid;
+  border-bottom-color: red;
+  border-bottom-width: 5px;
+}
+
+.mais-filtros {
+  background-color: red;
+  border-top-style: solid;
+  border-top-color: yellow;
+  border-top-width: 5px;
 }
