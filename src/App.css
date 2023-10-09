@@ -6,7 +6,9 @@
 .App-header {
   background-color: #202020;
   min-width: 100vw;
+  height: 15vh;
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   flex-direction: column;
   justify-content: center;
   position: fixed;
@@ -14,26 +16,25 @@
 }
 
 .div-logo {
-  display: flex;
-  width: 33.3%;
+  align-content: center;
+
 }
 
 .App-logo {
   height: 5vmin;
   width: 15vmin;
-  margin-left: 5vmin;
-  margin-top: 8vmin;
   pointer-events: none;
+  margin-top: 5vh;
+  margin-right: 15vw;
 }
 
 .div-tittle {
-  display: flex;
-  width: 33.3%;
-  margin-left: 40%;
+  
 }
 
 .tittle {
   font-size: calc(1.5vw + 1vh);
+  width: fit-content;
 }
 
 .div-link {
