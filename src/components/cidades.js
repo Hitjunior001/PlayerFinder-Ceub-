@@ -8,12 +8,12 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export const CheckboxLabels = () => {
+export const Cidades = () => {
   return (
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={estados}
+      options={cidades}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       renderOption={(props, option, { selected }) => (
@@ -29,15 +29,15 @@ export const CheckboxLabels = () => {
       )}
       style={{ width: "50%" }}
       renderInput={(params) => (
-        <TextField {...params} label="Estados" placeholder="Estados" />
+        <TextField {...params} label="Cidades" placeholder="Cidades" />
       )}
     />
   )
 };
 
-const estados = [
-  { title: 'DF' },
-  { title: 'MG' },
-  { title: 'RS' },
-  { title: 'GO' },
+const cidades = [
+  { title: 'Brasília' },
+  { title: 'Goiânia' },
+  { title: 'Curitiba' },
+  { title: 'Belo Horizante' },
 ];

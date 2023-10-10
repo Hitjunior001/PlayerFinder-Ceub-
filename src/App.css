@@ -46,15 +46,23 @@
 /* Nav-Bar */
 .div-nav-bar{
   background-color: #353535;
-  display: grid;
-  grid-template-columns: repeat(1, 3fr);
   min-height: 85vh;
   max-height: fit-content;
-  left: 0px;
   position: fixed;
   bottom: 0;
   width: 25vw;
   color: white;
+  overflow-y: scroll;
+}
+
+.nav-bar{
+  display: grid;
+  grid-template-columns: repeat(1, 2fr);
+}
+
+.tittle-nav-bar {
+  margin-block-start: 3%;
+    margin-block-end: 3%;
 }
 
 .busca {
@@ -62,12 +70,12 @@
   border-bottom-style: solid;
   border-bottom-color: #9E9E9E;
   border-bottom-width: 3px;
-  height: 50%;
-  display: grid;
+  min-height: 40vh;
+  max-height: fit-content;
 }
 
 .mais-filtros {
-  background-color: rgb(177, 94, 94);
-  overflow-y: scroll;
-  height: 50%;
+  background-color: rgb(90, 88, 230);
+  min-height: 2530%;
+  max-height: fit-content;
 }
