@@ -15,10 +15,6 @@
   color: white;
 }
 
-.div-logo {
-  align-content: center;
-
-}
 
 .App-logo {
   height: 5vmin;
@@ -28,27 +24,18 @@
   margin-right: 15vw;
 }
 
-.div-tittle {
-  
-}
-
 .tittle {
   font-size: calc(1.5vw + 1vh);
-  width: fit-content;
-}
-
-.div-link {
-  right: 7vmin;
-  position: absolute;
-  top: 5vmin;
+  margin-top: 5%;
 }
 
 .cadastra-cand {
   font-size: calc(0.5vw + 0.7vh);
-  height: fit-content;
-  text-align: right;
   text-decoration: underline;
   color: white;
+  position: absolute;
+  margin-top: 2.25%;
+  margin-left: 5%;
 }
 
 .cadastra-cand:hover {
@@ -57,7 +44,6 @@
 
 
 /* Nav-Bar */
-
 .div-nav-bar{
   background-color: #353535;
   min-height: 85vh;
