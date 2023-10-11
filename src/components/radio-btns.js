@@ -7,7 +7,7 @@ import FormLabel from '@mui/material/FormLabel';
 export const RadioButtons = () => {    
     return (
     <FormControl>
-        <FormLabel id="demo-row-radio-buttons-group-label">S/N</FormLabel>
+        <FormLabel id="demo-row-radio-buttons-group-label" style={{ color:"white" }}>Cooperado Ativo?</FormLabel>
         <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"

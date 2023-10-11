@@ -27,7 +27,7 @@ export const Cidades = () => {
           {option.title}
         </li>
       )}
-      style={{ width: "50%" }}
+      style={{ width: "40%" }}
       renderInput={(params) => (
         <TextField {...params} label="Cidades" placeholder="Cidades" />
       )}

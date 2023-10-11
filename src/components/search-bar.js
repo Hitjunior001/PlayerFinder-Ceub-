@@ -29,7 +29,7 @@ export const SearchBar = () => {
       disablePortal
       id="combo-box-demo"
       options={busca}
-      sx={{ width: 300 }}
+      sx={{ width: "80%" }}
       renderInput={(params) => <TextField {...params} label="Pesquisar" />}
     />
   )
