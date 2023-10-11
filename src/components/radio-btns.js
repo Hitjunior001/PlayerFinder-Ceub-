@@ -13,8 +13,8 @@ export const RadioButtons = () => {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
         >
-        <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-        <FormControlLabel value="nao" control={<Radio />} label="Não" />
+        <FormControlLabel value="sim" control={<Radio style={{ color:"white" }}/>} label="Sim" />
+        <FormControlLabel value="nao" control={<Radio style={{ color:"white" }}/>} label="Não" />
         
         </RadioGroup>
     </FormControl>
