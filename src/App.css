@@ -60,11 +60,6 @@
   grid-template-columns: repeat(1, 2fr);
 }
 
-.tittle-nav-bar {
-  margin-block-start: 3%;
-    margin-block-end: 3%;
-}
-
 .busca {
   background-color: #474747;
   border-bottom-style: solid;
@@ -72,6 +67,18 @@
   border-bottom-width: 3px;
   min-height: 40vh;
   max-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 1.5fr 1.5fr;
+}
+
+.tittle-nav-bar {
+  margin-block-start: 3%;
+    margin-block-end: 3%;
+}
+
+.busca-components {
+  display: grid;
 }
 
 .mais-filtros {

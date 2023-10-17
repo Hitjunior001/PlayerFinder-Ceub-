@@ -9,10 +9,12 @@ export const NavBar = () => {
         <nav className='nav-bar'>
             <div className='busca'>
                 <h2 className="tittle-nav-bar">Busca Principal</h2>
-                <SearchBar/>
-                <CheckboxLabelsEstados/>
-                <Cidades/>
-                <RadioButtonsCA/>
+                <div className="busca-components">
+                    {/* <SearchBar/>
+                    <CheckboxLabelsEstados/>
+                    <Cidades/>
+                    <RadioButtonsCA/> */}
+                </div>
             </div>
             <div className='mais-filtros'>
                 <h3 className="tittle-nav-bar">Mais filtros</h3>
