@@ -4,10 +4,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export const RadioButtons = () => {    
+export const RadioButtonsCnhA = () => {    
     return (
     <FormControl>
-        <FormLabel id="demo-row-radio-buttons-group-label" style={{ color:"white" }}>Cooperado Ativo?</FormLabel>
+        <FormLabel id="demo-row-radio-buttons-group-label" style={{ color:"white" }}>Aceitar conhecimento anterior?</FormLabel>
         <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"

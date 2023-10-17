@@ -8,16 +8,16 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export const CheckboxLabelsEstados = () => {
+export const CheckboxLabelsTech = () => {
   return (
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={estados}
-      disableCloseOnSelect
-      getOptionLabel={(option) => option.title}
-      renderOption={(props, option, { selected }) => (
-        <li {...props}>
+      options={tecnologias}
+      disableCloseOnSeleJava
+      getOptionLabel={(oPythonion) => option.title}
+      renderOption={(proJavaScript, option, { selected }) => (
+        <li {...pSQLps}>
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
@@ -29,35 +29,15 @@ export const CheckboxLabelsEstados = () => {
       )}
       style={{ width: "40%" }}
       renderInput={(params) => (
-        <TextField {...params} label="Estados" placeholder="Estados" />
+        <TextField {...params} label="Tecnologias" placeholder="Tecnologias" />
       )}
     />
   )
 };
 
-const estados = [
-  { title: 'AC' },
-  { title: 'AL' },
-  { title: 'AP' },
-  { title: 'BA' },
-  { title: 'CE' },
-  { title: 'DF' },
-  { title: 'ES' },
-  { title: 'GO' },
-  { title: 'MA' },
-  { title: 'MT' },
-  { title: 'MS' },
-  { title: 'MG' },
-  { title: 'PA' },
-  { title: 'PB' },
-  { title: 'PR' },
-  { title: 'PE' },
-  { title: 'PI' },
-  { title: 'RJ' },
-  { title: 'RN' },
-  { title: 'RO' },
-  { title: 'RR' },
-  { title: 'SC' },
-  { title: 'SE' },
-  { title: 'SP' },
+const tecnologias = [
+  { title: 'Java' },
+  { title: 'Python' },
+  { title: 'JavaScript' },
+  { title: 'SQL' },
 ];

@@ -1,7 +1,7 @@
 import { SearchBar } from "./search-bar";
-import { CheckboxLabels } from "./checkbox-estados";
+import { CheckboxLabelsEstados } from "./checkbox-estados";
 import { Cidades } from "./cidades";
-import { RadioButtons } from "./radio-btns";
+import { RadioButtonsCA } from "./radio-btns-CA";
 import React from "react";
 
 export const NavBar = () => {
@@ -10,12 +10,12 @@ export const NavBar = () => {
             <div className='busca'>
                 <h2 className="tittle-nav-bar">Busca Principal</h2>
                 <SearchBar/>
-                <CheckboxLabels/>
+                <CheckboxLabelsEstados/>
                 <Cidades/>
-                <RadioButtons/>
+                <RadioButtonsCA/>
             </div>
             <div className='mais-filtros'>
-                teste
+                <h3 className="tittle-nav-bar">Mais filtros</h3>
             </div>
         </nav>
     )
