@@ -5,6 +5,8 @@ import { Cidades } from "./cidades";
 import { CheckboxLabelsTech } from "./checkbox-Tech";
 import { CheckboxLabelsExp } from "./checkbox-Exp";
 import { CheckboxLabelsAtuacao } from "./checkbox-Atuacao";
+import { RadioButtonsCnhA } from "./radio-btns-CnhA";
+import { RadioButtonsTS } from "./radio-btns-TS";
 import React from "react";
 
 export const NavBar = () => {
@@ -29,6 +31,10 @@ export const NavBar = () => {
                     <CheckboxLabelsTech/>
                     <CheckboxLabelsExp/>
                     <CheckboxLabelsAtuacao/>
+                </div>
+                <div className="filtros-radio">
+                    <RadioButtonsCnhA/>
+                    <RadioButtonsTS/>
                 </div>
             </div>
         </nav>
