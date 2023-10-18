@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 /* Header */
 .App-header {
   background-color: #202020;
@@ -41,6 +42,7 @@
 .cadastra-cand:hover {
   color: #29AFBD;
 }
+/* ^ Header ^ */
 
 
 /* Nav-Bar */
@@ -65,21 +67,39 @@
   border-bottom-style: solid;
   border-bottom-color: #9E9E9E;
   border-bottom-width: 3px;
-  min-height: 40vh;
+  min-height: 35vh;
   max-height: fit-content;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 1.5fr 1.5fr;
+  grid-template-rows: 20% 25% 25% 25%;
 }
 
-.tittle-nav-bar {
+.busca-tittle {
   margin-block-start: 3%;
-    margin-block-end: 3%;
+  margin-block-end: 3%;
 }
 
-.busca-components {
-  display: grid;
+
+/* Componentes da busca principal */
+.busca-search {
+  width: 85%;
+  place-self: center;
 }
+
+.busca-dropdown {
+  width: 85%;
+  place-self: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1vw;
+}
+
+.busca-radio {
+  width: 85%;
+  place-self: center;
+}
+/* ^ Componentes da busca principal ^ */
+
 
 .mais-filtros {
   background-color: rgb(90, 88, 230);

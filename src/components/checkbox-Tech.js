@@ -15,9 +15,9 @@ export const CheckboxLabelsTech = () => {
       id="checkboxes-tags-demo"
       options={tecnologias}
       disableCloseOnSeleJava
-      getOptionLabel={(oPythonion) => option.title}
-      renderOption={(proJavaScript, option, { selected }) => (
-        <li {...pSQLps}>
+      getOptionLabel={(option) => option.title}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}

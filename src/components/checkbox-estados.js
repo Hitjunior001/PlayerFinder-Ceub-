@@ -27,7 +27,7 @@ export const CheckboxLabelsEstados = () => {
           {option.title}
         </li>
       )}
-      style={{ width: "40%" }}
+      style={{  }}
       renderInput={(params) => (
         <TextField {...params} label="Estados" placeholder="Estados" />
       )}
