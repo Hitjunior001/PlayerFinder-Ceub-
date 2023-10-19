@@ -51,7 +51,7 @@
   min-height: 85vh;
   max-height: fit-content;
   position: fixed;
-  bottom: 0;
+  margin-top: 15vh;
   width: 25vw;
   color: white;
   overflow-y: scroll;
@@ -103,6 +103,30 @@
 
 .mais-filtros {
   background-color: rgb(90, 88, 230);
-  min-height: 2530%;
+  min-height: 150%;
   max-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10% 25% 25% 25%;
+}
+
+
+/* Componentes dos filtros adicionais */
+.filtros-dropdown-1 {
+  width: 85%;
+  place-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 33% 33% 33%;
+  grid-row-gap: 1vh;
+}
+
+.filtros-radio {
+  width: 85%;
+  place-self: center;
+  place-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
+  grid-row-gap: 1vh;
 }

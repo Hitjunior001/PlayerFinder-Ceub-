@@ -8,13 +8,13 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export const CheckboxLabelsTech = () => {
+export const CheckboxLabelsD = () => {
   return (
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={tecnologias}
-      disableCloseOnSeleJava
+      options={disponibilidade}
+      disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
@@ -29,15 +29,13 @@ export const CheckboxLabelsTech = () => {
       )}
       style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Tecnologias" placeholder="Tecnologias" />
+        <TextField {...params} label="Disponibilidade" placeholder="Disponibilidade" />
       )}
     />
   )
 };
 
-const tecnologias = [
-  { title: 'Java' },
-  { title: 'Python' },
-  { title: 'JavaScript' },
-  { title: 'SQL' },
+const disponibilidade = [
+  { title: 'AC' },
+  { title: 'AL' },
 ];

@@ -12,6 +12,7 @@ export const RadioButtonsTS = () => {
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
+        style={{ alignSelf: "center" }}
         >
         <FormControlLabel value="sim" control={<Radio style={{ color:"white" }}/>} label="Sim" />
         <FormControlLabel value="nao" control={<Radio style={{ color:"white" }}/>} label="Não" />
