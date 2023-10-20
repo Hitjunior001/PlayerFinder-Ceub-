@@ -29,7 +29,7 @@ export const Cidades = () => {
       )}
       style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Cidades" placeholder="Cidades" />
+        <TextField {...params} label="Cidades" placeholder="Cidades" sx={{ color:"white" }} />
       )}
     />
   )

@@ -36,6 +36,7 @@ export const CheckboxLabelsEstados = () => {
 };
 
 const estados = [
+  { title: 'Todos' },
   { title: 'AC' },
   { title: 'AL' },
   { title: 'AP' },

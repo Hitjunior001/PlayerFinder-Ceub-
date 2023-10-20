@@ -14,7 +14,7 @@ export const CheckboxLabelsTech = () => {
       multiple
       id="checkboxes-tags-demo"
       options={tecnologias}
-      disableCloseOnSeleJava
+      disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
@@ -29,7 +29,7 @@ export const CheckboxLabelsTech = () => {
       )}
       style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Tecnologias" placeholder="Tecnologias" />
+        <TextField {...params} label="Tecnologias" placeholder="Tecnologias"/>
       )}
     />
   )
