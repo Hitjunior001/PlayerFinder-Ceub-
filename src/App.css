@@ -12,12 +12,11 @@
 
 /* Nav-Bar */
 .nav-bar{
-  background-color: #696969;
+  background-color: #c4c4c4;
   min-height: 85vh;
   max-height: fit-content;
   position: fixed;
   width: 25vw;
-  color: white;
   overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(1, 2fr);
