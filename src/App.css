@@ -11,7 +11,7 @@
 
 
 /* Nav-Bar */
-.div-nav-bar{
+.nav-bar{
   background-color: #696969;
   min-height: 85vh;
   max-height: fit-content;
@@ -19,9 +19,6 @@
   width: 25vw;
   color: white;
   overflow-y: scroll;
-}
-
-.nav-bar{
   display: grid;
   grid-template-columns: repeat(1, 2fr);
 }
