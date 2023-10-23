@@ -8,6 +8,7 @@ export const SearchBar = () => {
       disablePortal
       id="combo-box-demo"
       options={busca}
+      sx={{ backgroundColor:"white", borderRadius:"4px" }}
       renderInput={(params) => <TextField {...params} label="Pesquisar" />}
     />
   )
