@@ -2,17 +2,9 @@
   text-align: center;
 }
 
-
-/* Header */
-.cadastra-cand:hover {
-  color: #29AFBD;
-}
-/* ^ Header ^ */
-
-
 /* Nav-Bar */
 .nav-bar{
-  background-color: #c4c4c4;
+  background-color: #999999;
   min-height: 85vh;
   max-height: fit-content;
   position: fixed;
@@ -24,7 +16,7 @@
 
 .busca {
   border-bottom-style: solid;
-  border-bottom-color: #9E9E9E;
+  border-bottom-color: #c4c4c4;
   border-bottom-width: 3px;
   min-height: 35vh;
   max-height: fit-content;
