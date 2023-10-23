@@ -36,6 +36,8 @@ export const CheckboxLabelsD = () => {
 };
 
 const disponibilidade = [
-  { title: 'AC' },
-  { title: 'AL' },
+  { title: 'Flexivel' },
+  { title: 'Manhã' },
+  { title: 'Tarde' },
+  { title: 'Noite' },
 ];

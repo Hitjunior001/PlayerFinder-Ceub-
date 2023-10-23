@@ -36,6 +36,6 @@ export const CheckboxLabelsDH = () => {
 };
 
 const disponibilidade_de_horas = [
-  { title: 'AC' },
-  { title: 'AL' },
+  { title: '10hrs' },
+  { title: '14hrs' },
 ];
