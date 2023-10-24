@@ -17,45 +17,16 @@
   border-bottom-color: #9E9E9E;
   border-bottom-width: 3px;
   padding: 5%;
+  min-height: fit-content;
   max-height: fit-content;
   display: flex;
   flex-direction: column;
 }
 
 .mais-filtros {
-  min-height: 150%;
+  padding: 5%;
+  min-height: fit-content;
   max-height: fit-content;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 10% 25% 25% 25%;
-}
-
-
-/* Componentes dos filtros adicionais */
-.filtros-dropdown-1 {
-  width: 85%;
-  place-self: center;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 33% 33% 33%;
-  grid-row-gap: 1vh;
-}
-
-.filtros-radio {
-  width: 85%;
-  place-self: center;
-  place-items: center;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 50% 50%;
-  grid-row-gap: 1vh;
-}
-
-.filtros-dropdown-2 {
-  width: 85%;
-  place-self: center;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 33% 33% 33%;
-  grid-row-gap: 1vh;
+  display: flex;
+  flex-direction: column;
 }
