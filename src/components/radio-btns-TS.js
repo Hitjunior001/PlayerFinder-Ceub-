@@ -7,15 +7,15 @@ import FormLabel from '@mui/material/FormLabel';
 export const RadioButtonsTS = () => {    
     return (
     <FormControl>
-        <FormLabel id="demo-row-radio-buttons-group-label" style={{ color:"white" }}>Aceitar tecnologia secundária?</FormLabel>
+        <FormLabel id="demo-row-radio-buttons-group-label">Aceitar tecnologia secundária?</FormLabel>
         <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
         style={{ alignSelf: "center" }}
         >
-        <FormControlLabel value="sim" control={<Radio style={{ color:"white" }}/>} label="Sim" />
-        <FormControlLabel value="nao" control={<Radio style={{ color:"white" }}/>} label="Não" />
+        <FormControlLabel value="sim" control={<Radio/>} label="Sim" />
+        <FormControlLabel value="nao" control={<Radio/>} label="Não" />
         
         </RadioGroup>
     </FormControl>
