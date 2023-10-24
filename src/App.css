@@ -4,9 +4,7 @@
 
 /* Nav-Bar */
 .nav-bar{
-  background-color: #999999;
-  min-height: 85vh;
-  max-height: fit-content;
+  background-color: #c4c4c4;
   position: fixed;
   width: 25vw;
   overflow-y: scroll;
@@ -16,41 +14,13 @@
 
 .busca {
   border-bottom-style: solid;
-  border-bottom-color: #c4c4c4;
+  border-bottom-color: #9E9E9E;
   border-bottom-width: 3px;
-  min-height: 35vh;
+  padding: 5%;
   max-height: fit-content;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 20% 25% 25% 25%;
+  display: flex;
+  flex-direction: column;
 }
-
-.busca-tittle {
-  margin-block-start: 3%;
-  margin-block-end: 3%;
-}
-
-
-/* Componentes da busca principal */
-.busca-search {
-  width: 85%;
-  place-self: center;
-}
-
-.busca-dropdown {
-  width: 85%;
-  place-self: center;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 1vw;
-}
-
-.busca-radio {
-  width: 85%;
-  place-self: center;
-}
-/* ^ Componentes da busca principal ^ */
-
 
 .mais-filtros {
   min-height: 150%;

@@ -21,13 +21,11 @@ export const CheckboxLabelsTech = () => {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option.title}
         </li>
       )}
-      style={{  }}
       renderInput={(params) => (
         <TextField {...params} label="Tecnologias" placeholder="Tecnologias"/>
       )}

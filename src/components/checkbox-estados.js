@@ -21,44 +21,44 @@ export const CheckboxLabelsEstados = () => {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option.title}
         </li>
       )}
-      style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Estados" placeholder="Estados" />
+        <TextField {...params} label="Estados" placeholder="Estados"/>
       )}
     />
   )
 };
 
 const estados = [
-  { title: 'Todos' },
-  { title: 'AC' },
-  { title: 'AL' },
-  { title: 'AP' },
-  { title: 'BA' },
-  { title: 'CE' },
-  { title: 'DF' },
-  { title: 'ES' },
-  { title: 'GO' },
-  { title: 'MA' },
-  { title: 'MT' },
-  { title: 'MS' },
-  { title: 'MG' },
-  { title: 'PA' },
-  { title: 'PB' },
-  { title: 'PR' },
-  { title: 'PE' },
-  { title: 'PI' },
-  { title: 'RJ' },
-  { title: 'RN' },
-  { title: 'RO' },
-  { title: 'RR' },
-  { title: 'SC' },
-  { title: 'SE' },
-  { title: 'SP' },
+  { title: 'AC' }, // Acre
+  { title: 'AL' }, // Alagoas
+  { title: 'AP' }, // Amapá
+  { title: 'AM' }, // Amazonas
+  { title: 'BA' }, // Bahia
+  { title: 'CE' }, // Ceará
+  { title: 'DF' }, // Distrito Federal
+  { title: 'ES' }, // Espírito Santo
+  { title: 'GO' }, // Goiás
+  { title: 'MA' }, // Maranhão
+  { title: 'MT' }, // Mato Grosso
+  { title: 'MS' }, // Mato Grosso do Sul
+  { title: 'MG' }, // Minas Gerais
+  { title: 'PA' }, // Pará
+  { title: 'PB' }, // Paraíba
+  { title: 'PR' }, // Paraná
+  { title: 'PE' }, // Pernambuco
+  { title: 'PI' }, // Piauí
+  { title: 'RJ' }, // Rio de Janeiro
+  { title: 'RN' }, // Rio Grande do Norte
+  { title: 'RS' }, // Rio Grande do Sul
+  { title: 'RO' }, // Rondônia
+  { title: 'RR' }, // Roraima
+  { title: 'SC' }, // Santa Catarina
+  { title: 'SP' }, // São Paulo
+  { title: 'SE' }, // Sergipe
+  { title: 'TO' }, // Tocantins
 ];

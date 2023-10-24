@@ -21,15 +21,13 @@ export const Cidades = () => {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option.title}
         </li>
       )}
-      style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Cidades" placeholder="Cidades" sx={{ color:"white" }} />
+        <TextField {...params} label="Cidades" placeholder="Cidades"/>
       )}
     />
   )

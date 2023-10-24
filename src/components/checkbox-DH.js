@@ -21,15 +21,13 @@ export const CheckboxLabelsDH = () => {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option.title}
         </li>
       )}
-      style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Disponibilidade de Horas" placeholder="Disponibilidade de Horas" />
+        <TextField {...params} label="Disponibilidade de Horas" placeholder="Disponibilidade de Horas"/>
       )}
     />
   )

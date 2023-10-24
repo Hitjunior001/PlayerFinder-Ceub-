@@ -21,15 +21,13 @@ export const CheckboxLabelsAtuacao = () => {
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option.title}
         </li>
       )}
-      style={{  }}
       renderInput={(params) => (
-        <TextField {...params} label="Atuação" placeholder="Atução" />
+        <TextField {...params} label="Atuação" placeholder="Atução"/>
       )}
     />
   )

@@ -1,7 +1,7 @@
 import { SearchBar } from "./search-bar";
 import { RadioButtonsCA } from "./radio-btns-CA";
 import { CheckboxLabelsEstados } from "./checkbox-estados";
-import { Cidades } from "./cidades";
+import { Cidades } from "./checkbox-cidades";
 import { CheckboxLabelsTech } from "./checkbox-Tech";
 import { CheckboxLabelsExp } from "./checkbox-Exp";
 import { CheckboxLabelsAtuacao } from "./checkbox-Atuacao";
@@ -16,15 +16,17 @@ export const NavBar = () => {
     return(
         <nav className='nav-bar'>
             <div className='busca'>
-                <h2 className="busca-tittle">Busca Principal</h2>
-                <div className="busca-search">
+                <h2 className="busca-tittle"  style={{marginBottom:"3vh", marginTop:"0vh"}}>Busca Principal</h2>
+                <div className="busca-search" style={{marginBottom:"2vh"}}>
                     <SearchBar/>
                 </div>
-                <div className="busca-radio">
+                <div className="busca-radio" style={{marginBottom:"2vh"}}>
                     <RadioButtonsCA/>
                 </div>
-                <div className="busca-dropdown">
+                <div className="busca-estado" style={{marginBottom:"3vh"}}>
                     <CheckboxLabelsEstados/>
+                </div>
+                <div className="busca-cidade" style={{marginBottom:"1vh"}}>
                     <Cidades/>
                 </div>
             </div>
