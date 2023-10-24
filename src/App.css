@@ -4,10 +4,9 @@
 
 /* Nav-Bar */
 .nav-bar{
-  background-color: #c4c4c4;
   position: fixed;
   height: 87vh;
-  width: 25vw;
+  width: 20vw;
   overflow-y: scroll;
   padding-left: 0.5vw;
   padding-right: 0.5vw;
