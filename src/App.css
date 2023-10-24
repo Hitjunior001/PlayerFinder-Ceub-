@@ -6,6 +6,7 @@
 .nav-bar{
   background-color: #c4c4c4;
   position: fixed;
+  height: 87vh;
   width: 25vw;
   overflow-y: scroll;
   display: grid;
@@ -17,16 +18,12 @@
   border-bottom-color: #9E9E9E;
   border-bottom-width: 3px;
   padding: 5%;
-  min-height: fit-content;
-  max-height: fit-content;
   display: flex;
   flex-direction: column;
 }
 
 .mais-filtros {
   padding: 5%;
-  min-height: fit-content;
-  max-height: fit-content;
   display: flex;
   flex-direction: column;
 }
