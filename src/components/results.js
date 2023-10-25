@@ -1,80 +1,37 @@
-import React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import React from "react";
+import { Container, List, ListItem, Avatar, Typography } from "@mui/material";
 
 export const ResultList = () => {
+  const profiles = [
+    {
+      name: "John Doe",
+      avatar: "https://avatars.githubusercontent.com/u/123456789?v=4",
+      email: "johndoe@example.com",
+      location: "São Paulo, Brasil",
+    },
+    {
+      name: "Jane Doe",
+      avatar: "https://avatars.githubusercontent.com/u/987654321?v=4",
+      email: "janedoe@example.com",
+      location: "Rio de Janeiro, Brasil",
+    },
+  ];
+
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List>
-  )
+    <div className="results-container">
+      <Container>
+        <h2 style={{marginBottom:"3vh", marginTop:"0vh", borderBottom:"1px solid #9E9E9E"}}>Resultados</h2>
+        <List>
+          {profiles.map((profile) => (
+            <ListItem key={profile.name}>
+              <Avatar src={profile.avatar}/>
+              <Typography>{profile.name}</Typography>
+              <Typography>{profile.email}</Typography>
+              <Typography>{profile.location}</Typography>
+            </ListItem>
+          ))}
+        </List>
+      </Container>
+    </div>
+  );
 };

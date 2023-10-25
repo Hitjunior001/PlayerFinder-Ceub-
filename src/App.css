@@ -45,3 +45,9 @@
 /* ^ Nav-Bar ^ */
 
 /* Results */
+.results-container {
+  height: 84vh;
+  padding-top: 3vh;
+  margin-left: 21.5vw;
+  border-left: 1px solid #9E9E9E;
+}
