@@ -50,4 +50,12 @@
   padding-top: 3vh;
   margin-left: 21.5vw;
   border-left: 1px solid #9E9E9E;
+  /* overflow-y: scroll; */
+}
+
+.results-container .MuiListItem-root {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
