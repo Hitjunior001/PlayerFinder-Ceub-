@@ -72,11 +72,15 @@ export const ResultList = () => {
                   <Typography variant="h6">
                     {profile.age}
                   </Typography>
-                  <Stack direction="row" spacing={2} style={{ position:"absolute", right:"1vw", top:"2vh" }} >
-                    <Button variant="outlined" endIcon={<SimCardDownloadIcon />}>
-                      Baixar currículo
-                    </Button>
-                  </Stack>
+
+                  <a href="Curriculo.pdf" download>
+                    <Stack direction="row" spacing={2} style={{ position:"absolute", right:"1vw", top:"2vh" }} >
+                      <Button variant="outlined" endIcon={<SimCardDownloadIcon />}>
+                        Baixar currículo
+                      </Button>
+                    </Stack>
+                  </a>
+                
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "row", color: "#9E9E9E", marginBottom: "1vh" }}>
