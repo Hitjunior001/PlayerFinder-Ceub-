@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, List, ListItem, Avatar, Typography, Button, Stack } from "@mui/material";
-import GetAppIcon from '@material-ui/icons/GetApp';
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 
 const profiles = [
   {
@@ -72,8 +72,8 @@ export const ResultList = () => {
                   <Typography variant="h6">
                     {profile.age}
                   </Typography>
-                  <Stack direction="row" spacing={2} style={{ position:"absolute", right:"0", top:"0" }} >
-                    <Button variant="outlined" endIcon={<GetAppIcon />}>
+                  <Stack direction="row" spacing={2} style={{ position:"absolute", right:"1vw", top:"2vh" }} >
+                    <Button variant="outlined" endIcon={<SimCardDownloadIcon />}>
                       Baixar currículo
                     </Button>
                   </Stack>
