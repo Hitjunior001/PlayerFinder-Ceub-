@@ -1,15 +1,13 @@
 import './App.css';
 import React from "react";
-import { NavBar } from './components/nav-bar';
 import { CustomAppBar } from './components/Header';
-import { ResultList } from './components/results';
+import { Cadastro } from './components/cadastro';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{height:"100vh", textAlign:"center", backgroundColor:"#202020"}}>
       <CustomAppBar/>
-      <NavBar/>
-      <ResultList/>
+      <Cadastro/>
     </div>
   );
 }

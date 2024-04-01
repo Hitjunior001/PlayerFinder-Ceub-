@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 /* Nav-Bar */
 .nav-bar{
   position: fixed;
@@ -33,7 +29,7 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: inherit;
+    background: #202020;
   }
 
   *::-webkit-scrollbar-thumb {
@@ -47,7 +43,7 @@
 
 /* Resultados */
 .results-container {
-  height: 84vh;
+  height: 81vh;
   padding-top: 3vh;
   margin-left: 21.5vw;
   border-left: 1px solid #9E9E9E;  
