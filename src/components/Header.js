@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button} from '@mui/material';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 export const CustomAppBar = () => {
   return (
@@ -11,9 +12,13 @@ export const CustomAppBar = () => {
         </Typography>
         <Typography component="div" sx={{ textDecoration: "underline" }}>
           Não tem uma conta?
-          <Button color="inherit" className='cadastra-cand' sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}>Cadastrar</Button>
+          <Link to="/cadastro" style={{color:'white'}}>
+            <Button color="inherit" className='cadastra-cand' sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}>Cadastrar</Button>
+          </Link>
         </Typography>
       </Toolbar>
     </AppBar>
-  )
-};
+  );
+}
+
+export default CustomAppBar;

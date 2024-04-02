@@ -1,25 +1,25 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
-export default function Cadastro() {
+const Page = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
@@ -30,21 +30,36 @@ export default function Cadastro() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            color: 'white'
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "white",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#16C83D' }}>
+          <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <div style={{ display: 'flex', flexDirection: 'row', width: '90vw' }}>
-              <div style={{ padding: '1%', margin: '1%', width: '30vw', backgroundColor: '#303030', borderRadius: '20px'}}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
+            <div
+              style={{ display: "flex", flexDirection: "row", width: "90vw" }}
+            >
+              <div
+                style={{
+                  padding: "1%",
+                  margin: "1%",
+                  width: "30vw",
+                  backgroundColor: "#303030",
+                  borderRadius: "20px",
+                }}
+              >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
@@ -89,7 +104,15 @@ export default function Cadastro() {
                 </Grid>
               </div>
 
-              <div style={{ padding: '1%', margin: '1%', width: '30vw', backgroundColor: '#303030', borderRadius: '20px'}}>
+              <div
+                style={{
+                  padding: "1%",
+                  margin: "1%",
+                  width: "30vw",
+                  backgroundColor: "#303030",
+                  borderRadius: "20px",
+                }}
+              >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
@@ -138,16 +161,19 @@ export default function Cadastro() {
                   </Grid>
                 </Grid>
               </div>
-              
-              <div style={{ padding: '1%', margin: '1%', width: '30vw', backgroundColor: '#303030', borderRadius: '20px'}}>
+
+              <div
+                style={{
+                  padding: "1%",
+                  margin: "1%",
+                  width: "30vw",
+                  backgroundColor: "#303030",
+                  borderRadius: "20px",
+                }}
+              >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
-                      name="jogo"
-                      fullWidth
-                      id="jogo"
-                      label="Jogo"
-                    />
+                    <TextField name="jogo" fullWidth id="jogo" label="Jogo" />
                   </Grid>
                 </Grid>
               </div>
@@ -156,15 +182,23 @@ export default function Cadastro() {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 3, mb: 2, width: '20vw', bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                width: "20vw",
+                bgcolor: "#16C83D",
+                "&:hover": { backgroundColor: "#16C83D" },
+              }}
             >
               Cadastrar
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="#" variant="body2" sx={{ color: "#16C83D", textDecorationColor: "#16C83D" }}>
-                  Já tem uma conta? Login
-                </Link>
+                <div>
+                  <Link to="/login" style={{ color: "#16C83D" }}>
+                    Já tem uma conta? Login
+                  </Link>
+                </div>
               </Grid>
             </Grid>
           </Box>
@@ -172,4 +206,6 @@ export default function Cadastro() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default Page;

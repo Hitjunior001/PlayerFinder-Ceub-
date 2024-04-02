@@ -1,16 +1,18 @@
-import './App.css';
+import "./App.css";
 import React from "react";
-import { CustomAppBar } from './components/Header';
-// import { Login } from './components/login';
-import Cadastro from './components/cadastro';
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";s
+
+import { CustomAppBar } from "./components/Header";
 
 function App() {
   return (
-    <div className="App" style={{height:"100vh", textAlign:"center", backgroundColor:"#202020"}}>
-      <CustomAppBar/>
-      {/* <Login/> */}
-      <Cadastro/>
-    </div>
+    <BrowserRouter>
+      <div className="App" style={{ height: "100vh", textAlign: "center", backgroundColor: "#202020"}}>
+        <CustomAppBar />
+        <Routes/>
+      </div>
+    </BrowserRouter>
   );
 }
 
