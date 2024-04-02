@@ -57,7 +57,7 @@ const Page = () => {
                   margin: "1%",
                   width: "30vw",
                   backgroundColor: "#303030",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                 }}
               >
                 <Grid container spacing={2}>
@@ -110,7 +110,7 @@ const Page = () => {
                   margin: "1%",
                   width: "30vw",
                   backgroundColor: "#303030",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                 }}
               >
                 <Grid container spacing={2}>
@@ -168,7 +168,7 @@ const Page = () => {
                   margin: "1%",
                   width: "30vw",
                   backgroundColor: "#303030",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                 }}
               >
                 <Grid container spacing={2}>

@@ -9,8 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App" style={{ height: "100vh", textAlign: "center", backgroundColor: "#202020"}}>
+
         <CustomAppBar />
         <Routes/>
+
       </div>
     </BrowserRouter>
   );
