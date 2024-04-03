@@ -1,7 +1,6 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -14,6 +13,7 @@ import { Link } from "react-router-dom";
 const defaultTheme = createTheme();
 
 const Page = () => {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,10 +26,9 @@ const Page = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: "5vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -44,12 +43,12 @@ const Page = () => {
           </Typography>
           <Box
             component="form"
-            noValidate
+            Validate
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <div
-              style={{ display: "flex", flexDirection: "row", width: "90vw" }}
+              style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center" }}
             >
               <div
                 style={{
@@ -162,7 +161,7 @@ const Page = () => {
                 </Grid>
               </div>
 
-              <div
+              {/* <div
                 style={{
                   padding: "1%",
                   margin: "1%",
@@ -176,7 +175,7 @@ const Page = () => {
                     <TextField name="jogo" fullWidth id="jogo" label="Jogo" />
                   </Grid>
                 </Grid>
-              </div>
+              </div> */}
             </div>
 
             <Button
@@ -194,11 +193,9 @@ const Page = () => {
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <div>
-                  <Link to="/login" style={{ color: "#16C83D" }}>
-                    Já tem uma conta? Login
-                  </Link>
-                </div>
+                <Link to="/login" style={{ color: "#16C83D" }}>
+                  Já tem uma conta? Login
+                </Link>
               </Grid>
             </Grid>
           </Box>
