@@ -9,19 +9,7 @@
   display: grid;
   grid-template-columns: repeat(1, 2fr);
 }
-
-.busca {
-  border-bottom: 3px solid #9E9E9E;
-  padding: 5%;
-  display: flex;
-  flex-direction: column;
-}
-
-.mais-filtros {
-  padding: 5%;
-  display: flex;
-  flex-direction: column;
-}
+/* ^ Nav-Bar ^ */
 
 /* ===== Scrollbar CSS ===== */
   *::-webkit-scrollbar {
@@ -38,7 +26,6 @@
     border: 3px solid inherit;
   }
 /* === ^ Scrollbar CSS ^ === */
-/* ^ Nav-Bar ^ */
 
 
 /* Resultados */
