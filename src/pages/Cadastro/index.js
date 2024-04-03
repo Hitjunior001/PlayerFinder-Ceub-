@@ -7,10 +7,15 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-const defaultTheme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 const Page = () => {
 
@@ -24,7 +29,7 @@ const Page = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -50,12 +55,12 @@ const Page = () => {
             <div
               style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center" }}
             >
-              <div
+              <Paper component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
                   width: "30vw",
-                  backgroundColor: "#303030",
+                  backgroundColor: "#202020",
                   borderRadius: "10px",
                 }}
               >
@@ -101,14 +106,14 @@ const Page = () => {
                     />
                   </Grid>
                 </Grid>
-              </div>
+              </Paper>
 
-              <div
+              <Paper component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
                   width: "30vw",
-                  backgroundColor: "#303030",
+                  backgroundColor: "#202020",
                   borderRadius: "10px",
                 }}
               >
@@ -159,14 +164,14 @@ const Page = () => {
                     />
                   </Grid>
                 </Grid>
-              </div>
+              </Paper>
 
-              {/* <div
+              {/* <Paper component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
                   width: "30vw",
-                  backgroundColor: "#303030",
+                  backgroundColor: "#202020",
                   borderRadius: "10px",
                 }}
               >
@@ -175,7 +180,7 @@ const Page = () => {
                     <TextField name="jogo" fullWidth id="jogo" label="Jogo" />
                   </Grid>
                 </Grid>
-              </div> */}
+              </Paper> */}
             </div>
 
             <Button

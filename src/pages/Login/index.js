@@ -12,7 +12,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 
-const defaultTheme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 const Page = () => {
   
@@ -26,7 +30,7 @@ const Page = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={darkTheme}>
       <Box
         sx={{
           marginTop: '5vh',
