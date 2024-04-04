@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 
+
 // eslint-disable-next-line
 export default () => {
     return (
