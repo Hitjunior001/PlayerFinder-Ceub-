@@ -15,11 +15,11 @@ export const CustomAppBar = () => {
             </Link>
           </Grid>
 
-          <Grid item xs style={{alignSelf: 'end'}}>
+          <Grid item xs={7} style={{alignSelf: 'end'}}>
             <MenuTabs />
           </Grid>
 
-          <Grid item xs style={{textAlign: 'end'}}>
+          <Grid item xs style={{textAlign: 'center', paddingTop: '0', alignSelf: 'center'}}>
             <Routes>
               <Route exact path="/cadastro" element={
                 <Typography component="div">

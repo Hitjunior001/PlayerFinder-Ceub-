@@ -10,6 +10,9 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import InputFileUpload from "../../components/fileUpload";
+import SelectLabelsPais from "../../components/selectInput-Pais";
+import SelectLabelsEstado from "../../components/selectInput-Estados";
 
 const darkTheme = createTheme({
   palette: {
@@ -66,43 +69,38 @@ const Page = () => {
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
+                    <InputFileUpload />
+                  </Grid>
+
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
+                      autoComplete="family-name"
                       id="User"
                       label="Usuário"
                       name="User"
-                      autoComplete="family-name"
                       autoFocus
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      autoComplete="given-name"
-                      name="Name"
                       required
                       fullWidth
+                      autoComplete="given-name"
                       id="Name"
                       label="Nome"
+                      name="Name"
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
+                      autoComplete="email"
                       id="email"
                       label="Email"
                       name="email"
-                      autoComplete="email"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="phone"
-                      label="Telefone"
-                      id="phone"
                     />
                   </Grid>
                 </Grid>
@@ -117,7 +115,16 @@ const Page = () => {
                   borderRadius: "10px",
                 }}
               >
-                <Grid container spacing={2}>
+                <Grid container spacing={2} style={{}}>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="phone"
+                      label="Telefone"
+                      name="phone"
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <TextField
                       required
@@ -128,31 +135,54 @@ const Page = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      name="pais"
+                    <SelectLabelsPais
                       required
                       fullWidth
+                      autoComplete="given-name"
                       id="pais"
                       label="Nacionalidade"
-                      autoComplete="given-name"
+                      name="pais"
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    <SelectLabelsEstado
                       required
                       fullWidth
+                      autoComplete="estado"
                       id="estado"
                       label="Estado"
                       name="estado"
-                      autoComplete="estado"
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      required
                       fullWidth
-                      name="discord"
-                      label="Discord"
+                      autoComplete="sexo"
+                      id="sexo"
+                      label="Sexo"
+                      name="sexo"
+                    />
+                  </Grid>
+                </Grid>
+              </Paper>
+              
+              <Paper component="div"
+                style={{
+                  padding: "1%",
+                  margin: "1%",
+                  width: "30vw",
+                  backgroundColor: "#202020",
+                  borderRadius: "10px",
+                }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
                       id="discord"
+                      label="Discord"
+                      name="discord"
                     />
                   </Grid>
                   <Grid item xs={12}>
