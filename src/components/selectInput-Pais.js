@@ -9,11 +9,6 @@ export default function SelectLabelsPais() {
 
   const handleChange = (event) => {
     setPais(event.target.value);
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      pais: data.get("pais"),
-    });
   };
 
   return (

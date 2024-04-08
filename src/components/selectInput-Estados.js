@@ -9,11 +9,6 @@ export default function SelectLabelsEstado() {
 
   const handleChange = (event) => {
     setEstado(event.target.value);
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      estado: data.get("estado"),
-    });
   };
 
   return (

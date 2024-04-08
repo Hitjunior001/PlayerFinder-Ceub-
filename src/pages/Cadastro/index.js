@@ -125,7 +125,7 @@ const Page = () => {
                   borderRadius: "10px",
                 }}
               >
-                <Grid container spacing={2} style={{}}>
+                <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
                       required
