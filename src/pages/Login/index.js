@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -19,14 +19,17 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
-  
+
+  const [data, setData] = useState({
+    senha: '',
+    email: ''
+  });
+
+  const valueInput = (event) => setData({ ...data, [event.target.name]: event.target.value });
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log({ Email: data.email, Senha: data.senha });
   };
 
   return (
@@ -47,30 +50,34 @@ const Page = () => {
           Login
         </Typography>
         <Box
-         component="form"
-         Validate
-         onSubmit={handleSubmit}
-         sx={{ mt: 3 }}
+          component="form"
+          Validate
+          onSubmit={handleSubmit}
+          sx={{ mt: 3 }}
         >
           <TextField
             margin="normal"
             required
             fullWidth
-            id="email"
             label="Email"
+            id="email"
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={valueInput}
+            value={data.email}
           />
           <TextField
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Senha"
+            id="sennha"
+            name="senha"
             type="password"
-            id="password"
             autoComplete="current-password"
+            onChange={valueInput}
+            value={data.senha}
           />
           <FormControlLabel
             control={<Checkbox value="lembrar" color="primary" sx={{ color: "#ffff" }} />}
