@@ -20,7 +20,7 @@ export default function SelectLabelsEstado() {
           labelId="label-select-input"
           id="demo-simple-select-helper"
           value={estado}
-          label="Age"
+          label="Estado"
           onChange={handleChange}
         >
           <MenuItem value="" disabled>
