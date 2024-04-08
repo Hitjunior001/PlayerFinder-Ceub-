@@ -9,9 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 import InputFileUpload from "../../components/fileUpload";
-import SelectLabelsPais from "../../components/selectInput-Pais";
 import SelectLabelsEstado from "../../components/selectInput-Estados";
 import { RadioButtonsSexo } from "../../components/radio-btns-Sexo";
 import BasicDatePicker from "../../components/datePicker";
@@ -54,7 +52,7 @@ const Page = () => {
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
-          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <div
               style={{
                 display: "flex",
@@ -74,11 +72,10 @@ const Page = () => {
                 }}
               >
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <InputFileUpload />
                   </Grid>
-
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -89,7 +86,7 @@ const Page = () => {
                       autoFocus
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -99,7 +96,7 @@ const Page = () => {
                       name="nome"
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -108,9 +105,6 @@ const Page = () => {
                       label="Email"
                       name="email"
                     />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <BasicDatePicker />
                   </Grid>
                 </Grid>
               </Paper>
@@ -126,7 +120,7 @@ const Page = () => {
                 }}
               >
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -136,7 +130,7 @@ const Page = () => {
                       id="senha"
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -147,6 +141,9 @@ const Page = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
+                    <BasicDatePicker />
+                  </Grid>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <TextField
                       required
                       fullWidth
@@ -155,13 +152,10 @@ const Page = () => {
                       name="telefone"
                     />
                   </Grid>
-                  <Grid item xs={12}>
-                    <SelectLabelsPais />
-                  </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <SelectLabelsEstado />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} style={{paddingTop: '24px'}}>
                     <RadioButtonsSexo />
                   </Grid>
                 </Grid>
@@ -211,13 +205,6 @@ const Page = () => {
             >
               Cadastrar
             </Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link to="/login" style={{ color: "#16C83D" }}>
-                  Já tem uma conta? Login
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
