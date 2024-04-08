@@ -24,8 +24,8 @@ const Page = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      Email: data.get('email'),
+      Senha: data.get('senha'),
     });
   };
 
@@ -56,8 +56,8 @@ const Page = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
             label="Email"
+            id="email"
             name="email"
             autoComplete="email"
             autoFocus
@@ -66,11 +66,11 @@ const Page = () => {
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Senha"
-            type="password"
-            id="password"
+            id="senha"
+            name="senha"
             autoComplete="current-password"
+            type="password"
           />
           <FormControlLabel
             control={<Checkbox value="lembrar" color="primary" sx={{ color: "#ffff" }} />}
