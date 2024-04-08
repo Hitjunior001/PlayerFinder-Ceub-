@@ -5,17 +5,23 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectLabelsEstado() {
-  const [estado, setAge] = React.useState('');
+  const [estado, setEstado] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setEstado(event.target.value);
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      estado: data.get("estado"),
+    });
   };
 
   return (
     <div>
-      <FormControl sx={{ minWidth: '45%' }}>
-        <InputLabel id="label-select-input">Estado</InputLabel>
+      <FormControl sx={{ minWidth: '100%' }}>
+        <InputLabel id="label-select-input">Estado *</InputLabel>
         <Select
+          required
           labelId="label-select-input"
           id="demo-simple-select-helper"
           value={estado}

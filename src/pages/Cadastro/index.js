@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import InputFileUpload from "../../components/fileUpload";
 import SelectLabelsPais from "../../components/selectInput-Pais";
 import SelectLabelsEstado from "../../components/selectInput-Estados";
+import { RadioButtonsSexo } from "../../components/radio-btns-Sexo";
+import BasicDatePicker from "../../components/datePicker";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,13 +23,16 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      usuario: data.get("usuario"),
+      nome: data.get("nome"),
       email: data.get("email"),
-      password: data.get("password"),
+      senha: data.get("senha"),
+      confirmaSenha: data.get("confirmaSenha"),
+      telefone: data.get("telefone"),
     });
   };
 
@@ -36,7 +41,7 @@ const Page = () => {
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            marginTop: "5vh",
+            marginTop: "2vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -49,16 +54,17 @@ const Page = () => {
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
-          <Box
-            component="form"
-            Validate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div
-              style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                width: "90vw",
+                justifyContent: "center",
+              }}
             >
-              <Paper component="div"
+              <Paper
+                component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
@@ -77,9 +83,9 @@ const Page = () => {
                       required
                       fullWidth
                       autoComplete="family-name"
-                      id="User"
+                      id="usuario"
                       label="Usuário"
-                      name="User"
+                      name="usuario"
                       autoFocus
                     />
                   </Grid>
@@ -88,9 +94,9 @@ const Page = () => {
                       required
                       fullWidth
                       autoComplete="given-name"
-                      id="Name"
+                      id="nome"
                       label="Nome"
-                      name="Name"
+                      name="nome"
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -103,10 +109,14 @@ const Page = () => {
                       name="email"
                     />
                   </Grid>
+                  <Grid item xs={12}>
+                    <BasicDatePicker />
+                  </Grid>
                 </Grid>
               </Paper>
 
-              <Paper component="div"
+              <Paper
+                component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
@@ -120,54 +130,45 @@ const Page = () => {
                     <TextField
                       required
                       fullWidth
-                      id="phone"
+                      name="senha"
+                      label="Senha"
+                      type="password"
+                      id="senha"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      name="confirmaSenha"
+                      label="Confirmar senha"
+                      type="password"
+                      id="confirmaSenha"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="telefone"
                       label="Telefone"
-                      name="phone"
+                      name="telefone"
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="birthday"
-                      label="Data de nascimento"
-                      name="birthday"
-                    />
+                    <SelectLabelsPais />
                   </Grid>
                   <Grid item xs={12}>
-                    <SelectLabelsPais
-                      required
-                      fullWidth
-                      autoComplete="given-name"
-                      id="pais"
-                      label="Nacionalidade"
-                      name="pais"
-                    />
+                    <SelectLabelsEstado />
                   </Grid>
                   <Grid item xs={12}>
-                    <SelectLabelsEstado
-                      required
-                      fullWidth
-                      autoComplete="estado"
-                      id="estado"
-                      label="Estado"
-                      name="estado"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      autoComplete="sexo"
-                      id="sexo"
-                      label="Sexo"
-                      name="sexo"
-                    />
+                    <RadioButtonsSexo />
                   </Grid>
                 </Grid>
               </Paper>
-              
-              <Paper component="div"
+
+              {/* <Paper
+                component="div"
                 style={{
                   padding: "1%",
                   margin: "1%",
@@ -192,22 +193,6 @@ const Page = () => {
                       label="Instagram"
                       name="insta"
                     />
-                  </Grid>
-                </Grid>
-              </Paper>
-
-              {/* <Paper component="div"
-                style={{
-                  padding: "1%",
-                  margin: "1%",
-                  width: "30vw",
-                  backgroundColor: "#202020",
-                  borderRadius: "10px",
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField name="jogo" fullWidth id="jogo" label="Jogo" />
                   </Grid>
                 </Grid>
               </Paper> */}

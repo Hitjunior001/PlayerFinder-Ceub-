@@ -33,7 +33,7 @@ const Page = () => {
     <ThemeProvider theme={darkTheme}>
       <Box
         sx={{
-          marginTop: '5vh',
+          marginTop: '10vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

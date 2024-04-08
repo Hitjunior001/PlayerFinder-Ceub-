@@ -1,21 +1,27 @@
-import React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function SelectLabelsPais() {
-  const [pais, setAge] = React.useState('');
+  const [pais, setPais] = React.useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setPais(event.target.value);
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      pais: data.get("pais"),
+    });
   };
 
   return (
     <div>
-      <FormControl sx={{ minWidth: '45%' }}>
-        <InputLabel id="label-select-input">País</InputLabel>
+      <FormControl sx={{ minWidth: "100%" }}>
+        <InputLabel id="label-select-input">País *</InputLabel>
         <Select
+          required
           labelId="label-select-input"
           id="demo-simple-select-helper"
           value={pais}
@@ -25,12 +31,12 @@ export default function SelectLabelsPais() {
           <MenuItem value="" disabled>
             <em>Selecione</em>
           </MenuItem>
-          <MenuItem value={10}> Brasil </MenuItem> 
-          <MenuItem value={20}> Estados Unidos </MenuItem> 
-          <MenuItem value={30}> México </MenuItem> 
-          <MenuItem value={40}> Espanha </MenuItem> 
+          <MenuItem value={10}> Brasil </MenuItem>
+          <MenuItem value={20}> Estados Unidos </MenuItem>
+          <MenuItem value={30}> México </MenuItem>
+          <MenuItem value={40}> Espanha </MenuItem>
           <MenuItem value={40}> França </MenuItem>
-          <MenuItem value={50}> China </MenuItem> 
+          <MenuItem value={50}> China </MenuItem>
           {/* <MenuItem value={60}> DF </MenuItem> 
           <MenuItem value={70}> ES </MenuItem> 
           <MenuItem value={80}> GO </MenuItem> 

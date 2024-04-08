@@ -19,7 +19,8 @@ function App() {
         <div
           className="App"
           style={{
-            height: "100vh",
+            minHeight: "100vh",
+            height: "100%",
             textAlign: "center",
             backgroundColor: "#202020",
           }}
