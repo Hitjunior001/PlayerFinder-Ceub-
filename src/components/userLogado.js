@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -75,9 +76,11 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> Meu perfil
-                </MenuItem>
+                <Link to="/perfil" style={{color: 'white', textDecoration: 'none'}}>
+                    <MenuItem onClick={handleClose}>
+                        <Avatar /> Meu perfil
+                    </MenuItem>
+                </Link>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
                         <SportsEsportsIcon fontSize="small" />
