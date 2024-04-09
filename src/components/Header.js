@@ -2,6 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography, Button, Grid } from "@mui/material";
 import { Link, Routes, Route } from "react-router-dom";
 import MenuTabs from "./MenuTab";
+import UserLogado from "./userLogado";
 
 export const CustomAppBar = () => {
   return (
@@ -31,6 +32,7 @@ export const CustomAppBar = () => {
                   </Link>
                 </Typography>
               } />
+
               <Route exact path="/login" element={
                 <Typography component="div">
                   Não tem uma conta?
@@ -41,6 +43,11 @@ export const CustomAppBar = () => {
                   </Link>
                 </Typography>
               } />
+
+              <Route exact path="/" element={
+                <UserLogado />
+              } />
+
             </Routes>
           </Grid>
 

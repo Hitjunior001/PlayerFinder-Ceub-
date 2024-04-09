@@ -71,11 +71,11 @@ const Page = () => {
                   borderRadius: "10px",
                 }}
               >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
                     <InputFileUpload />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -86,7 +86,7 @@ const Page = () => {
                       autoFocus
                     />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -96,7 +96,7 @@ const Page = () => {
                       name="nome"
                     />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -119,8 +119,8 @@ const Page = () => {
                   borderRadius: "10px",
                 }}
               >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                <Grid container spacing={2.5}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -130,7 +130,7 @@ const Page = () => {
                       id="senha"
                     />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -143,7 +143,7 @@ const Page = () => {
                   <Grid item xs={12}>
                     <BasicDatePicker />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <TextField
                       required
                       fullWidth
@@ -152,10 +152,10 @@ const Page = () => {
                       name="telefone"
                     />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <SelectLabelsEstado />
                   </Grid>
-                  <Grid item xs={12} style={{paddingTop: '24px'}}>
+                  <Grid item xs={12}>
                     <RadioButtonsSexo />
                   </Grid>
                 </Grid>
@@ -199,6 +199,7 @@ const Page = () => {
                 mt: 3,
                 mb: 2,
                 width: "20vw",
+                color: 'white', 
                 bgcolor: "#16C83D",
                 "&:hover": { backgroundColor: "#16C83D" },
               }}

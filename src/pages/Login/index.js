@@ -80,7 +80,7 @@ const Page = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}
+            sx={{ mt: 3, mb: 2, color: 'white', bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}
           >
             LOGAR
           </Button>
@@ -90,11 +90,6 @@ const Page = () => {
                 Esqueceu a senha?
               </Link>
             </Grid>
-            {/* <Grid item>
-                    <Link to="/login" variant="body2">
-                      {"Não tem uma conta? Cadastre-se"}
-                    </Link>
-                  </Grid> */}
           </Grid>
         </Box>
       </Box>
