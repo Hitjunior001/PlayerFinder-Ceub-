@@ -27,6 +27,9 @@ function App() {
         >
           <CustomAppBar />
           <Routes />
+
+          <h1> Início </h1>
+
         </div>
       </BrowserRouter>
     </ThemeProvider>
