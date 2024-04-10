@@ -27,7 +27,7 @@ export default function AccountMenu() {
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', placeContent: 'center' }}>
                 <Typography component="h2" sx={{ minWidth: 100 }}>Bem vindo Sempert21</Typography>
-                <Tooltip title="Account settings">
+                <Tooltip title="Minha conta">
                     <IconButton
                         onClick={handleClick}
                         size="small"

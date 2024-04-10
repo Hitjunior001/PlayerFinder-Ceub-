@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import { CustomAppBar } from "./components/Header";
 
 const darkTheme = createTheme({
@@ -27,9 +26,6 @@ function App() {
         >
           <CustomAppBar />
           <Routes />
-
-          <h1> Início </h1>
-
         </div>
       </BrowserRouter>
     </ThemeProvider>
