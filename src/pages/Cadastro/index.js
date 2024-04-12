@@ -79,7 +79,7 @@ const Page = () => {
                     <TextField
                       required
                       fullWidth
-                      autoComplete="family-name"
+                      autoComplete="given-name"
                       id="usuario"
                       label="Usuário"
                       name="usuario"
@@ -90,7 +90,7 @@ const Page = () => {
                     <TextField
                       required
                       fullWidth
-                      autoComplete="given-name"
+                      autoComplete="name"
                       id="nome"
                       label="Nome"
                       name="nome"
@@ -119,7 +119,7 @@ const Page = () => {
                   borderRadius: "10px",
                 }}
               >
-                <Grid container spacing={2.5}>
+                <Grid container spacing={4.5}>
                   <Grid item xs={12}>
                     <TextField
                       required
@@ -144,15 +144,6 @@ const Page = () => {
                     <BasicDatePicker />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="telefone"
-                      label="Telefone"
-                      name="telefone"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
                     <SelectLabelsEstado />
                   </Grid>
                   <Grid item xs={12}>
@@ -160,36 +151,6 @@ const Page = () => {
                   </Grid>
                 </Grid>
               </Paper>
-
-              {/* <Paper
-                component="div"
-                style={{
-                  padding: "1%",
-                  margin: "1%",
-                  width: "30vw",
-                  backgroundColor: "#202020",
-                  borderRadius: "10px",
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="discord"
-                      label="Discord"
-                      name="discord"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      id="insta"
-                      label="Instagram"
-                      name="insta"
-                    />
-                  </Grid>
-                </Grid>
-              </Paper> */}
             </div>
 
             <Button

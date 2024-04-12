@@ -4,6 +4,7 @@ import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Perfil from "./pages/Perfil"
+import Jogos from "./pages/Jogos"
 
 // eslint-disable-next-line
 export default () => {
@@ -12,6 +13,7 @@ export default () => {
                 <Route exact path="/cadastro" element={<Cadastro />}  />
                 <Route exact path="/login" element={<Login />}  />
                 <Route exact path="" element={<Inicio />}  />
+                <Route exact path="/jogos" element={<Jogos />}  />
                 <Route exact path="/perfil" element={<Perfil />}  />
             </Routes>
     );
