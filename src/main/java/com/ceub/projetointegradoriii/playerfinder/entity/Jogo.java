@@ -16,7 +16,7 @@ public class Jogo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 
 	@Column(name = "titulo", nullable = false)
 	private String titulo;
@@ -24,18 +24,18 @@ public class Jogo {
 	@Column(name = "data_lancamento", nullable = false)
 	private Date dataLancamento;
 
-	public Jogo(int id, String titulo, Date dataLancamento) {
+	public Jogo(Long id, String titulo, Date dataLancamento) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.dataLancamento = dataLancamento;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
