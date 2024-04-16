@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { Link } from 'react-router-dom';
 
 export default function MenuTabs() {
     const [value, setValue] = React.useState(0);
@@ -13,8 +14,8 @@ export default function MenuTabs() {
     return (
         <Box>
             <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="Início" style={{ color: 'white', fontSize: '18px' }} />
-                <Tab label="Jogos" style={{ color: 'white', fontSize: '18px' }} />
+                <Tab label="Início" component={Link} to={"/"} style={{ color: 'white', fontSize: '18px' }} />
+                <Tab label="Jogos" component={Link} to={"/jogos"} style={{ color: 'white', fontSize: '18px' }} />
             </Tabs>
         </Box>
     );

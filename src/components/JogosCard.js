@@ -11,9 +11,9 @@ export default function JogosAreaCard() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+          height="120"
+          image="jogos.jpg"
+          alt="jogos"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

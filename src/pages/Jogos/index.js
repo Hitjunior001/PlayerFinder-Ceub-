@@ -5,10 +5,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid"
 import Paper from "@mui/material/Paper";
-import HomeIcon from '@mui/icons-material/Home';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import JogosAreaCard from "../../components/JogosCard";
 import { Link } from "react-router-dom";
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
 
 const darkTheme = createTheme({
     palette: {
@@ -31,10 +34,10 @@ const Page = () => {
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
-                        <HomeIcon fontSize="medium" />
+                        <SportsEsportsIcon fontSize="medium" />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Início
+                        Jogos
                     </Typography>
                     <div
                         style={{
@@ -57,7 +60,23 @@ const Page = () => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="" style={{ textDecoration: 'none' }}>
-                                        <JogosAreaCard />
+
+                                        <Card sx={{ maxWidth: "100%" }}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="450"
+                                                    image="valorant.jpg"
+                                                    alt="valorant"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        Valorant
+                                                    </Typography>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+
                                     </Link>
                                 </Grid>
                             </Grid>
@@ -76,7 +95,23 @@ const Page = () => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="" style={{ textDecoration: 'none' }}>
-                                        <JogosAreaCard />
+
+                                        <Card sx={{ maxWidth: "100%" }}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="450"
+                                                    image="CS2.jpg"
+                                                    alt="counterstrike2"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        Counter Strike 2
+                                                    </Typography>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+
                                     </Link>
                                 </Grid>
                             </Grid>
@@ -95,7 +130,23 @@ const Page = () => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="" style={{ textDecoration: 'none' }}>
-                                        <JogosAreaCard />
+
+                                        <Card sx={{ maxWidth: "100%" }}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="450"
+                                                    image="league-of-legends.jpg"
+                                                    alt="leagueoflegends"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        League of Legends
+                                                    </Typography>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+
                                     </Link>
                                 </Grid>
                             </Grid>
