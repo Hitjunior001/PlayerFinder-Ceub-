@@ -52,61 +52,29 @@ const Page = () => {
                             style={{
                                 padding: "0.5%",
                                 margin: "1%",
-                                width: "30vw",
+                                width: "25vw",
                                 backgroundColor: "#202020",
                                 borderRadius: "10px",
                             }}
                         >
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
-                                    <Link to="" style={{ textDecoration: 'none' }}>
+                                    <Link to="valorant" style={{ textDecoration: 'none' }}>
 
                                         <Card sx={{ maxWidth: "100%" }}>
                                             <CardActionArea>
                                                 <CardMedia
                                                     component="img"
                                                     height="450"
-                                                    image="valorant.jpg"
+                                                    image="valorant.png"
                                                     alt="valorant"
                                                 />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         Valorant
                                                     </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                        </Paper>
-
-                        <Paper
-                            component="div"
-                            style={{
-                                padding: "0.5%",
-                                margin: "1%",
-                                width: "30vw",
-                                backgroundColor: "#202020",
-                                borderRadius: "10px",
-                            }}
-                        >
-                            <Grid container spacing={3}>
-                                <Grid item xs={12}>
-                                    <Link to="" style={{ textDecoration: 'none' }}>
-
-                                        <Card sx={{ maxWidth: "100%" }}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="450"
-                                                    image="CS2.jpg"
-                                                    alt="counterstrike2"
-                                                />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Counter Strike 2
+                                                    <Typography gutterBottom variant="h8" component="div">
+                                                        Sobre o jogo: Valorant é um jogo eletrônico multijogador gratuito para jogar de tiro em primeira pessoa.
                                                     </Typography>
                                                 </CardContent>
                                             </CardActionArea>
@@ -122,7 +90,7 @@ const Page = () => {
                             style={{
                                 padding: "0.5%",
                                 margin: "1%",
-                                width: "30vw",
+                                width: "25vw",
                                 backgroundColor: "#202020",
                                 borderRadius: "10px",
                             }}
@@ -136,12 +104,53 @@ const Page = () => {
                                                 <CardMedia
                                                     component="img"
                                                     height="450"
-                                                    image="league-of-legends.jpg"
+                                                    image="CS2.png"
+                                                    alt="counterstrike2"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        Counter Strike 2
+                                                    </Typography>
+                                                    <Typography gutterBottom variant="h8" component="div">
+                                                        Sobre o jogo: Counter-Strike 2 é um jogo tático multijogador de tiro em primeira pessoa.S
+                                                    </Typography>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Paper>
+
+                        <Paper
+                            component="div"
+                            style={{
+                                padding: "0.5%",
+                                margin: "1%",
+                                width: "25vw",
+                                backgroundColor: "#202020",
+                                borderRadius: "10px",
+                            }}
+                        >
+                            <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                    <Link to="" style={{ textDecoration: 'none' }}>
+
+                                        <Card sx={{ maxWidth: "100%" }}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="450"
+                                                    image="league-of-legends.png"
                                                     alt="leagueoflegends"
                                                 />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         League of Legends
+                                                    </Typography>
+                                                    <Typography gutterBottom variant="h8" component="div">
+                                                        Sobre o jogo: League of Legends é um jogo eletrônico do gênero multiplayer online battle arena.
                                                     </Typography>
                                                 </CardContent>
                                             </CardActionArea>
