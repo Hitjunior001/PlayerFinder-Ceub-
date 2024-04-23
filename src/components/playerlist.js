@@ -4,81 +4,59 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 export default function PlayerList() {
   return (
     <List sx={{ width: '100%' }}>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary="JuninhoGameplays#BR2"
+          primary={
+            <Typography
+              sx={{ display: 'inline', fontSize: '30px' }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+            >
+              JuninhoGameplays#BR2
+            </Typography>
+          }
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline', marginLeft: '1vw'}}
+                sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
                 component="span"
                 variant="body2"
-                color="text.primary"
+                color="text.secundary"
               >
                 Função: {"Duelista"}
               </Typography>
               <Typography
-                sx={{ display: 'inline', marginLeft: '1vw' }}
+                sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
                 component="span"
                 variant="body2"
-                color="text.primary"
+                color="text.secundary"
               >
                 Campeão: {"Raze"}
               </Typography>
               <Typography
-                sx={{ display: 'inline', marginLeft: '1vw' }}
+                sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
                 component="span"
                 variant="body2"
-                color="text.primary"
+                color="text.secundary"
               >
                 Rank: {"Platina 2"}
               </Typography>
             </React.Fragment>
           }
         />
+        <Button style={{ color: 'white', backgroundColor: '#16C83D' }}>
+          <OpenInNewIcon sx={{display: 'inline', marginRight: '0.3vw'}}/>
+           Ver perfil
+        </Button>
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary="Oui Oui"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+      <Divider variant="inset" component="li" sx={{ marginLeft: '0', bgcolor: '#16C83D' }} />
     </List>
   );
 }

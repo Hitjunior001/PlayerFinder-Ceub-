@@ -37,8 +37,10 @@ const Page = () => {
                         Valorant
                     </Typography>
 
-                    <FilterDrawer/>
-
+                    <Typography sx={{margin: '3%'}}>
+                        <FilterDrawer />
+                    </Typography>
+                    
                     <div
                         style={{
                             display: "flex",
