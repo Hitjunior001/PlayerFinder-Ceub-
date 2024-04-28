@@ -11,7 +11,7 @@ export const CustomAppBar = () => {
 
         <Grid container spacing={3} style={{ height: "12vh", margin: '0'}}>
           <Grid item xs style={{textAlign: 'start', paddingLeft: '0'}}>
-            <Link to={"/"}>
+            <Link to={"/inicio"}>
               <img src="logo.png" alt="logo" />
             </Link>
           </Grid>
@@ -25,7 +25,7 @@ export const CustomAppBar = () => {
               <Route exact path="/cadastro" element={
                 <Typography component="div">
                   Já tem uma conta?
-                  <Link to="/login" style={{ color: "white" }}>
+                  <Link to="/" style={{ color: "white" }}>
                     <Button color="inherit" className="cadastra-cand" sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }} >
                       Login
                     </Button>
@@ -33,7 +33,7 @@ export const CustomAppBar = () => {
                 </Typography>
               } />
 
-              <Route exact path="/login" element={
+              <Route exact path="/" element={
                 <Typography component="div">
                   Não tem uma conta?
                   <Link to="/cadastro" style={{ color: "white" }}>
@@ -44,7 +44,7 @@ export const CustomAppBar = () => {
                 </Typography>
               } />
 
-              <Route exact path="/" element={
+              <Route exact path="/inicio" element={
                 <UserLogado />
               } />
 

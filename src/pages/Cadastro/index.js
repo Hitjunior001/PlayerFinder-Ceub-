@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -23,6 +23,10 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const darkTheme = createTheme({
   palette: {
@@ -31,6 +35,27 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
+  const [usuario, setUsuario] = useState("");
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [ConfirmaSenha, setConfirmaSenha] = useState("");
+  // const [nascimento, setNascimento] = useState("");
+  const [estado, setEstado] = useState('');
+  const [genero, setGenero] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { signup } = useAuth();
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };//SnackBar
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,6 +69,32 @@ const Page = () => {
       Estado: data.get("estado"),
       Gênero: data.get("genero"),
     });
+
+    if (senha !== ConfirmaSenha) {
+      setError("As senhas precisam ser iguais");
+      return;
+    }
+
+    const res = signup(email, senha);
+
+    if (res) {
+      setError(res);
+      return;
+    }
+
+    setOpen(true);
+    <Snackbar open={open} autoHideDuration={3500} onClose={handleClose}>
+      <Alert
+        onClose={handleClose}
+        severity="success"
+        variant="filled"
+        sx={{ width: '100%' }}
+      >
+        Usuário cadastrado com sucesso!
+      </Alert>
+    </Snackbar>
+    alert("Usuário cadastrado com sucesso!")
+    navigate("/");
   };
 
   const [cleared, setCleared] = React.useState(false);
@@ -59,7 +110,6 @@ const Page = () => {
     return () => { };
   });
 
-  const [estado, setEstado] = React.useState('');
 
   const handleChange = (event) => {
     setEstado(event.target.value);
@@ -115,6 +165,8 @@ const Page = () => {
                       label="Usuário"
                       name="usuario"
                       autoFocus
+                      value={usuario}
+                      onChange={(e) => [setUsuario(e.target.value), setError("")]}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -125,6 +177,8 @@ const Page = () => {
                       id="nome"
                       label="Nome"
                       name="nome"
+                      value={nome}
+                      onChange={(e) => [setNome(e.target.value), setError("")]}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -135,6 +189,8 @@ const Page = () => {
                       id="email"
                       label="Email"
                       name="email"
+                      value={email}
+                      onChange={(e) => [setEmail(e.target.value), setError("")]}
                     />
                   </Grid>
                 </Grid>
@@ -159,6 +215,8 @@ const Page = () => {
                       label="Senha"
                       type="password"
                       id="senha"
+                      value={senha}
+                      onChange={(e) => [setSenha(e.target.value), setError("")]}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -169,6 +227,8 @@ const Page = () => {
                       label="Confirmar senha"
                       type="password"
                       id="confirmaSenha"
+                      value={ConfirmaSenha}
+                      onChange={(e) => [setConfirmaSenha(e.target.value), setError("")]}
                     />
                   </Grid>
 
@@ -190,9 +250,7 @@ const Page = () => {
                         label="Estado"
                         onChange={handleChange}
                       >
-                        <MenuItem value="" disabled>
-                          <em>Selecione</em>
-                        </MenuItem>
+                        <MenuItem value="" disabled> <em>Selecione</em> </MenuItem>
                         <MenuItem value={"ac"}> AC - Acre </MenuItem> 
                         <MenuItem value={"al"}> AL - Alagoas</MenuItem> 
                         <MenuItem value={"ap"}> AP - Amapá </MenuItem> 
@@ -231,10 +289,12 @@ const Page = () => {
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
+                        value={genero}
+                        onChange={(e) => [setGenero(e.target.value), setError("")]}
                       >
-                        <FormControlLabel value="masculino" name="genero" control={<Radio />} label="Masculino" />
-                        <FormControlLabel value="feminino" name="genero" control={<Radio />} label="Feminino" />
-                        <FormControlLabel value="outro" name="genero" control={<Radio />} label="Prefiro não informar" />
+                        <FormControlLabel required value="masculino" name="genero" control={<Radio />} label="Masculino" />
+                        <FormControlLabel required value="feminino" name="genero" control={<Radio />} label="Feminino" />
+                        <FormControlLabel required value="outro" name="genero" control={<Radio />} label="Prefiro não informar" />
                       </RadioGroup>
                     </FormControl>
                   </Grid>
@@ -243,6 +303,7 @@ const Page = () => {
               </Paper>
             </div>
 
+            <Typography sx={{marginTop: '1vh', color: 'red'}}>{error}</Typography>
             <Button
               type="submit"
               variant="contained"

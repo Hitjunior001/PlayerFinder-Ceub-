@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -13,6 +13,7 @@ import Logout from '@mui/icons-material/Logout';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AddIcon from '@mui/icons-material/Add';
+import useAuth from "../hooks/useAuth";
 
 export default function AccountMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -23,6 +24,10 @@ export default function AccountMenu() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const { signout } = useAuth();
+    const navigate = useNavigate();
+    
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', placeContent: 'center' }}>
@@ -100,7 +105,7 @@ export default function AccountMenu() {
                     Adicionar jogo
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => [signout(), navigate("/")]}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
