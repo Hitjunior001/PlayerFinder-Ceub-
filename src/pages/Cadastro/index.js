@@ -10,9 +10,19 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputFileUpload from "../../components/fileUpload";
-import SelectLabelsEstado from "../../components/selectInput-Estados";
-import { RadioButtonsSexo } from "../../components/radio-btns-Sexo";
-import BasicDatePicker from "../../components/datePicker";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { ptBR } from '@mui/x-date-pickers/locales';
+import 'dayjs/locale/pt-br';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,8 +40,29 @@ const Page = () => {
       Email: data.get("email"),
       Senha: data.get("senha"),
       ConfirmaSenha: data.get("confirmaSenha"),
-      Telefone: data.get("telefone"),
+      DataNascimento: data.get("nascimento"),
+      Estado: data.get("estado"),
+      Gênero: data.get("genero"),
     });
+  };
+
+  const [cleared, setCleared] = React.useState(false);
+
+  React.useEffect(() => {
+    if (cleared) {
+      const timeout = setTimeout(() => {
+        setCleared(false);
+      }, 1500);
+
+      return () => clearTimeout(timeout);
+    }
+    return () => { };
+  });
+
+  const [estado, setEstado] = React.useState('');
+
+  const handleChange = (event) => {
+    setEstado(event.target.value);
   };
 
   return (
@@ -140,15 +171,74 @@ const Page = () => {
                       id="confirmaSenha"
                     />
                   </Grid>
+
                   <Grid item xs={12}>
-                    <BasicDatePicker />
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='pt-br' localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText} >
+                      <DatePicker label="Data de nascimento *" name="nascimento" sx={{ width: '100%' }} slotProps={{ field: { clearable: true, onClear: () => setCleared(true) }, }} />
+                    </LocalizationProvider>
                   </Grid>
+
                   <Grid item xs={12}>
-                    <SelectLabelsEstado />
+                    <FormControl sx={{ minWidth: '100%' }}>
+                      <InputLabel id="label-select-input">Estado *</InputLabel>
+                      <Select
+                        required
+                        labelId="label-select-input"
+                        id="demo-simple-select-helper"
+                        value={estado}
+                        name="estado"
+                        label="Estado"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value="" disabled>
+                          <em>Selecione</em>
+                        </MenuItem>
+                        <MenuItem value={"ac"}> AC - Acre </MenuItem> 
+                        <MenuItem value={"al"}> AL - Alagoas</MenuItem> 
+                        <MenuItem value={"ap"}> AP - Amapá </MenuItem> 
+                        <MenuItem value={"am"}> AM - Amazonas </MenuItem> 
+                        <MenuItem value={"ba"}> BA - Bahia</MenuItem>
+                        <MenuItem value={"ce"}> CE - Ceará</MenuItem> 
+                        <MenuItem value={"df"}> DF - Distrito Federal</MenuItem> 
+                        <MenuItem value={"es"}> ES - Espírito Santo</MenuItem> 
+                        <MenuItem value={"go"}> GO - Goiás</MenuItem> 
+                        <MenuItem value={"ma"}> MA - Maranhão</MenuItem> 
+                        <MenuItem value={"mt"}> MT - Mato Grosso</MenuItem> 
+                        <MenuItem value={"ms"}> MS - Mato Grosso do Sul</MenuItem> 
+                        <MenuItem value={"mg"}> MG - Minas Geráis</MenuItem> 
+                        <MenuItem value={"pa"}> PA - Pará</MenuItem> 
+                        <MenuItem value={"pb"}> PB - Paraíba</MenuItem> 
+                        <MenuItem value={"pr"}> PR - Paraná</MenuItem> 
+                        <MenuItem value={"pe"}> PE - Pernambuco</MenuItem> 
+                        <MenuItem value={"pi"}> PI - Piauí</MenuItem> 
+                        <MenuItem value={"rj"}> RJ - Rio de Janeiro</MenuItem> 
+                        <MenuItem value={"rn"}> RN - Rio Grande do Norte</MenuItem> 
+                        <MenuItem value={"rs"}> RS - Rio Grande do Sul</MenuItem> 
+                        <MenuItem value={"ro"}> RO - Rondônia</MenuItem> 
+                        <MenuItem value={"rr"}> RR - Roraima</MenuItem> 
+                        <MenuItem value={"sc"}> SC - Santa Catarina</MenuItem> 
+                        <MenuItem value={"sp"}> SP - São Paulo</MenuItem> 
+                        <MenuItem value={"se"}> SE - Sergipe</MenuItem> 
+                        <MenuItem value={"to"}> TO - Tocantins</MenuItem> 
+                      </Select>
+                    </FormControl>
                   </Grid>
+
                   <Grid item xs={12}>
-                    <RadioButtonsSexo />
+                    <FormControl>
+                      <FormLabel id="demo-row-radio-buttons-group-label">Gênero</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                      >
+                        <FormControlLabel value="masculino" name="genero" control={<Radio />} label="Masculino" />
+                        <FormControlLabel value="feminino" name="genero" control={<Radio />} label="Feminino" />
+                        <FormControlLabel value="outro" name="genero" control={<Radio />} label="Prefiro não informar" />
+                      </RadioGroup>
+                    </FormControl>
                   </Grid>
+
                 </Grid>
               </Paper>
             </div>
