@@ -10,23 +10,24 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputFileUpload from "../../components/fileUpload";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { ptBR } from '@mui/x-date-pickers/locales';
-import 'dayjs/locale/pt-br';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { ptBR } from "@mui/x-date-pickers/locales";
+import dayjs from 'dayjs';
+import "dayjs/locale/pt-br";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const darkTheme = createTheme({
   palette: {
@@ -34,27 +35,30 @@ const darkTheme = createTheme({
   },
 });
 
+const min= dayjs().add(-100, 'year');
+const max= dayjs().add(0, 'year');
+
 const Page = () => {
+  const { signup } = useAuth();
+
   const [usuario, setUsuario] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [ConfirmaSenha, setConfirmaSenha] = useState("");
   // const [nascimento, setNascimento] = useState("");
-  const [estado, setEstado] = useState('');
+  const [estado, setEstado] = useState("");
   const [genero, setGenero] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { signup } = useAuth();
-
   const [open, setOpen] = React.useState(false);
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
-  };//SnackBar
+  }; //SnackBar
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -88,12 +92,12 @@ const Page = () => {
         onClose={handleClose}
         severity="success"
         variant="filled"
-        sx={{ width: '100%' }}
+        sx={{ width: "100%" }}
       >
         Usuário cadastrado com sucesso!
       </Alert>
-    </Snackbar>
-    alert("Usuário cadastrado com sucesso!")
+    </Snackbar>;
+    alert("Usuário cadastrado com sucesso!");
     navigate("/");
   };
 
@@ -107,9 +111,8 @@ const Page = () => {
 
       return () => clearTimeout(timeout);
     }
-    return () => { };
+    return () => {};
   });
-
 
   const handleChange = (event) => {
     setEstado(event.target.value);
@@ -166,7 +169,10 @@ const Page = () => {
                       name="usuario"
                       autoFocus
                       value={usuario}
-                      onChange={(e) => [setUsuario(e.target.value), setError("")]}
+                      onChange={(e) => [
+                        setUsuario(e.target.value),
+                        setError(""),
+                      ]}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -228,18 +234,45 @@ const Page = () => {
                       type="password"
                       id="confirmaSenha"
                       value={ConfirmaSenha}
-                      onChange={(e) => [setConfirmaSenha(e.target.value), setError("")]}
+                      onChange={(e) => [
+                        setConfirmaSenha(e.target.value),
+                        setError(""),
+                      ]}
                     />
                   </Grid>
 
                   <Grid item xs={12}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='pt-br' localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText} >
-                      <DatePicker label="Data de nascimento *" name="nascimento" sx={{ width: '100%' }} slotProps={{ field: { clearable: true, onClear: () => setCleared(true) }, }} />
+                    <LocalizationProvider
+                      dateAdapter={AdapterDayjs}
+                      adapterLocale="pt-br"
+                      localeText={
+                        ptBR.components.MuiLocalizationProvider.defaultProps
+                          .localeText
+                      }
+                    >
+                      <DatePicker
+                        label="Data de nascimento *"
+                        name="nascimento"
+                        // value={nascimento}
+                        // onChange={(e) => [
+                        //   setNascimento(e.target.value),
+                        //   setError(""),
+                        // ]}
+                        minDate={min}
+                        maxDate={max}
+                        sx={{ width: "100%" }}
+                        slotProps={{
+                          field: {
+                            clearable: true,
+                            onClear: () => setCleared(true),
+                          },
+                        }}
+                      />
                     </LocalizationProvider>
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FormControl sx={{ minWidth: '100%' }}>
+                    <FormControl sx={{ minWidth: "100%" }}>
                       <InputLabel id="label-select-input">Estado *</InputLabel>
                       <Select
                         required
@@ -250,60 +283,96 @@ const Page = () => {
                         label="Estado"
                         onChange={handleChange}
                       >
-                        <MenuItem value="" disabled> <em>Selecione</em> </MenuItem>
-                        <MenuItem value={"ac"}> AC - Acre </MenuItem> 
-                        <MenuItem value={"al"}> AL - Alagoas</MenuItem> 
-                        <MenuItem value={"ap"}> AP - Amapá </MenuItem> 
-                        <MenuItem value={"am"}> AM - Amazonas </MenuItem> 
+                        <MenuItem value="" disabled>
+                          {" "}
+                          <em>Selecione</em>{" "}
+                        </MenuItem>
+                        <MenuItem value={"ac"}> AC - Acre </MenuItem>
+                        <MenuItem value={"al"}> AL - Alagoas</MenuItem>
+                        <MenuItem value={"ap"}> AP - Amapá </MenuItem>
+                        <MenuItem value={"am"}> AM - Amazonas </MenuItem>
                         <MenuItem value={"ba"}> BA - Bahia</MenuItem>
-                        <MenuItem value={"ce"}> CE - Ceará</MenuItem> 
-                        <MenuItem value={"df"}> DF - Distrito Federal</MenuItem> 
-                        <MenuItem value={"es"}> ES - Espírito Santo</MenuItem> 
-                        <MenuItem value={"go"}> GO - Goiás</MenuItem> 
-                        <MenuItem value={"ma"}> MA - Maranhão</MenuItem> 
-                        <MenuItem value={"mt"}> MT - Mato Grosso</MenuItem> 
-                        <MenuItem value={"ms"}> MS - Mato Grosso do Sul</MenuItem> 
-                        <MenuItem value={"mg"}> MG - Minas Geráis</MenuItem> 
-                        <MenuItem value={"pa"}> PA - Pará</MenuItem> 
-                        <MenuItem value={"pb"}> PB - Paraíba</MenuItem> 
-                        <MenuItem value={"pr"}> PR - Paraná</MenuItem> 
-                        <MenuItem value={"pe"}> PE - Pernambuco</MenuItem> 
-                        <MenuItem value={"pi"}> PI - Piauí</MenuItem> 
-                        <MenuItem value={"rj"}> RJ - Rio de Janeiro</MenuItem> 
-                        <MenuItem value={"rn"}> RN - Rio Grande do Norte</MenuItem> 
-                        <MenuItem value={"rs"}> RS - Rio Grande do Sul</MenuItem> 
-                        <MenuItem value={"ro"}> RO - Rondônia</MenuItem> 
-                        <MenuItem value={"rr"}> RR - Roraima</MenuItem> 
-                        <MenuItem value={"sc"}> SC - Santa Catarina</MenuItem> 
-                        <MenuItem value={"sp"}> SP - São Paulo</MenuItem> 
-                        <MenuItem value={"se"}> SE - Sergipe</MenuItem> 
-                        <MenuItem value={"to"}> TO - Tocantins</MenuItem> 
+                        <MenuItem value={"ce"}> CE - Ceará</MenuItem>
+                        <MenuItem value={"df"}> DF - Distrito Federal</MenuItem>
+                        <MenuItem value={"es"}> ES - Espírito Santo</MenuItem>
+                        <MenuItem value={"go"}> GO - Goiás</MenuItem>
+                        <MenuItem value={"ma"}> MA - Maranhão</MenuItem>
+                        <MenuItem value={"mt"}> MT - Mato Grosso</MenuItem>
+                        <MenuItem value={"ms"}>
+                          {" "}
+                          MS - Mato Grosso do Sul
+                        </MenuItem>
+                        <MenuItem value={"mg"}> MG - Minas Geráis</MenuItem>
+                        <MenuItem value={"pa"}> PA - Pará</MenuItem>
+                        <MenuItem value={"pb"}> PB - Paraíba</MenuItem>
+                        <MenuItem value={"pr"}> PR - Paraná</MenuItem>
+                        <MenuItem value={"pe"}> PE - Pernambuco</MenuItem>
+                        <MenuItem value={"pi"}> PI - Piauí</MenuItem>
+                        <MenuItem value={"rj"}> RJ - Rio de Janeiro</MenuItem>
+                        <MenuItem value={"rn"}>
+                          {" "}
+                          RN - Rio Grande do Norte
+                        </MenuItem>
+                        <MenuItem value={"rs"}>
+                          {" "}
+                          RS - Rio Grande do Sul
+                        </MenuItem>
+                        <MenuItem value={"ro"}> RO - Rondônia</MenuItem>
+                        <MenuItem value={"rr"}> RR - Roraima</MenuItem>
+                        <MenuItem value={"sc"}> SC - Santa Catarina</MenuItem>
+                        <MenuItem value={"sp"}> SP - São Paulo</MenuItem>
+                        <MenuItem value={"se"}> SE - Sergipe</MenuItem>
+                        <MenuItem value={"to"}> TO - Tocantins</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>
 
                   <Grid item xs={12}>
                     <FormControl>
-                      <FormLabel id="demo-row-radio-buttons-group-label">Gênero</FormLabel>
+                      <FormLabel id="demo-row-radio-buttons-group-label">
+                        Gênero
+                      </FormLabel>
                       <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                         value={genero}
-                        onChange={(e) => [setGenero(e.target.value), setError("")]}
+                        onChange={(e) => [
+                          setGenero(e.target.value),
+                          setError(""),
+                        ]}
                       >
-                        <FormControlLabel required value="masculino" name="genero" control={<Radio />} label="Masculino" />
-                        <FormControlLabel required value="feminino" name="genero" control={<Radio />} label="Feminino" />
-                        <FormControlLabel required value="outro" name="genero" control={<Radio />} label="Prefiro não informar" />
+                        <FormControlLabel
+                          required
+                          value="masculino"
+                          name="genero"
+                          control={<Radio />}
+                          label="Masculino"
+                        />
+                        <FormControlLabel
+                          required
+                          value="feminino"
+                          name="genero"
+                          control={<Radio />}
+                          label="Feminino"
+                        />
+                        <FormControlLabel
+                          required
+                          value="outro"
+                          name="genero"
+                          control={<Radio />}
+                          label="Prefiro não informar"
+                        />
                       </RadioGroup>
                     </FormControl>
                   </Grid>
-
                 </Grid>
               </Paper>
             </div>
 
-            <Typography sx={{marginTop: '1vh', color: 'red'}}>{error}</Typography>
+            <Typography sx={{ marginTop: "1vh", color: "red" }}>
+              {error}
+            </Typography>
             <Button
               type="submit"
               variant="contained"
@@ -311,7 +380,7 @@ const Page = () => {
                 mt: 3,
                 mb: 2,
                 width: "20vw",
-                color: 'white', 
+                color: "white",
                 bgcolor: "#16C83D",
                 "&:hover": { backgroundColor: "#16C83D" },
               }}
