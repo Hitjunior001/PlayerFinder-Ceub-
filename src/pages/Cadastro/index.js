@@ -14,7 +14,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { ptBR } from "@mui/x-date-pickers/locales";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -36,8 +36,8 @@ const darkTheme = createTheme({
   },
 });
 
-const min = dayjs().add(-100, 'year');
-const max = dayjs().add(0, 'year');
+const min = dayjs().add(-100, "year");
+const max = dayjs().add(0, "year");
 
 const Page = () => {
   const { signup } = useAuth();
@@ -75,12 +75,8 @@ const Page = () => {
 
     if (senha !== ConfirmaSenha) {
       setError(
-        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-          <Alert
-            severity="warning"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
+        <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
+          <Alert severity="warning" variant="filled" sx={{ width: "100%" }}>
             As senhas precisam ser iguais!
           </Alert>
         </Snackbar>
@@ -96,13 +92,8 @@ const Page = () => {
       return;
     }
 
-    <Snackbar open={true} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={3500} onClose={handleClose}>
-      <Alert
-        onClose={handleClose}
-        severity="success"
-        variant="filled"
-        sx={{ width: "100%" }}
-      >
+    <Snackbar open={true} anchorOrigin={{ vertical: "top", horizontal: "center" }} autoHideDuration={3500} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: "100%" }}>
         Usuário cadastrado com sucesso!
       </Alert>
     </Snackbar>;
@@ -119,16 +110,16 @@ const Page = () => {
 
       return () => clearTimeout(timeout);
     }
-    return () => { };
-  });//DatePicker
+    return () => {};
+  }); //DatePicker
 
   const handleChange = (event) => {
     setEstado(event.target.value);
-  };//Select Estado
+  }; //Select Estado
 
   const { signed } = useAuth();
   if (signed) {
-    return <Inicio />
+    return <Inicio />;
   }
   return (
     <ThemeProvider theme={darkTheme}>
@@ -181,10 +172,7 @@ const Page = () => {
                       name="usuario"
                       autoFocus
                       value={usuario}
-                      onChange={(e) => [
-                        setUsuario(e.target.value),
-                        setError(""),
-                      ]}
+                      onChange={(e) => [setUsuario(e.target.value), setError("")]}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -246,10 +234,7 @@ const Page = () => {
                       type="password"
                       id="confirmaSenha"
                       value={ConfirmaSenha}
-                      onChange={(e) => [
-                        setConfirmaSenha(e.target.value),
-                        setError(""),
-                      ]}
+                      onChange={(e) => [setConfirmaSenha(e.target.value), setError("")]}
                     />
                   </Grid>
 
@@ -257,19 +242,13 @@ const Page = () => {
                     <LocalizationProvider
                       dateAdapter={AdapterDayjs}
                       adapterLocale="pt-br"
-                      localeText={
-                        ptBR.components.MuiLocalizationProvider.defaultProps
-                          .localeText
-                      }
+                      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
                     >
                       <DatePicker
                         label="Data de nascimento *"
                         name="nascimento"
                         // value={nascimento}
-                        // onChange={(e) => [
-                        //   setNascimento(e.target.value),
-                        //   setError(""),
-                        // ]}
+                        // onChange={(e) => [setNascimento(e.target.value), setError("")]}
                         minDate={min}
                         maxDate={max}
                         sx={{ width: "100%" }}
@@ -295,14 +274,11 @@ const Page = () => {
                         label="Estado"
                         onChange={handleChange}
                       >
-                        <MenuItem value="" disabled>
-                          {" "}
-                          <em>Selecione</em>{" "}
-                        </MenuItem>
-                        <MenuItem value={"ac"}> AC - Acre </MenuItem>
+                        <MenuItem value="" disabled> <em>Selecione</em> </MenuItem>
+                        <MenuItem value={"ac"}> AC - Acre</MenuItem>
                         <MenuItem value={"al"}> AL - Alagoas</MenuItem>
-                        <MenuItem value={"ap"}> AP - Amapá </MenuItem>
-                        <MenuItem value={"am"}> AM - Amazonas </MenuItem>
+                        <MenuItem value={"ap"}> AP - Amapá</MenuItem>
+                        <MenuItem value={"am"}> AM - Amazonas</MenuItem>
                         <MenuItem value={"ba"}> BA - Bahia</MenuItem>
                         <MenuItem value={"ce"}> CE - Ceará</MenuItem>
                         <MenuItem value={"df"}> DF - Distrito Federal</MenuItem>
@@ -310,10 +286,7 @@ const Page = () => {
                         <MenuItem value={"go"}> GO - Goiás</MenuItem>
                         <MenuItem value={"ma"}> MA - Maranhão</MenuItem>
                         <MenuItem value={"mt"}> MT - Mato Grosso</MenuItem>
-                        <MenuItem value={"ms"}>
-                          {" "}
-                          MS - Mato Grosso do Sul
-                        </MenuItem>
+                        <MenuItem value={"ms"}> MS - Mato Grosso do Sul</MenuItem>
                         <MenuItem value={"mg"}> MG - Minas Geráis</MenuItem>
                         <MenuItem value={"pa"}> PA - Pará</MenuItem>
                         <MenuItem value={"pb"}> PB - Paraíba</MenuItem>
@@ -321,14 +294,8 @@ const Page = () => {
                         <MenuItem value={"pe"}> PE - Pernambuco</MenuItem>
                         <MenuItem value={"pi"}> PI - Piauí</MenuItem>
                         <MenuItem value={"rj"}> RJ - Rio de Janeiro</MenuItem>
-                        <MenuItem value={"rn"}>
-                          {" "}
-                          RN - Rio Grande do Norte
-                        </MenuItem>
-                        <MenuItem value={"rs"}>
-                          {" "}
-                          RS - Rio Grande do Sul
-                        </MenuItem>
+                        <MenuItem value={"rn"}> RN - Rio Grande do Norte</MenuItem>
+                        <MenuItem value={"rs"}> RS - Rio Grande do Sul</MenuItem>
                         <MenuItem value={"ro"}> RO - Rondônia</MenuItem>
                         <MenuItem value={"rr"}> RR - Roraima</MenuItem>
                         <MenuItem value={"sc"}> SC - Santa Catarina</MenuItem>
@@ -349,10 +316,7 @@ const Page = () => {
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"
                         value={genero}
-                        onChange={(e) => [
-                          setGenero(e.target.value),
-                          setError(""),
-                        ]}
+                        onChange={(e) => [setGenero(e.target.value), setError("")]}
                       >
                         <FormControlLabel
                           required
