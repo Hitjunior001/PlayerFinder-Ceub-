@@ -17,7 +17,7 @@
 	<description>Serviço CRUD para o projeto PlayerFinder</description>
 
 	 <properties>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>16</maven.compiler.release>
     </properties>
 	
 	<dependencies>
