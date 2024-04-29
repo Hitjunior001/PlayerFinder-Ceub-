@@ -11,6 +11,6 @@ RUN mvn -f /app/pom.xml clean package
 #
 FROM openjdk:17
 
-COPY --from=build target/player-finder-0.0.1-SNAPSHOT.jar /app
+COPY --from=build target/player-finder-0.0.1-SNAPSHOT.jar /app/player-finder-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/player-finder-0.0.1-SNAPSHOT.jar"]
