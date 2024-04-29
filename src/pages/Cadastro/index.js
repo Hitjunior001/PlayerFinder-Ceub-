@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import Inicio from "../Inicio";
 
 const darkTheme = createTheme({
   palette: {
@@ -118,6 +119,10 @@ const Page = () => {
     setEstado(event.target.value);
   };
 
+  const { signed } = useAuth();
+  if(signed){
+    return <Inicio />
+  }
   return (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">

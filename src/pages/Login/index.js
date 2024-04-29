@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import Inicio from "../Inicio";
 
 const darkTheme = createTheme({
   palette: {
@@ -44,6 +45,10 @@ const Page = () => {
     navigate("/inicio");
   };
 
+  const { signed } = useAuth();
+  if(signed){
+    return <Inicio />
+  }
   return (
     <ThemeProvider theme={darkTheme}>
       <Box

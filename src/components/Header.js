@@ -6,8 +6,8 @@ import UserLogado from "./userLogado";
 import useAuth from "../hooks/useAuth";
 
 export const CustomAppBar = () => {
-  const { user } = useAuth();
-  if(user){
+  const { signed } = useAuth();
+  if(signed){
     return (
       <AppBar position="static">
         <Toolbar style={{ height: "12vh", padding: "0.5%", backgroundColor: "#0F021C"}} >
