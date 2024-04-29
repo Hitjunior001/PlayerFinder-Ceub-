@@ -10,5 +10,5 @@ RUN mvn -f /app/pom.xml clean package
 # Package stage
 #
 FROM openjdk:11
-COPY --from=build out/artifacts/player_finder_jar/player-finder.jar /app/player-finder.jar
+COPY --from=build target/player-finder-0.0.1-SNAPSHOT.jar /app/player-finder.jar
 ENTRYPOINT ["java","-jar","/app/player-finder.jar"]
