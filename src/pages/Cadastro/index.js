@@ -36,8 +36,8 @@ const darkTheme = createTheme({
   },
 });
 
-const min= dayjs().add(-100, 'year');
-const max= dayjs().add(0, 'year');
+const min = dayjs().add(-100, 'year');
+const max = dayjs().add(0, 'year');
 
 const Page = () => {
   const { signup } = useAuth();
@@ -53,12 +53,10 @@ const Page = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false);
   }; //SnackBar
 
   const handleSubmit = (event) => {
@@ -76,10 +74,21 @@ const Page = () => {
     });
 
     if (senha !== ConfirmaSenha) {
-      setError("As senhas precisam ser iguais");
+      setError(
+        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={handleClose}>
+          <Alert
+            severity="warning"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            As senhas precisam ser iguais!
+          </Alert>
+        </Snackbar>
+      );
       return;
     }
 
+    // const res = signup(usuario, nome, email, senha, estado, genero);
     const res = signup(email, senha);
 
     if (res) {
@@ -87,8 +96,7 @@ const Page = () => {
       return;
     }
 
-    setOpen(true);
-    <Snackbar open={open} autoHideDuration={3500} onClose={handleClose}>
+    <Snackbar open={true} anchorOrigin={{vertical: 'top', horizontal: 'center'}} autoHideDuration={3500} onClose={handleClose}>
       <Alert
         onClose={handleClose}
         severity="success"
@@ -103,7 +111,6 @@ const Page = () => {
   };
 
   const [cleared, setCleared] = React.useState(false);
-
   React.useEffect(() => {
     if (cleared) {
       const timeout = setTimeout(() => {
@@ -112,15 +119,15 @@ const Page = () => {
 
       return () => clearTimeout(timeout);
     }
-    return () => {};
-  });
+    return () => { };
+  });//DatePicker
 
   const handleChange = (event) => {
     setEstado(event.target.value);
-  };
+  };//Select Estado
 
   const { signed } = useAuth();
-  if(signed){
+  if (signed) {
     return <Inicio />
   }
   return (
