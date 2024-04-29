@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export const AuthContext = createContext({});
 
@@ -17,41 +19,71 @@ export const AuthProvider = ({ children }) => {
       if (hasUser) setUser(hasUser[0]);
     }
   }, []);
-
-  const signin = (email, password) => {
+  
+  const signin = (email, senha) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
     const hasUser = usersStorage?.filter((user) => user.email === email);
 
     if (hasUser?.length) {
-      if (hasUser[0].email === email && hasUser[0].password === password) {
+      if (hasUser[0].email === email && hasUser[0].senha === senha) {
         const token = Math.random().toString(36).substring(2);
         localStorage.setItem("user_token", JSON.stringify({ token }));
-        setUser({ email, password });
+        setUser({ email, senha });
         return;
       } else {
-        return "E-mail ou senha incorretos";
+        return(
+          <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+            <Alert
+              severity="warning"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              E-mail ou senha incorretos
+            </Alert>
+          </Snackbar>
+        );
       }
     } else {
-      return "Usuário não cadastrado";
+      return(
+        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+          <Alert
+            severity="warning"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Usuário não cadastrado
+          </Alert>
+        </Snackbar>
+      );
     }
   };
 
-  const signup = (email, password) => {
+  const signup = (email, senha) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
     const hasUser = usersStorage?.filter((user) => user.email === email);
 
     if (hasUser?.length) {
-      return "Já existe uma conta com esse E-mail";
+      return(
+        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+          <Alert
+            severity="warning"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Já existe uma conta com esse E-mail
+          </Alert>
+        </Snackbar>
+      );
     }
 
     let newUser;
 
     if (usersStorage) {
-      newUser = [...usersStorage, { email, password }];
+      newUser = [...usersStorage, { email, senha }];
     } else {
-      newUser = [{ email, password }];
+      newUser = [{ email, senha }];
     }
 
     localStorage.setItem("users_bd", JSON.stringify(newUser));

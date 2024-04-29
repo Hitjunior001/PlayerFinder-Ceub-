@@ -75,7 +75,7 @@ const Page = () => {
 
     if (senha !== ConfirmaSenha) {
       setError(
-        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={handleClose}>
+        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
           <Alert
             severity="warning"
             variant="filled"
@@ -382,9 +382,7 @@ const Page = () => {
               </Paper>
             </div>
 
-            <Typography sx={{ marginTop: "1vh", color: "red" }}>
-              {error}
-            </Typography>
+            {error}
             <Button
               type="submit"
               variant="contained"
