@@ -4,13 +4,14 @@
 FROM maven:3-openjdk-17 AS build
 COPY src /app/src
 COPY pom.xml /app
-RUN mvn -f /app/pom.xml clean package
+WORKDIR /app
+RUN mvn clean package
 
 #
-# Package stage
+# Package/Execution stage
 #
+
 FROM openjdk:17
-
-COPY --from=build target/player-finder-0.0.1-SNAPSHOT.jar /app/player-finder-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/player-finder-0.0.1-SNAPSHOT.jar /app/player-finder-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/player-finder-0.0.1-SNAPSHOT.jar"]
