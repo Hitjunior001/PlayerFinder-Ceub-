@@ -32,8 +32,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	//Endpoint to login usuario
-	@Value("${jwt.secret}")
-	private String jwtSecret;
+	private String jwtSecret= "s3cret";
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody Map<String, String> loginRequest) {
