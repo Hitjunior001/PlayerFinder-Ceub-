@@ -84,8 +84,7 @@ const Page = () => {
       return;
     }
 
-    // const res = signup(usuario, nome, email, senha, estado, genero);
-    const res = signup(email, senha);
+    const res = signup(usuario, nome, email, senha, estado, genero);
 
     if (res) {
       setError(res);

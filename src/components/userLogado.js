@@ -20,18 +20,19 @@ export default function AccountMenu() {
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        console.log(user);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const { signout } = useAuth();
+    const { signout, user } = useAuth();
     const navigate = useNavigate();
-    
+
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', placeContent: 'center' }}>
-                <Typography component="h2" sx={{ minWidth: 100 }}>Bem vindo, Sempert21</Typography>
+                <Typography component="h2" sx={{ minWidth: 100 }}>Bem vindo, Usuário</Typography>
                 <Tooltip title="Minha conta">
                     <IconButton
                         onClick={handleClick}

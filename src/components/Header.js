@@ -54,7 +54,7 @@ export const CustomAppBar = () => {
                 </Typography>
               } />
 
-              <Route exact path="/" element={
+              <Route exact path="*" element={
                 <Typography component="div">
                   Não tem uma conta?
                   <Link to="/cadastro" style={{ color: "white" }}>

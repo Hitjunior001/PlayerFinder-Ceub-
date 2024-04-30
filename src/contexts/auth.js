@@ -22,9 +22,9 @@ export const AuthProvider = ({ children }) => {
   
   const signin = (email, senha) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
-
+    
     const hasUser = usersStorage?.filter((user) => user.email === email);
-
+    
     if (hasUser?.length) {
       if (hasUser[0].email === email && hasUser[0].senha === senha) {
         const token = Math.random().toString(36).substring(2);
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = (email, senha) => {
+  const signup = (usuario, nome, email, senha, estado, genero) => {
     const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
     const hasUser = usersStorage?.filter((user) => user.email === email);
@@ -81,9 +81,9 @@ export const AuthProvider = ({ children }) => {
     let newUser;
 
     if (usersStorage) {
-      newUser = [...usersStorage, { email, senha }];
+      newUser = [...usersStorage, { usuario, nome, email, senha, estado, genero }];
     } else {
-      newUser = [{ email, senha }];
+      newUser = [{ usuario, nome, email, senha, estado, genero }];
     }
 
     localStorage.setItem("users_bd", JSON.stringify(newUser));

@@ -22,9 +22,9 @@ export default () => {
         <Route exact path="/cadastro" element={<Cadastro />} />
         <Route path="/" element={<Login />} />
         <Route exact path="/inicio" element={<Private Item={Inicio} />} />
-        <Route exact path="/jogos" element={<Jogos />} />
-        <Route exact path="/jogos/valorant" element={<ProcurarJogadores />} />
-        <Route exact path="/perfil" element={<Perfil />} />
+        <Route exact path="/jogos" element={<Private Item={Jogos} />} />
+        <Route exact path="/jogos/valorant" element={<Private Item={ProcurarJogadores} />} />
+        <Route exact path="/perfil" element={<Private Item={Perfil} />} />
       </Routes>
     </Fragment>
   );
