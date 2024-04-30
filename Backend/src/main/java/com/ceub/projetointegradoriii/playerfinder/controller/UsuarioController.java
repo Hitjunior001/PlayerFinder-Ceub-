@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 
 
 import com.ceub.projetointegradoriii.playerfinder.entity.Usuario;
@@ -33,6 +35,7 @@ public class UsuarioController {
 
 	//Endpoint to login usuario
 	private String jwtSecret= "s3cret";
+	private static final int KEY_SIZE = 512;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody Map<String, String> loginRequest) {
@@ -44,12 +47,11 @@ public class UsuarioController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
 		}
 
-		// Gera o token JWT
+		Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 		String token = Jwts.builder()
 				.setSubject(user.getUsername())
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.signWith(key)
 				.compact();
-
 		return ResponseEntity.ok(token);
 	}
 
