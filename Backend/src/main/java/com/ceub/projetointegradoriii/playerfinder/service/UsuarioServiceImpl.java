@@ -31,6 +31,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioOptional.orElse(null);
 	}
 
+	public Usuario findByUsername(String username){
+		return usuarioRepository.findByUsername(username);
+	}
+
+
 	@Override
 	public Usuario updateUsuario(Long id, Usuario usuario) {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);

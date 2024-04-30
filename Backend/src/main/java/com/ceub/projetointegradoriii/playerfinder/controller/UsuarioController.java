@@ -1,8 +1,11 @@
 package com.ceub.projetointegradoriii.playerfinder.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+
 import com.ceub.projetointegradoriii.playerfinder.entity.Usuario;
 import com.ceub.projetointegradoriii.playerfinder.service.UsuarioService;
 
@@ -23,6 +30,29 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+
+	//Endpoint to login usuario
+	@Value("${jwt.secret}")
+	private String jwtSecret;
+
+	@PostMapping("/login")
+	public ResponseEntity<?> authenticateUser(@RequestBody Map<String, String> loginRequest) {
+		String username = loginRequest.get("username");
+		String password = username;
+
+		Usuario user = usuarioService.findByUsername(username);
+		if (user == null || !username.equals(password)) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+		}
+
+		// Gera o token JWT
+		String token = Jwts.builder()
+				.setSubject(user.getUsername())
+				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.compact();
+
+		return ResponseEntity.ok(token);
+	}
 
 	// Endpoint to create a new usuario
 	@PostMapping
