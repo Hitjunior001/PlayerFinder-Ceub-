@@ -1,10 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-const express = require('express');
-const cors = require('cors');
-const app = express();
-
-app.use(cors()); // Isso permite todas as origens, o que pode não ser adequado para produção
-
 
 
 export const AuthContext = createContext({});
