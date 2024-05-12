@@ -28,10 +28,17 @@ public class SecurityFilter extends OncePerRequestFilter {
     private List<String> ignorePatterns = new ArrayList<>();
 
     public SecurityFilter() {
+        ignorePatterns = new ArrayList<>();
         ignorePatterns.add("/auth/login");
         ignorePatterns.add("/auth/register");
+        ignorePatterns.add("/api-docs");
+        ignorePatterns.add("/swagger-ui/index.html");
+        ignorePatterns.add("/v3/api-docs/**");
+        ignorePatterns.add("/swagger-ui/**");
+        ignorePatterns.add("/swagger-resources/**");
+        ignorePatterns.add("/webjars/**");
+        ignorePatterns.add("/swagger-ui/swagger-initializer.js");
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
