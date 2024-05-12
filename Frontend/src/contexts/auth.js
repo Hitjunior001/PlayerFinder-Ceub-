@@ -1,11 +1,19 @@
 import { createContext, useEffect, useState } from "react";
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+app.use(cors()); // Isso permite todas as origens, o que pode não ser adequado para produção
+
+
 
 export const AuthContext = createContext({});
+
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const api = "http://localhost:8080";
+  const api = "https://playerfinder-86i3j3zt.b4a.run";
 
   useEffect(() => {
     checkLoggedIn();
@@ -13,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const signin = async (email, senha) => {
     try {
-      const response = await fetch(`${api}/usuarios/login`, {
+      const response = await fetch(`${api}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
