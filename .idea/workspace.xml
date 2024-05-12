@@ -10,6 +10,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -31,10 +40,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "FrontEnd",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/PlayerFinder"
+    "last_opened_file_path": "C:/Users/User/Desktop/PlayerFinder",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.ceub.projetointegradoriii.playerfinder.security" />
+      <recent name="com.ceub.projetointegradoriii.playerfinder.config" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\PlayerFinder" />
     </key>
@@ -47,6 +61,50 @@
       <command value="mvn clean install" />
     </option>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="JUnit" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.PlayerFinderApplication">
+    <configuration name="PlayerFinderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ceub.projetointegradoriii.playerfinder.PlayerFinderApplication" />
+      <module name="player-finder" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ceub.projetointegradoriii.playerfinder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerFinderApplicationTests.testPasswordEncoder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="player-finder" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ceub.projetointegradoriii.playerfinder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ceub.projetointegradoriii.playerfinder" />
+      <option name="MAIN_CLASS_NAME" value="com.ceub.projetointegradoriii.playerfinder.PlayerFinderApplicationTests" />
+      <option name="METHOD_NAME" value="testPasswordEncoder" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.PlayerFinderApplication" />
+        <item itemvalue="JUnit.PlayerFinderApplicationTests.testPasswordEncoder" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,5 +115,10 @@
       <updated>1714496356613</updated>
     </task>
     <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PlayerFinder$PlayerFinderApplicationTests_testPasswordEncoder.ic" NAME="PlayerFinderApplicationTests.testPasswordEncoder Coverage Results" MODIFIED="1715480762260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.ceub.projetointegradoriii.playerfinder.*</FILTER>
+    </SUITE>
   </component>
 </project>

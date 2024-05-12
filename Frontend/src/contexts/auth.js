@@ -1,104 +1,94 @@
 import { createContext, useEffect, useState } from "react";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const api = "http://localhost:8080";
 
   useEffect(() => {
-    const userToken = localStorage.getItem("user_token");
-    const usersStorage = localStorage.getItem("users_bd");
-
-    if (userToken && usersStorage) {
-      const hasUser = JSON.parse(usersStorage)?.filter(
-        (user) => user.email === JSON.parse(userToken).email
-      );
-
-      if (hasUser) setUser(hasUser[0]);
-    }
+    checkLoggedIn();
   }, []);
-  
-  const signin = (email, senha) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
-    
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-    
-    if (hasUser?.length) {
-      if (hasUser[0].email === email && hasUser[0].senha === senha) {
-        const token = Math.random().toString(36).substring(2);
-        localStorage.setItem("user_token", JSON.stringify({ token }));
-        setUser({ email, senha });
-        return;
-      } else {
-        return(
-          <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-            <Alert
-              severity="warning"
-              variant="filled"
-              sx={{ width: "100%" }}
-            >
-              E-mail ou senha incorretos
-            </Alert>
-          </Snackbar>
-        );
+
+  const signin = async (email, senha) => {
+    try {
+      const response = await fetch(`${api}/usuarios/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: senha,
+        }),
+      });
+
+      if (!response.ok) {
+        console.log(response)
+
+        throw new Error("Credenciais inválidas");
       }
-    } else {
-      return(
-        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-          <Alert
-            severity="warning"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
-            Usuário não cadastrado
-          </Alert>
-        </Snackbar>
-      );
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", email);
+      setToken(data.token);
+      setUser(email);
+      return true;
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      return false;
     }
   };
 
-  const signup = (usuario, nome, email, senha, estado, genero) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if (hasUser?.length) {
-      return(
-        <Snackbar open={true} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-          <Alert
-            severity="warning"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
-            Já existe uma conta com esse E-mail
-          </Alert>
-        </Snackbar>
-      );
+  const checkLoggedIn = () => {
+    const username = localStorage.getItem("username");
+    if (token && username) {
+      setUser(username);
     }
+  };
 
-    let newUser;
+  const signup = async (usuario, nome, email, senha, estado, genero) => {
+    try {
+      const response = await fetch(`${api}/usuarios/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          usuario,
+          nome,
+          email,
+          senha,
+          estado,
+          genero,
+        }),
+      });
 
-    if (usersStorage) {
-      newUser = [...usersStorage, { usuario, nome, email, senha, estado, genero }];
-    } else {
-      newUser = [{ usuario, nome, email, senha, estado, genero }];
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar usuário");
+      }
+
+      const data = await response.json();
+      // Se necessário, faça algo com a resposta da API
+      return true;
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      return false;
     }
-
-    localStorage.setItem("users_bd", JSON.stringify(newUser));
-
-    return;
   };
 
   const signout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setToken(null);
     setUser(null);
-    localStorage.removeItem("user_token");
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signup, signout }}
+      value={{ user, signed: !!user, signin, signout, signup }}
     >
       {children}
     </AuthContext.Provider>

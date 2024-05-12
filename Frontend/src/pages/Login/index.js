@@ -10,8 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import Inicio from "../Inicio";
+import  useAuth  from "../../hooks/useAuth";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,35 +19,23 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
-  const { signin } = useAuth();
   const navigate = useNavigate();
+  const {signin} = useAuth()
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      Email: data.get("email"),
-      Senha: data.get("senha"),
-    });
-
-    const res = signin(email, senha);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    navigate("/inicio");
+      const success = await signin(email, senha);
+      if (success) {
+        navigate("/perfil"); 
+      } else {
+        setError("Credenciais inválidas");
+      }
   };
 
-  const { signed } = useAuth();
-  if(signed){
-    return <Inicio />
-  }
   return (
     <ThemeProvider theme={darkTheme}>
       <Box
@@ -101,7 +88,7 @@ const Page = () => {
             }
             label="Manter-me conectado"
           />
-          <Typography sx={{marginTop: '1vh', color: 'red'}}>{error}</Typography>
+          <Typography sx={{ marginTop: "1vh", color: "red" }}>{error}</Typography>
           <Button
             type="submit"
             fullWidth
