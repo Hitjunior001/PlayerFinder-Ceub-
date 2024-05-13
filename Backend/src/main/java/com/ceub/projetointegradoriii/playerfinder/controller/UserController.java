@@ -21,6 +21,8 @@ import com.ceub.projetointegradoriii.playerfinder.entity.User;
 import com.ceub.projetointegradoriii.playerfinder.security.TokenJWT;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")  // <- use your url of frontend
+
 @Tag(name = "Usuário", description = "Endpoints relacionados a usuários")
 
 public class UserController {
