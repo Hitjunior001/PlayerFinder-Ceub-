@@ -21,10 +21,8 @@ import com.ceub.projetointegradoriii.playerfinder.entity.User;
 import com.ceub.projetointegradoriii.playerfinder.security.TokenJWT;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")  // <- use your url of frontend
-
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization"})
 @Tag(name = "Usuário", description = "Endpoints relacionados a usuários")
-
 public class UserController {
 
 	@Autowired
@@ -57,7 +55,7 @@ public class UserController {
 	@Operation(summary = "Obter detalhes do usuário", description = "Endpoint para obter detalhes do usuário atualmente autenticado")
 	@ApiResponse(responseCode = "200", description = "Detalhes do usuário retornados com sucesso")
 	@ApiResponse(responseCode = "401", description = "Não autorizado")
-	@GetMapping("/user")
+	@GetMapping("/perfil")
 	public ResponseEntity<User> getUserDetails(@RequestHeader("Authorization") String authorizationHeader) {
 		String token = tokenService.extractTokenFromHeader(authorizationHeader);
 		if (token == null) {

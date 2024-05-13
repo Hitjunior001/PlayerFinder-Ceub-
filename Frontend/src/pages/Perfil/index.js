@@ -12,6 +12,8 @@ import TextField from "@mui/material/TextField";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputFileUpload from "../../components/fileUpload";
+import useAuth from "../../hooks/useAuth";
+import CircularProgress from "@mui/material/CircularProgress"; // Adicionando CircularProgress para indicador de carregamento
 
 const darkTheme = createTheme({
   palette: {
@@ -21,29 +23,7 @@ const darkTheme = createTheme({
 
 const ProfilePage = () => {
   const [editar, setEditar] = useState(false);
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    // Função para carregar os dados do usuário
-    const loadUserData = async () => {
-      try {
-        const username = localStorage.getItem("username");
-        const response = await fetch(
-          `https://playerfinder-ceub.onrender.com/usuarios/perfil/${username}`
-        );
-        if (response.ok) {
-          const userData = await response.json();
-          setUserData(userData);
-        } else {
-          console.error("Erro ao carregar dados do usuário");
-        }
-      } catch (error) {
-        console.error("Erro ao carregar dados do usuário", error);
-      }
-    };
-
-    loadUserData();
-  }, []);
+  const { user, loading } = useAuth(); 
 
   const toggleEditar = () => {
     setEditar(!editar);
@@ -51,7 +31,6 @@ const ProfilePage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implemente a lógica para atualizar os dados do usuário
   };
 
   return (
@@ -73,112 +52,114 @@ const ProfilePage = () => {
             Meu perfil
           </Typography>
 
-          {editar ? (
-            <Button
-              onClick={toggleEditar}
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                width: "8vw",
-                color: "white",
-                bgcolor: "#16C83D",
-                "&:hover": { backgroundColor: "#16C83D" },
-              }}
-            >
-              Editar
-            </Button>
+          {loading ? (
+            <CircularProgress style={{ color: "#16C83D", marginTop: "20px" }} />
           ) : (
-            <Button
-              onClick={toggleEditar}
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                width: "8vw",
-                color: "white",
-                bgcolor: "#16C83D",
-                "&:hover": { backgroundColor: "#16C83D" },
-              }}
-            >
-              Salvar
-            </Button>
-          )}
+            <>
+              {editar ? (
+                <Button
+                  onClick={toggleEditar}
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    width: "8vw",
+                    color: "white",
+                    bgcolor: "#16C83D",
+                    "&:hover": { backgroundColor: "#16C83D" },
+                  }}
+                >
+                  Editar
+                </Button>
+              ) : (
+                <Button
+                  onClick={toggleEditar}
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    width: "8vw",
+                    color: "white",
+                    bgcolor: "#16C83D",
+                    "&:hover": { backgroundColor: "#16C83D" },
+                  }}
+                >
+                  Salvar
+                </Button>
+              )}
 
-          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "90vw",
-                justifyContent: "center",
-              }}
-            >
-              <Paper
-                component="div"
-                style={{
-                  padding: "1%",
-                  margin: "1%",
-                  width: "30vw",
-                  backgroundColor: "#202020",
-                  borderRadius: "10px",
-                }}
-              >
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <InputFileUpload />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <ListItem>
-                        <ListItemText
-                          sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                          primary={"Username:"}
-                        />
-                        {!editar ? (
-                          <TextField
-                            label="Username"
-                            defaultValue={userData?.username}
-                            disabled
-                          />
-                        ) : (
-                          <Typography variant="h6" sx={{ textAlign: "start" }}>
-                            {userData?.username}
-                          </Typography>
-                        )}
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                          primary={"Nome:"}
-                        />
-                        {!editar ? (
-                          <TextField label="Nome" defaultValue={userData?.nomeCompleto} disabled />
-                        ) : (
-                          <Typography variant="h6" sx={{ textAlign: "start" }}>
-                            {userData?.nomeCompleto}
-                          </Typography>
-                        )}
-                      </ListItem>
-                      <ListItem>
-                        <ListItemText
-                          sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                          primary={"Email:"}
-                        />
-                        {!editar ? (
-                          <TextField label="Email" defaultValue={userData?.email} disabled />
-                        ) : (
-                          <Typography variant="h6" sx={{ textAlign: "start" }}>
-                            {userData?.email}
-                          </Typography>
-                        )}
-                      </ListItem>
-                    </div>
-                  </Grid>
-                </Grid>
-              </Paper>
-            </div>
-          </Box>
+              <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "90vw",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Paper
+                    component="div"
+                    style={{
+                      padding: "1%",
+                      margin: "1%",
+                      width: "30vw",
+                      backgroundColor: "#202020",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Grid container spacing={3}>
+                      <Grid item xs={12}>
+                        <InputFileUpload />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                          <ListItem>
+                            <ListItemText
+                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
+                              primary={"Username:"}
+                            />
+                            {!editar ? (
+                              <TextField label="Username" value={user.username} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                            ) : (
+                              <Typography variant="h6" sx={{ textAlign: "start" }}>
+                                {user.username}
+                              </Typography>
+                            )}
+                          </ListItem>
+                          <ListItem>
+                            <ListItemText
+                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
+                              primary={"Nome:"}
+                            />
+                            {!editar ? (
+                              <TextField label="Nome" value={user.nomeCompleto} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                            ) : (
+                              <Typography variant="h6" sx={{ textAlign: "start" }}>
+                                {user.nomeCompleto}
+                              </Typography>
+                            )}
+                          </ListItem>
+                          <ListItem>
+                            <ListItemText
+                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
+                              primary={"Email:"}
+                            />
+                            {!editar ? (
+                              <TextField label="Email" value={user.email} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                            ) : (
+                              <Typography variant="h6" sx={{ textAlign: "start" }}>
+                                {user.email}
+                              </Typography>
+                            )}
+                          </ListItem>
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </div>
+              </Box>
+            </>
+          )}
         </Box>
       </Container>
     </ThemeProvider>

@@ -4,11 +4,12 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const api = "https://playerfinder-86i3j3zt.b4a.run";
+  const [token, setToken] = useState("");
+  const api = "http://localhost:8080";
 
   useEffect(() => {
     checkLoggedIn();
-  }, []);
+  }, [token]);
 
   const signin = async (email, senha) => {
     try {
@@ -16,9 +17,6 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*", // Permite acesso de qualquer origem
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE", // Permite esses métodos HTTP
-          "Access-Control-Allow-Headers": "Content-Type, Authorization" // Permite esses cabeçalhos
         },
         body: JSON.stringify({
           username: email,
@@ -32,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      setUser(data.user); // Define o usuário no estado local
+      setToken(data.token); 
       return true;
     } catch (error) {
       console.error("Erro ao fazer login:", error);
@@ -44,10 +42,10 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        const response = await fetch(`${api}/user`, {
+        const response = await fetch(`${api}/perfil`, {
           headers: {
             Authorization: `Bearer ${token}`,
-          },
+          }
         });
 
         if (response.ok) {
@@ -61,24 +59,18 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-
-  const signup = async (usuario, nome, email, senha, estado, genero) => {
+  const signup = async (usuario, nome, email, senha) => {
     try {
-      const response = await fetch(`${api}/usuarios/register`, {
+      const response = await fetch(`${api}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*", 
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE", 
-          "Access-Control-Allow-Headers": "Content-Type, Authorization" 
         },
         body: JSON.stringify({
-          usuario,
-          nome,
-          email,
-          senha,
-          estado,
-          genero,
+          username: usuario,
+          nomeCompleto: nome,
+          email: email,
+          password: senha,
         }),
       });
 
@@ -86,15 +78,14 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Erro ao cadastrar usuário");
       }
 
-      const data = await response.json();
-      // Se necessário, faça algo com a resposta da API
+      window.location.href = '/login';
+
       return true;
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
       return false;
     }
   };
-
   const signout = () => {
     localStorage.removeItem("token");
     setUser(null);
