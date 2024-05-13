@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-  const signup = async (usuario, nome, email, senha) => {
+  const signup = async (usuario, nome, email, senha, dataNascimento, estado) => {
     try {
       const response = await fetch(`${api}/auth/register`, {
         method: "POST",
@@ -68,6 +68,10 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify({
           username: usuario,
+          dataNascimento: dataNascimento,
+          nacionalidade: "Brasileiro(a)",
+          imagemPerfil: "ANT DEGEMON",
+          estado: estado,
           nomeCompleto: nome,
           email: email,
           password: senha,

@@ -47,7 +47,7 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [ConfirmaSenha, setConfirmaSenha] = useState("");
-  // const [nascimento, setNascimento] = useState("");
+  const [nascimento, setNascimento] = useState("");
   const [estado, setEstado] = useState("");
   const [genero, setGenero] = useState("");
   const [error, setError] = useState("");
@@ -68,9 +68,8 @@ const Page = () => {
       Email: data.get("email"),
       Senha: data.get("senha"),
       ConfirmaSenha: data.get("confirmaSenha"),
-      DataNascimento: data.get("nascimento"),
+      nascimento: data.get("nascimento"),
       Estado: data.get("estado"),
-      Gênero: data.get("genero"),
     });
 
     if (senha !== ConfirmaSenha) {
@@ -84,7 +83,7 @@ const Page = () => {
       return;
     }
 
-    const res = signup(usuario, nome, email, senha, estado, genero);
+    const res = signup(usuario, nome, email, senha, nascimento, estado);
 
     if (res) {
       setError(res);
@@ -243,21 +242,21 @@ const Page = () => {
                       adapterLocale="pt-br"
                       localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
                     >
-                      <DatePicker
-                        label="Data de nascimento *"
-                        name="nascimento"
-                        // value={nascimento}
-                        // onChange={(e) => [setNascimento(e.target.value), setError("")]}
-                        minDate={min}
-                        maxDate={max}
-                        sx={{ width: "100%" }}
-                        slotProps={{
-                          field: {
-                            clearable: true,
-                            onClear: () => setCleared(true),
-                          },
-                        }}
-                      />
+                    <DatePicker
+                      label="Data de nascimento *"
+                      name="nascimento"
+                      value={dayjs(nascimento)}
+                      onChange={(date) => [setNascimento(date.isValid() ? date.format("YYYY-MM-DD") : ""), setError("")]}
+                      minDate={min}
+                      maxDate={max}
+                      sx={{ width: "100%" }}
+                      slotProps={{
+                        field: {
+                          clearable: true,
+                          onClear: () => setCleared(true),
+                        },
+                      }}
+                    />
                     </LocalizationProvider>
                   </Grid>
 
