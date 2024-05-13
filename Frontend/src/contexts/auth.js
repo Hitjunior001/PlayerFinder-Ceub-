@@ -68,9 +68,9 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*", // Permite acesso de qualquer origem
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE", // Permite esses métodos HTTP
-          "Access-Control-Allow-Headers": "Content-Type, Authorization" // Permite esses cabeçalhos
+          "Access-Control-Allow-Origin": "*", 
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE", 
+          "Access-Control-Allow-Headers": "Content-Type, Authorization" 
         },
         body: JSON.stringify({
           usuario,
@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
 
   const signout = () => {
     localStorage.removeItem("token");
-    setUser(null); // Limpa o estado do usuário ao fazer logout
+    setUser(null);
   };
 
   return (
