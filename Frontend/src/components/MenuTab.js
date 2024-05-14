@@ -14,7 +14,7 @@ export default function MenuTabs() {
     return (
         <Box>
             <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="Início" component={Link} to={"/"} style={{ color: 'white', fontSize: '18px' }} />
+                <Tab label="Início" component={Link} to={"/inicio"} style={{ color: 'white', fontSize: '18px' }} />
                 <Tab label="Jogos" component={Link} to={"/jogos"} style={{ color: 'white', fontSize: '18px' }} />
             </Tabs>
         </Box>

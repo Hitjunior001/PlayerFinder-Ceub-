@@ -7,8 +7,12 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import HomeIcon from '@mui/icons-material/Home';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import JogosAreaCard from "../../components/JogosCard";
 import { Link } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
+import jogos from "../../components/images/jogos.jpg";
 
 const darkTheme = createTheme({
     palette: {
@@ -120,7 +124,21 @@ const Page = () => {
                                 }}
                             >
                                 <Link to="/jogos" style={{textDecoration: 'none'}}>
-                                    <JogosAreaCard />
+                                    <Card sx={{ maxWidth: "100%" }}>
+                                        <CardActionArea>
+                                            <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={jogos}
+                                            alt="jogos"
+                                            />
+                                            <CardContent>
+                                                <Typography gutterBottom variant="h5" component="div">
+                                                        Jogos
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
                                 </Link>
                             </Paper>
 

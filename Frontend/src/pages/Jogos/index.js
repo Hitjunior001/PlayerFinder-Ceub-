@@ -12,6 +12,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
+import valorant from "../../components/images/valorant.png";
+import  CS2 from "../../components/images/CS2.png";
+import leagueOfLegends from "../../components/images/leagueOfLegends.jpg";
 
 const darkTheme = createTheme({
     palette: {
@@ -66,7 +69,7 @@ const Page = () => {
                                                 <CardMedia
                                                     component="img"
                                                     height="450"
-                                                    image="valorant.png"
+                                                    image={valorant}
                                                     alt="valorant"
                                                 />
                                                 <CardContent>
@@ -104,7 +107,7 @@ const Page = () => {
                                                 <CardMedia
                                                     component="img"
                                                     height="450"
-                                                    image="CS2.png"
+                                                    image={CS2}
                                                     alt="counterstrike2"
                                                 />
                                                 <CardContent>
@@ -142,7 +145,7 @@ const Page = () => {
                                                 <CardMedia
                                                     component="img"
                                                     height="450"
-                                                    image="league-of-legends.png"
+                                                    image={leagueOfLegends}
                                                     alt="leagueoflegends"
                                                 />
                                                 <CardContent>
