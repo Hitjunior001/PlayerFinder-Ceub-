@@ -84,21 +84,28 @@ public class UserController {
 		}
 	}
 
-//	// Endpoint to update a usuario
-//	@PutMapping("user/{id}")
-//	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-//		User updatedUser = customUserDetailsService.updateUser(id, user);
-//		if (updatedUser != null) {
-//			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
-//
-//	// Endpoint to delete a usuario
-//	@DeleteMapping("user/{id}")
-//	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-//		customUserDetailsService.deleteUser(id);
-//		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//	}
+	// Endpoint to update a usuario
+	@PutMapping("/perfil")
+	public ResponseEntity<User> updateUser(@RequestHeader("Authorization") String authorizationHeader, @RequestBody User userUpdate) {
+		String token = tokenService.extractTokenFromHeader(authorizationHeader);
+		String username = tokenService.extractUsername(token);
+		User existingUser = userService.findByUsername(username);
+
+		if (existingUser != null) {
+			return new ResponseEntity<>(userService.updateUser(username, userUpdate), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	@DeleteMapping("/perfil")
+	public ResponseEntity<?> deleteUser(@RequestHeader("Authorization") String authorizationHeader) {
+		try {
+			String token = tokenService.extractTokenFromHeader(authorizationHeader);
+			String username = tokenService.extractUsername(token);
+			userService.deleteUserByUsername(username);
+			return ResponseEntity.ok().build();
+		} catch (RuntimeException e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Não foi possível excluir a conta.");
+		}
+	}
 }

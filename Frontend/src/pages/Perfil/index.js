@@ -13,7 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputFileUpload from "../../components/fileUpload";
 import useAuth from "../../hooks/useAuth";
-import CircularProgress from "@mui/material/CircularProgress"; // Adicionando CircularProgress para indicador de carregamento
+import CircularProgress from "@mui/material/CircularProgress"; 
 
 const darkTheme = createTheme({
   palette: {
@@ -22,15 +22,57 @@ const darkTheme = createTheme({
 });
 
 const ProfilePage = () => {
+  const { user, loading, updateUser, deleteUser } = useAuth(); 
   const [editar, setEditar] = useState(false);
-  const { user, loading } = useAuth(); 
+  const [userData, setUserData] = useState({
+    nomeCompleto: user.nomeCompleto,
+    email: user.email,
+    imagemPerfil: user.imagemPerfil,
+  });
+
+  useEffect(() => {
+    if (!loading) {
+      setUserData({
+        nomeCompleto: user.nomeCompleto,
+        email: user.email,
+        imagemPerfil: user.imagemPerfil,
+      });
+    }
+  }, [user, loading]);
 
   const toggleEditar = () => {
     setEditar(!editar);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const updatedUser = await updateUser(userData);
+    if (updatedUser) {
+      console.log("Perfil atualizado com sucesso!");
+    } else {
+      console.error("Falha ao atualizar perfil.");
+    }
+    toggleEditar();
+  };
+
+  const handleDeleteUser = async () => {
+    const confirmDelete = window.confirm("Tem certeza que deseja deletar sua conta?");
+    if (confirmDelete) {
+      const deleted = await deleteUser();
+      if (deleted) {
+        console.log("Conta deletada com sucesso!");
+      } else {
+        console.error("Falha ao deletar conta.");
+      }
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -73,7 +115,7 @@ const ProfilePage = () => {
                 </Button>
               ) : (
                 <Button
-                  onClick={toggleEditar}
+                  onClick={handleSubmit}
                   variant="contained"
                   sx={{
                     mt: 3,
@@ -87,6 +129,21 @@ const ProfilePage = () => {
                   Salvar
                 </Button>
               )}
+
+<Button
+                onClick={handleDeleteUser}
+                variant="contained"
+                color="error"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  width: "8vw",
+                  color: "white",
+                  "&:hover": { backgroundColor: "#FF0000" },
+                }}
+              >
+                Deletar Conta
+              </Button>
 
               <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <div
@@ -119,7 +176,11 @@ const ProfilePage = () => {
                               primary={"Username:"}
                             />
                             {!editar ? (
-                              <TextField label="Username" value={user.username} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                              <TextField
+                                label="Username"
+                                value={user.username}
+                                disabled
+                              />
                             ) : (
                               <Typography variant="h6" sx={{ textAlign: "start" }}>
                                 {user.username}
@@ -132,10 +193,15 @@ const ProfilePage = () => {
                               primary={"Nome:"}
                             />
                             {!editar ? (
-                              <TextField label="Nome" value={user.nomeCompleto} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                              <TextField
+                                label="Nome"
+                                name="nomeCompleto"
+                                value={userData.nomeCompleto}
+                                onChange={handleChange}
+                              />
                             ) : (
                               <Typography variant="h6" sx={{ textAlign: "start" }}>
-                                {user.nomeCompleto}
+                                {userData.nomeCompleto}
                               </Typography>
                             )}
                           </ListItem>
@@ -145,10 +211,15 @@ const ProfilePage = () => {
                               primary={"Email:"}
                             />
                             {!editar ? (
-                              <TextField label="Email" value={user.email} disabled /> // Alterando para utilizar value ao invés de defaultValue
+                              <TextField
+                                label="Email"
+                                name="email"
+                                value={userData.email}
+                                onChange={handleChange}
+                              />
                             ) : (
                               <Typography variant="h6" sx={{ textAlign: "start" }}>
-                                {user.email}
+                                {userData.email}
                               </Typography>
                             )}
                           </ListItem>
