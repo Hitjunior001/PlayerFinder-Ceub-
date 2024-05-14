@@ -95,9 +95,58 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const updateUser = async (userData) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${api}/perfil`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(userData)
+      });
+  
+      if (response.ok) {
+        console.log("Perfil atualizado com sucesso!");
+        return true;
+      } else {
+        console.error("Erro ao atualizar perfil:", response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar perfil:", error);
+      return false;
+    }
+  };
+  
+  const deleteUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${api}/perfil`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (response.ok) {
+        signout()
+        console.log("Perfil deletado com sucesso!");
+        return true;
+      } else {
+        console.error("Erro ao deletar perfil:", response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error("Erro ao deletar perfil:", error);
+      return false;
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signout, signup }}
+      value={{ user, signed: !!user, signin, signout, signup, updateUser, deleteUser }}
     >
       {children}
     </AuthContext.Provider>
