@@ -28,8 +28,9 @@ public class SecurityFilter extends OncePerRequestFilter {
     private List<String> ignorePatterns = new ArrayList<>();
 
     public SecurityFilter() {
-        ignorePatterns = new ArrayList<>();
         ignorePatterns.add("/auth/login");
+        ignorePatterns.add("/h2-console/**");
+        ignorePatterns.add("/h2-console");
         ignorePatterns.add("/auth/register");
         ignorePatterns.add("/api-docs");
         ignorePatterns.add("/swagger-ui/index.html");
@@ -44,6 +45,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         if (shouldIgnoreRequest(request)) {
+            response.setHeader("X-Frame-Options", "SAMEORIGIN");
             chain.doFilter(request, response);
             return;
         }

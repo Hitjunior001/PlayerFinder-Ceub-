@@ -14,6 +14,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputFileUpload from "../../components/fileUpload";
 import useAuth from "../../hooks/useAuth";
 import CircularProgress from "@mui/material/CircularProgress"; 
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+
+
 
 const darkTheme = createTheme({
   palette: {
@@ -29,6 +33,9 @@ const ProfilePage = () => {
     email: user.email,
     imagemPerfil: user.imagemPerfil,
   });
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   useEffect(() => {
     if (!loading) {
@@ -46,13 +53,30 @@ const ProfilePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const updatedUser = await updateUser(userData);
-    if (updatedUser) {
-      console.log("Perfil atualizado com sucesso!");
-    } else {
-      console.error("Falha ao atualizar perfil.");
+    try {
+      const updatedUser = await updateUser(userData);
+      if (updatedUser) {
+        setSnackbarOpen(true);
+        setSnackbarSeverity("success");
+        setSnackbarMessage("Perfil atualizado com sucesso!");
+      } else {
+        setSnackbarOpen(true);
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Falha ao atualizar perfil.");
+      }
+    } catch (error) {
+      setSnackbarOpen(true);
+      setSnackbarSeverity("error");
+      setSnackbarMessage(`Erro ao atualizar perfil: ${error.message}`);
     }
     toggleEditar();
+  };
+  
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   const handleDeleteUser = async () => {
@@ -225,6 +249,11 @@ const ProfilePage = () => {
                           </ListItem>
                         </div>
                       </Grid>
+                      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+                    <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                      {snackbarMessage}
+                    </Alert>
+                  </Snackbar>
                     </Grid>
                   </Paper>
                 </div>
