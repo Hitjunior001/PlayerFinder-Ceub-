@@ -51,6 +51,7 @@ const Page = () => {
   const [estado, setEstado] = useState("");
   const [genero, setGenero] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const handleClose = (event, reason) => {
@@ -58,20 +59,17 @@ const Page = () => {
       return;
     }
   }; //SnackBar
+  const handleSuccessClose = (event, reason) => {
+    if (reason === "clickaway") {
+      setSuccess(false);
+      navigate("/login")
+      return;
+    }
+  }; //SnackBar
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      Usuário: data.get("usuario"),
-      Nome: data.get("nome"),
-      Email: data.get("email"),
-      Senha: data.get("senha"),
-      ConfirmaSenha: data.get("confirmaSenha"),
-      nascimento: data.get("nascimento"),
-      Estado: data.get("estado"),
-    });
-
+  
     if (senha !== ConfirmaSenha) {
       setError(
         <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
@@ -82,21 +80,30 @@ const Page = () => {
       );
       return;
     }
-
-    const res = signup(usuario, nome, email, senha, nascimento, estado);
-
-    if (res) {
-      setError(res);
-      return;
+  
+    try {
+      const success = await signup(usuario, nome, email, senha, nascimento, estado);
+      if (success) {
+        setSuccess(true);
+      } else {
+        setError(
+          <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
+            <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
+              Erro ao cadastrar usuário!
+            </Alert>
+          </Snackbar>
+        );
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      setError(
+        <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
+          <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
+            Erro ao cadastrar usuário!
+          </Alert>
+        </Snackbar>
+      );
     }
-
-    <Snackbar open={true} anchorOrigin={{ vertical: "top", horizontal: "center" }} autoHideDuration={3500} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success" variant="filled" sx={{ width: "100%" }}>
-        Usuário cadastrado com sucesso!
-      </Alert>
-    </Snackbar>;
-    alert("Usuário cadastrado com sucesso!");
-    navigate("/");
   };
 
   const [cleared, setCleared] = React.useState(false);
@@ -115,10 +122,7 @@ const Page = () => {
     setEstado(event.target.value);
   }; //Select Estado
 
-  const { signed } = useAuth();
-  if (signed) {
-    return <Inicio />;
-  }
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
@@ -343,6 +347,11 @@ const Page = () => {
             </div>
 
             {error}
+            <Snackbar open={success} anchorOrigin={{ vertical: "top", horizontal: "center" }} autoHideDuration={3500} onClose={handleSuccessClose}>
+        <Alert onClose={handleSuccessClose} severity="success" variant="filled" sx={{ width: "100%" }}>
+          Usuário cadastrado com sucesso!
+        </Alert>
+      </Snackbar>
             <Button
               type="submit"
               variant="contained"

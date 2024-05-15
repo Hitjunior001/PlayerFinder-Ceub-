@@ -81,9 +81,7 @@ export const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error("Erro ao cadastrar usuário");
       }
-
       window.location.href = '/login';
-
       return true;
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
@@ -108,15 +106,13 @@ export const AuthProvider = ({ children }) => {
       });
   
       if (response.ok) {
-        console.log("Perfil atualizado com sucesso!");
         return true;
       } else {
-        console.error("Erro ao atualizar perfil:", response.statusText);
-        return false;
+        const errorMessage = await response.text();
+        throw new Error(`Erro ao atualizar perfil: ${errorMessage}`);
       }
     } catch (error) {
-      console.error("Erro ao atualizar perfil:", error);
-      return false;
+      throw new Error(`Erro ao atualizar perfil: ${error.message}`);
     }
   };
   
