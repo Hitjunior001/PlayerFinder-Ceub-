@@ -85,6 +85,9 @@ public class UserController {
 	}
 
 	// Endpoint to update a usuario
+	@Operation(summary = "Editar usuário por nome de usuário", description = "Endpoint para editar um usuário pelo nome de usuário")
+	@ApiResponse(responseCode = "200", description = "Usuário editado com sucesso")
+	@ApiResponse(responseCode = "404", description = "Usuário não encontrado")
 	@PutMapping("/perfil")
 	public ResponseEntity<User> updateUser(@RequestHeader("Authorization") String authorizationHeader, @RequestBody User userUpdate) {
 		String token = tokenService.extractTokenFromHeader(authorizationHeader);
@@ -97,6 +100,9 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@Operation(summary = "Deletar usuário por nome de usuário", description = "Endpoint para deletar um usuário pelo nome de usuário")
+	@ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso")
+	@ApiResponse(responseCode = "404", description = "Usuário não encontrado")
 	@DeleteMapping("/perfil")
 	public ResponseEntity<?> deleteUser(@RequestHeader("Authorization") String authorizationHeader) {
 		try {

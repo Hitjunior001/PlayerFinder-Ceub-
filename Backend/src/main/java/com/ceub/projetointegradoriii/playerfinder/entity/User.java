@@ -1,14 +1,11 @@
 package com.ceub.projetointegradoriii.playerfinder.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -58,4 +55,11 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
+	@ManyToMany
+	@JoinTable(
+			name = "user_game",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name="jogo_id")
+	)
+	private List<Jogo> jogos;
 }

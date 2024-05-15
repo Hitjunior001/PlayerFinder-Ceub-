@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/contexts/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/contexts/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Cadastro/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Cadastro/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Perfil/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Perfil/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/TokenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/security/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/security/SecurityFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +64,10 @@
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.ceub.projetointegradoriii.playerfinder.security" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ceub.projetointegradoriii.playerfinder.service.relationship" />
+      <recent name="com.ceub.projetointegradoriii.playerfinder.repository.relationship" />
     </key>
   </component>
   <component name="RunAnythingCache">
