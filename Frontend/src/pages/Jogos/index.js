@@ -115,7 +115,7 @@ const Page = () => {
                                                         Counter Strike 2
                                                     </Typography>
                                                     <Typography gutterBottom variant="h8" component="div">
-                                                        Sobre o jogo: Counter-Strike 2 é um jogo tático multijogador de tiro em primeira pessoa.S
+                                                        Sobre o jogo: Counter-Strike 2 é um jogo tático multijogador de tiro em primeira pessoa.
                                                     </Typography>
                                                 </CardContent>
                                             </CardActionArea>

@@ -242,21 +242,21 @@ const Page = () => {
                       adapterLocale="pt-br"
                       localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
                     >
-                    <DatePicker
-                      label="Data de nascimento *"
-                      name="nascimento"
-                      value={dayjs(nascimento)}
-                      onChange={(date) => [setNascimento(date.isValid() ? date.format("YYYY-MM-DD") : ""), setError("")]}
-                      minDate={min}
-                      maxDate={max}
-                      sx={{ width: "100%" }}
-                      slotProps={{
-                        field: {
-                          clearable: true,
-                          onClear: () => setCleared(true),
-                        },
-                      }}
-                    />
+                      <DatePicker
+                        label="Data de nascimento *"
+                        value={dayjs(nascimento)}
+                        onChange={(date) => [setNascimento(date.isValid() ? date.format("DD-MM-AAA") : ""), setError("")]}
+                        minDate={min}
+                        maxDate={max}
+                        sx={{ width: "100%" }}
+                        name="nascimento"
+                        slotProps={{
+                          field: {
+                            clearable: true,
+                            onClear: () => setCleared(true),
+                          },
+                        }}
+                      />
                     </LocalizationProvider>
                   </Grid>
 
@@ -266,40 +266,38 @@ const Page = () => {
                       <Select
                         required
                         labelId="label-select-input"
-                        id="demo-simple-select-helper"
                         value={estado}
                         name="estado"
                         label="Estado"
                         onChange={handleChange}
                       >
-                        <MenuItem value="" disabled> <em>Selecione</em> </MenuItem>
-                        <MenuItem value={"ac"}> AC - Acre</MenuItem>
-                        <MenuItem value={"al"}> AL - Alagoas</MenuItem>
-                        <MenuItem value={"ap"}> AP - Amapá</MenuItem>
-                        <MenuItem value={"am"}> AM - Amazonas</MenuItem>
-                        <MenuItem value={"ba"}> BA - Bahia</MenuItem>
-                        <MenuItem value={"ce"}> CE - Ceará</MenuItem>
-                        <MenuItem value={"df"}> DF - Distrito Federal</MenuItem>
-                        <MenuItem value={"es"}> ES - Espírito Santo</MenuItem>
-                        <MenuItem value={"go"}> GO - Goiás</MenuItem>
-                        <MenuItem value={"ma"}> MA - Maranhão</MenuItem>
-                        <MenuItem value={"mt"}> MT - Mato Grosso</MenuItem>
-                        <MenuItem value={"ms"}> MS - Mato Grosso do Sul</MenuItem>
-                        <MenuItem value={"mg"}> MG - Minas Geráis</MenuItem>
-                        <MenuItem value={"pa"}> PA - Pará</MenuItem>
-                        <MenuItem value={"pb"}> PB - Paraíba</MenuItem>
-                        <MenuItem value={"pr"}> PR - Paraná</MenuItem>
-                        <MenuItem value={"pe"}> PE - Pernambuco</MenuItem>
-                        <MenuItem value={"pi"}> PI - Piauí</MenuItem>
-                        <MenuItem value={"rj"}> RJ - Rio de Janeiro</MenuItem>
-                        <MenuItem value={"rn"}> RN - Rio Grande do Norte</MenuItem>
-                        <MenuItem value={"rs"}> RS - Rio Grande do Sul</MenuItem>
-                        <MenuItem value={"ro"}> RO - Rondônia</MenuItem>
-                        <MenuItem value={"rr"}> RR - Roraima</MenuItem>
-                        <MenuItem value={"sc"}> SC - Santa Catarina</MenuItem>
-                        <MenuItem value={"sp"}> SP - São Paulo</MenuItem>
-                        <MenuItem value={"se"}> SE - Sergipe</MenuItem>
-                        <MenuItem value={"to"}> TO - Tocantins</MenuItem>
+                        <MenuItem value={"AC - Acre"}> AC - Acre</MenuItem>
+                        <MenuItem value={"AL - Alagoas"}> AL - Alagoas</MenuItem>
+                        <MenuItem value={"AP - Amapá"}> AP - Amapá</MenuItem>
+                        <MenuItem value={"AM - Amazonas"}> AM - Amazonas</MenuItem>
+                        <MenuItem value={"BA - Bahia"}> BA - Bahia</MenuItem>
+                        <MenuItem value={"CE - Ceará"}> CE - Ceará</MenuItem>
+                        <MenuItem value={"DF - Distrito Federal"}> DF - Distrito Federal</MenuItem>
+                        <MenuItem value={"ES - Espírito Santo"}> ES - Espírito Santo</MenuItem>
+                        <MenuItem value={"GO - Goiás"}> GO - Goiás</MenuItem>
+                        <MenuItem value={"MA - Maranhão"}> MA - Maranhão</MenuItem>
+                        <MenuItem value={"MT - Mato Grosso"}> MT - Mato Grosso</MenuItem>
+                        <MenuItem value={"MS - Mato Grosso do Sul"}> MS - Mato Grosso do Sul</MenuItem>
+                        <MenuItem value={"MG - Minas Geráis"}> MG - Minas Geráis</MenuItem>
+                        <MenuItem value={"PA - Pará"}> PA - Pará</MenuItem>
+                        <MenuItem value={"PB - Paraíba"}> PB - Paraíba</MenuItem>
+                        <MenuItem value={"PR - Paraná"}> PR - Paraná</MenuItem>
+                        <MenuItem value={"PE - Pernambuco"}> PE - Pernambuco</MenuItem>
+                        <MenuItem value={"PI - Piauí"}> PI - Piauí</MenuItem>
+                        <MenuItem value={"RJ - Rio de Janeiro"}> RJ - Rio de Janeiro</MenuItem>
+                        <MenuItem value={"RN - Rio Grande do Norte"}> RN - Rio Grande do Norte</MenuItem>
+                        <MenuItem value={"RS - Rio Grande do Sul"}> RS - Rio Grande do Sul</MenuItem>
+                        <MenuItem value={"RO - Rondônia"}> RO - Rondônia</MenuItem>
+                        <MenuItem value={"RR - Roraima"}> RR - Roraima</MenuItem>
+                        <MenuItem value={"SC - Santa Catarina"}> SC - Santa Catarina</MenuItem>
+                        <MenuItem value={"SP - São Paulo"}> SP - São Paulo</MenuItem>
+                        <MenuItem value={"SE - Sergipe"}> SE - Sergipe</MenuItem>
+                        <MenuItem value={"TO - Tocantins"}> TO - Tocantins</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>

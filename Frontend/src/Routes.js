@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Perfil from "./pages/Perfil";
 import Jogos from "./pages/Jogos";
+import AdicionarJogo from "./pages/AdicionarJogo"
 import ProcurarJogadores from "./pages/ProcurarJogadores";
 import useAuth from "./hooks/useAuth";
 
@@ -31,6 +32,7 @@ const AppRoutes = () => {
       <Route path="/jogos" element={<ProtectedRoute path="/jogos" element={<Jogos />} />} />
       <Route path="/jogos/valorant" element={<ProtectedRoute path="/jogos/valorant" element={<ProcurarJogadores />} />} />
       <Route path="/perfil" element={<ProtectedRoute path="/perfil" element={<Perfil />} />} />
+      <Route path="/adicionar-jogo" element={<ProtectedRoute path="/adicionar-jogo" element={<AdicionarJogo />} />} />
     </Routes>
   );
 };
