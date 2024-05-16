@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
-import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -27,7 +26,7 @@ const darkTheme = createTheme({
 
 const ProfilePage = () => {
   const { user, loading, updateUser, deleteUser } = useAuth(); 
-  const [editar, setEditar] = useState(false);
+  const [editar, setEditar] = useState(true);
   const [userData, setUserData] = useState({
     nomeCompleto: user.nomeCompleto,
     email: user.email,
@@ -122,51 +121,12 @@ const ProfilePage = () => {
             <CircularProgress style={{ color: "#16C83D", marginTop: "20px" }} />
           ) : (
             <>
-              {editar ? (
-                <Button
-                  onClick={toggleEditar}
-                  variant="contained"
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    width: "8vw",
-                    color: "white",
-                    bgcolor: "#16C83D",
-                    "&:hover": { backgroundColor: "#16C83D" },
-                  }}
-                >
-                  Editar
-                </Button>
-              ) : (
-                <Button
-                  onClick={handleSubmit}
-                  variant="contained"
-                  sx={{
-                    mt: 3,
-                    mb: 2,
-                    width: "8vw",
-                    color: "white",
-                    bgcolor: "#16C83D",
-                    "&:hover": { backgroundColor: "#16C83D" },
-                  }}
-                >
-                  Salvar
-                </Button>
-              )}
-
-<Button
-                onClick={handleDeleteUser}
+              <Button
+                onClick={editar ? toggleEditar : handleSubmit}
                 variant="contained"
-                color="error"
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  width: "8vw",
-                  color: "white",
-                  "&:hover": { backgroundColor: "#FF0000" },
-                }}
+                sx={{ mt: 3, width: "8vw", color: "white", bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}
               >
-                Deletar Conta
+                {editar ? "Editar" : "Salvar"}
               </Button>
 
               <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -193,70 +153,49 @@ const ProfilePage = () => {
                         <InputFileUpload />
                       </Grid>
                       <Grid item xs={12}>
-                        <div style={{ display: "flex", flexDirection: "column" }}>
-                          <ListItem>
-                            <ListItemText
-                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                              primary={"Username:"}
-                            />
-                            {!editar ? (
-                              <TextField
-                                label="Username"
-                                value={user.username}
-                                disabled
-                              />
-                            ) : (
-                              <Typography variant="h6" sx={{ textAlign: "start" }}>
-                                {user.username}
-                              </Typography>
-                            )}
-                          </ListItem>
-                          <ListItem>
-                            <ListItemText
-                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                              primary={"Nome:"}
-                            />
-                            {!editar ? (
-                              <TextField
-                                label="Nome"
-                                name="nomeCompleto"
-                                value={userData.nomeCompleto}
-                                onChange={handleChange}
-                              />
-                            ) : (
-                              <Typography variant="h6" sx={{ textAlign: "start" }}>
-                                {userData.nomeCompleto}
-                              </Typography>
-                            )}
-                          </ListItem>
-                          <ListItem>
-                            <ListItemText
-                              sx={{ textAlign: "center", color: "#16C83D", marginRight: "2%" }}
-                              primary={"Email:"}
-                            />
-                            {!editar ? (
-                              <TextField
-                                label="Email"
-                                name="email"
-                                value={userData.email}
-                                onChange={handleChange}
-                              />
-                            ) : (
-                              <Typography variant="h6" sx={{ textAlign: "start" }}>
-                                {userData.email}
-                              </Typography>
-                            )}
-                          </ListItem>
-                        </div>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", textAlign: 'start', }} primary="Usuário:"/>
+                          <TextField fullWidth value={user.username} onChange={handleChange} 
+                            InputProps={{readOnly: true}}
+                            variant={"standard"} 
+                            disabled={editar ? false : true}
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Nome:"/>
+                          <TextField fullWidth required autoComplete="name" name="nomeCompleto" value={userData.nomeCompleto} onChange={handleChange} 
+                            InputProps={{readOnly: editar ? true : false}}
+                            variant={editar ? "standard" : "outlined"} 
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Email:"/>
+                          <TextField fullWidth required autoComplete="email" name="email" value={userData.email} onChange={handleChange} 
+                            InputProps={{readOnly: editar ? true : false}}
+                            variant={editar ? "standard" : "outlined"} 
+                          />
+                        </Grid>
+                      </div>
                       </Grid>
                       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-                    <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
-                      {snackbarMessage}
-                    </Alert>
-                  </Snackbar>
+                        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                          {snackbarMessage}
+                        </Alert>
+                      </Snackbar>
                     </Grid>
                   </Paper>
                 </div>
+                <Button
+                  onClick={handleDeleteUser}
+                  variant="contained"
+                  color="error"
+                  sx={{ width: "10vw", color: "white", "&:hover": { backgroundColor: "#FF0000" } }}
+                >
+                  Deletar Conta
+                </Button>
               </Box>
             </>
           )}
