@@ -240,11 +240,7 @@ const Page = () => {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <LocalizationProvider
-                      dateAdapter={AdapterDayjs}
-                      adapterLocale="pt-br"
-                      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
-                    >
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br" localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText} >
                       <DatePicker
                         label="Data de nascimento *"
                         value={dayjs(nascimento)}
@@ -336,7 +332,7 @@ const Page = () => {
                           value="outro"
                           name="genero"
                           control={<Radio />}
-                          label="Prefiro não informar"
+                          label="Outro"
                         />
                       </RadioGroup>
                     </FormControl>
@@ -347,10 +343,11 @@ const Page = () => {
 
             {error}
             <Snackbar open={success} anchorOrigin={{ vertical: "top", horizontal: "center" }} autoHideDuration={3500} onClose={handleSuccessClose}>
-        <Alert onClose={handleSuccessClose} severity="success" variant="filled" sx={{ width: "100%" }}>
-          Usuário cadastrado com sucesso!
-        </Alert>
-      </Snackbar>
+              <Alert onClose={handleSuccessClose} severity="success" variant="filled" sx={{ width: "100%" }}>
+                Usuário cadastrado com sucesso!
+              </Alert>
+            </Snackbar>
+
             <Button
               type="submit"
               variant="contained"

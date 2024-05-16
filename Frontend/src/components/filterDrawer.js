@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Drawer, Button, List, ListItem, ListItemText, Divider, Typography, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Drawer, Button, List, ListItem, ListItemText, Divider, Typography, TextField,
+  FormControl, FormControlLabel, InputLabel, Select, MenuItem, RadioGroup, Radio } from '@mui/material';
 
 export default function FilterDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -9,7 +10,7 @@ export default function FilterDrawer() {
   const [campeao, setCampeao] = useState("");
   const [rank, setRank] = useState("");
   const [estado, setEstado] = useState("");
-
+  const [genero, setGenero] = useState("");
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -88,6 +89,7 @@ export default function FilterDrawer() {
               <MenuItem value={"prata 2"}>Prata 2</MenuItem>
               <MenuItem value={"prata 3"}>Prata 3</MenuItem>
               <MenuItem value={"prata 4"}>Prata 4</MenuItem>
+              <Divider />
               <MenuItem value={"ouro 1"}>Ouro 1</MenuItem>
               <MenuItem value={"ouro 2"}>Ouro 2</MenuItem>
               <MenuItem value={"ouro 3"}>Ouro 3</MenuItem>
@@ -153,7 +155,7 @@ export default function FilterDrawer() {
             <Divider sx={{ marginLeft: '4.5vw', marginRight: '4.5vw', bgcolor: '#16C83D'}}/>
         </ListItemText>
 
-        <ListItem>
+        <ListItem sx={{ marginBottom: '1.5vh'}}>
           <ListItemText sx={{ textAlign: 'start', marginLeft: '1vw' }} primary={"Estado: "} />
           <FormControl fullWidth sx={{ marginLeft: '1vw' , marginRight: '2vw', maxWidth: '70%'}}>
             <InputLabel id="label-select-input">Estado *</InputLabel>
@@ -191,6 +193,39 @@ export default function FilterDrawer() {
               <MenuItem value={"SE - Sergipe"}> SE - Sergipe</MenuItem>
               <MenuItem value={"TO - Tocantins"}> TO - Tocantins</MenuItem>
             </Select>
+          </FormControl>
+        </ListItem>
+        
+        <ListItem sx={{ marginBottom: '1.5vh'}}>
+          <ListItemText sx={{ textAlign: 'start', marginLeft: '1vw' }} primary={"Gênero: "} />
+          <FormControl fullWidth sx={{ marginLeft: '1vw' , marginRight: '2vw', maxWidth: '70%'}}>
+            <RadioGroup
+              row
+              value={genero}
+              onChange={(e) => [setGenero(e.target.value)]}
+            >
+              <FormControlLabel
+                required
+                value="masculino"
+                name="genero"
+                control={<Radio />}
+                label="Masculino"
+              />
+              <FormControlLabel
+                required
+                value="feminino"
+                name="genero"
+                control={<Radio />}
+                label="Feminino"
+              />
+              <FormControlLabel
+                required
+                value="outro"
+                name="genero"
+                control={<Radio />}
+                label="Outros"
+              />
+            </RadioGroup>
           </FormControl>
         </ListItem>
       </List>

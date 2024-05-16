@@ -169,6 +169,7 @@ const Page = () => {
                         <MenuItem value={"prata 2"}>Prata 2</MenuItem>
                         <MenuItem value={"prata 3"}>Prata 3</MenuItem>
                         <MenuItem value={"prata 4"}>Prata 4</MenuItem>
+                        <Divider />
                         <MenuItem value={"ouro 1"}>Ouro 1</MenuItem>
                         <MenuItem value={"ouro 2"}>Ouro 2</MenuItem>
                         <MenuItem value={"ouro 3"}>Ouro 3</MenuItem>
