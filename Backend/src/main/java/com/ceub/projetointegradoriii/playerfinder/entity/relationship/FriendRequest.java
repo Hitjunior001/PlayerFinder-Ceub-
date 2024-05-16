@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -18,16 +20,19 @@ public class FriendRequest {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable= false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "friend_id")
+    @JoinColumn(name = "friend_id", nullable= false)
     private User friend;
 
-    @Column(name = "request_date")
-    private LocalDateTime requestDate;
+    @Column(name = "request_date", nullable= false)
+    private LocalDateTime requestDate = LocalDateTime.now();
 
-    @Column(name = "accepted")
-    private boolean accepted;
+
+    @Column(name = "accepted", columnDefinition = "boolean default false")
+    private boolean accepted = false;
+
+
 }

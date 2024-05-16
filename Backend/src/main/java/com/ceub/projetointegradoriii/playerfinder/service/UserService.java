@@ -1,16 +1,15 @@
 package com.ceub.projetointegradoriii.playerfinder.service;
-import org.springframework.beans.BeanUtils;
 
 
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
 import com.ceub.projetointegradoriii.playerfinder.repository.UserRepository;
-import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -58,9 +57,20 @@ public class UserService {
             return null;
         }
     }
+    public Optional<User> findById(Long id ){
+        return userRepository.findById(id);
+    }
 
     @Transactional
     public void deleteUserByUsername(String username) {
         userRepository.deleteByUsername(username);
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public Long getIdByUsername(String username) {
+        return userRepository.getIdByUsername(username);
     }
 }

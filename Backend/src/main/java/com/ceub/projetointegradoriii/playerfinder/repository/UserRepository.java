@@ -14,6 +14,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	User findUserByEmail(String email);
 	User findByUsername(String username);
 
+	@Query("SELECT id FROM User u WHERE u.username = :username")
+	Long getIdByUsername(String username);
+
 	@Modifying
 	@Query("UPDATE User u SET " +
 			"u.username = COALESCE(:newUsername, u.username), " +

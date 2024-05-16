@@ -38,7 +38,13 @@ public class SecurityFilter extends OncePerRequestFilter {
         ignorePatterns.add("/swagger-ui/**");
         ignorePatterns.add("/swagger-resources/**");
         ignorePatterns.add("/webjars/**");
+        ignorePatterns.add("/swagger-ui/swagger-ui.css");
+        ignorePatterns.add("/swagger-ui/index.css");
+        ignorePatterns.add("/swagger-ui/swagger-ui-bundle.js");
+        ignorePatterns.add("/swagger-ui/swagger-ui-standalone-present.js");
+        ignorePatterns.add("/swagger-ui/");
         ignorePatterns.add("/swagger-ui/swagger-initializer.js");
+
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
