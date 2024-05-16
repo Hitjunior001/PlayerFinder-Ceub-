@@ -115,15 +115,7 @@ const Page = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: "2vh",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "white",
-          }}
-        >
+        <Box sx={{ marginTop: "2vh", display: "flex", flexDirection: "column", alignItems: "center", color: "white", }} >
           <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -131,24 +123,8 @@ const Page = () => {
             Cadastro
           </Typography>
           <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "90vw",
-                justifyContent: "center",
-              }}
-            >
-              <Paper
-                component="div"
-                style={{
-                  padding: "1%",
-                  margin: "1%",
-                  width: "30vw",
-                  backgroundColor: "#202020",
-                  borderRadius: "10px",
-                }}
-              >
+            <div style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center", }} >
+              <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw", backgroundColor: "#202020", borderRadius: "10px", }} >
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <InputFileUpload />
@@ -193,16 +169,7 @@ const Page = () => {
                 </Grid>
               </Paper>
 
-              <Paper
-                component="div"
-                style={{
-                  padding: "1%",
-                  margin: "1%",
-                  width: "30vw",
-                  backgroundColor: "#202020",
-                  borderRadius: "10px",
-                }}
-              >
+              <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw", backgroundColor: "#202020", borderRadius: "10px", }} >
                 <Grid container spacing={4.5}>
                   <Grid item xs={12}>
                     <FormControl sx={{ width: '100%' }} variant="outlined">
@@ -351,18 +318,7 @@ const Page = () => {
               </Alert>
             </Snackbar>
 
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                width: "20vw",
-                color: "white",
-                bgcolor: "#16C83D",
-                "&:hover": { backgroundColor: "#16C83D" },
-              }}
-            >
+            <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, width: "20vw", color: "white", bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" }, }} >
               Cadastrar
             </Button>
           </Box>

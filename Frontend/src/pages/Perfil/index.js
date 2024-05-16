@@ -124,15 +124,7 @@ const ProfilePage = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: "2vh",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "white",
-          }}
-        >
+        <Box sx={{ marginTop: "2vh", display: "flex", flexDirection: "column", alignItems: "center", color: "white", }} >
           <Avatar sx={{ m: 1, bgcolor: "inherit" }}>
             <AccountCircleIcon style={{ fontSize: "50px", color: "#16C83D" }} />
           </Avatar>
@@ -144,33 +136,13 @@ const ProfilePage = () => {
             <CircularProgress style={{ color: "#16C83D", marginTop: "20px" }} />
           ) : (
             <>
-              <Button
-                onClick={editar ? toggleEditar : handleSubmit}
-                variant="contained"
-                sx={{ mt: 3, width: "8vw", color: "white", bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }}
-              >
+              <Button onClick={editar ? toggleEditar : handleSubmit} variant="contained"sx={{ mt: 3, width: "8vw", color: "white", bgcolor: "#16C83D", "&:hover": {backgroundColor: "#16C83D"}, }} >
                 {editar ? "Editar" : "Salvar"}
               </Button>
 
               <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "90vw",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Paper
-                    component="div"
-                    style={{
-                      padding: "1%",
-                      margin: "1%",
-                      width: "30vw",
-                      backgroundColor: "#202020",
-                      borderRadius: "10px",
-                    }}
-                  >
+                <div style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center", }} >
+                  <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw",  backgroundColor: "#202020", borderRadius: "10px", }} >
                     <Grid container spacing={3}>
                       <Grid item xs={12}>
                         <InputFileUpload />
@@ -227,12 +199,7 @@ const ProfilePage = () => {
                   </DialogActions>
                 </Dialog>
 
-                <Button
-                  onClick={handleClickOpenDeleteDialog}
-                  variant="contained"
-                  color="error"
-                  sx={{ width: "10vw", color: "white", "&:hover": { backgroundColor: "#FF0000" } }}
-                >
+                <Button onClick={handleClickOpenDeleteDialog} variant="contained"  color="error" sx={{ width: "10vw", color: "white", "&:hover": { backgroundColor: "#FF0000" }, }} >
                   Deletar Conta
                 </Button>
               </Box>
