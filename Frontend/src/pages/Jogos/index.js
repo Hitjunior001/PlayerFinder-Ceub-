@@ -27,51 +27,22 @@ const Page = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <Container component="main" maxWidth="xs">
-                <Box
-                    sx={{
-                        marginTop: "2vh",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        color: "white",
-                    }}
-                >
+                <Box sx={{ marginTop: "2vh", display: "flex", flexDirection: "column", alignItems: "center", color: "white", }} >
                     <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
                         <SportsEsportsIcon fontSize="medium" />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Jogos
                     </Typography>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "90vw",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Paper
-                            component="div"
-                            style={{
-                                padding: "0.5%",
-                                margin: "1%",
-                                width: "25vw",
-                                backgroundColor: "#202020",
-                                borderRadius: "10px",
-                            }}
-                        >
+                    <div style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center", }} >
+                        <Paper component="div" style={{ padding: "0.5%", margin: "1%", width: "25vw", backgroundColor: "#202020", borderRadius: "10px", }} >
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="valorant" style={{ textDecoration: 'none' }}>
-
+                                        
                                         <Card sx={{ maxWidth: "100%" }}>
                                             <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="450"
-                                                    image={valorant}
-                                                    alt="valorant"
-                                                />
+                                                <CardMedia component="img" height="450" image={valorant} alt="valorant" />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         Valorant
@@ -88,28 +59,14 @@ const Page = () => {
                             </Grid>
                         </Paper>
 
-                        <Paper
-                            component="div"
-                            style={{
-                                padding: "0.5%",
-                                margin: "1%",
-                                width: "25vw",
-                                backgroundColor: "#202020",
-                                borderRadius: "10px",
-                            }}
-                        >
+                        <Paper component="div" style={{ padding: "0.5%", margin: "1%", width: "25vw", backgroundColor: "#202020", borderRadius: "10px", }} >
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="" style={{ textDecoration: 'none' }}>
 
                                         <Card sx={{ maxWidth: "100%" }}>
                                             <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="450"
-                                                    image={CS2}
-                                                    alt="counterstrike2"
-                                                />
+                                                <CardMedia component="img" height="450" image={CS2} alt="counterstrike2" />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         Counter Strike 2
@@ -126,28 +83,14 @@ const Page = () => {
                             </Grid>
                         </Paper>
 
-                        <Paper
-                            component="div"
-                            style={{
-                                padding: "0.5%",
-                                margin: "1%",
-                                width: "25vw",
-                                backgroundColor: "#202020",
-                                borderRadius: "10px",
-                            }}
-                        >
+                        <Paper component="div" style={{ padding: "0.5%", margin: "1%", width: "25vw", backgroundColor: "#202020", borderRadius: "10px", }} >
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Link to="" style={{ textDecoration: 'none' }}>
 
                                         <Card sx={{ maxWidth: "100%" }}>
                                             <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="450"
-                                                    image={leagueOfLegends}
-                                                    alt="leagueoflegends"
-                                                />
+                                                <CardMedia component="img" height="450" image={leagueOfLegends} alt="leagueoflegends" />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         League of Legends

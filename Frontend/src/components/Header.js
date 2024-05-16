@@ -9,7 +9,7 @@ export const CustomAppBar = () => {
   const { signed } = useAuth();
   if(signed){
     return (
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar style={{ height: "12vh", padding: "0.5%", backgroundColor: "#0F021C"}} >
 
           <Grid container spacing={3} style={{ height: "12vh", margin: '0'}}>
