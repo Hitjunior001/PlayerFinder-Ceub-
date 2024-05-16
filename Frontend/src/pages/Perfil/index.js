@@ -15,8 +15,11 @@ import useAuth from "../../hooks/useAuth";
 import CircularProgress from "@mui/material/CircularProgress"; 
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const darkTheme = createTheme({
   palette: {
@@ -35,6 +38,7 @@ const ProfilePage = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [DeleteAccountOpen, setDeleteAccountOpen] = React.useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -76,18 +80,37 @@ const ProfilePage = () => {
       return;
     }
     setSnackbarOpen(false);
+  }; //Snackbar
+
+
+  const handleClickOpenDeleteDialog = () => {
+    setDeleteAccountOpen(true);
+  };
+  const handleCloseDeleteDialog = () => {
+    setDeleteAccountOpen(false);
   };
 
   const handleDeleteUser = async () => {
-    const confirmDelete = window.confirm("Tem certeza que deseja deletar sua conta?");
+    const confirmDelete = true;
     if (confirmDelete) {
+      setSnackbarOpen(true);
       const deleted = await deleteUser();
       if (deleted) {
         console.log("Conta deletada com sucesso!");
+        setSnackbarOpen(true);
+        setSnackbarSeverity("success");
+        setSnackbarMessage("Perfil Deletado com sucesso!");
+
       } else {
         console.error("Falha ao deletar conta.");
+        setSnackbarOpen(true);
+        setSnackbarSeverity("error");
+        setSnackbarMessage("Falha ao deletar o perfil.");
       }
     }
+    setTimeout(() => {
+      handleCloseDeleteDialog()
+    }, 3500);
   };
 
   const handleChange = (event) => {
@@ -180,7 +203,7 @@ const ProfilePage = () => {
                         </Grid>
                       </div>
                       </Grid>
-                      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+                      <Snackbar open={snackbarOpen} autoHideDuration={3500} onClose={handleCloseSnackbar}>
                         <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
                           {snackbarMessage}
                         </Alert>
@@ -188,8 +211,24 @@ const ProfilePage = () => {
                     </Grid>
                   </Paper>
                 </div>
+
+                <Dialog open={DeleteAccountOpen} onClose={handleCloseDeleteDialog} aria-labelledby="delet-dialog" aria-describedby="dialog-description" >
+                  <DialogTitle id="delet-dialog">
+                    Deseja realmente deletar sua conta?
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="dialog-description">
+                      Clicando em SIM, sua conta será excluída dos nossos registros. <br/> Deseja prosseguir?
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleCloseDeleteDialog}> Não </Button>
+                    <Button onClick={handleDeleteUser} autoFocus> Sim </Button>
+                  </DialogActions>
+                </Dialog>
+
                 <Button
-                  onClick={handleDeleteUser}
+                  onClick={handleClickOpenDeleteDialog}
                   variant="contained"
                   color="error"
                   sx={{ width: "10vw", color: "white", "&:hover": { backgroundColor: "#FF0000" } }}

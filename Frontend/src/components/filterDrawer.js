@@ -41,7 +41,7 @@ export default function FilterDrawer() {
 
         <ListItem sx={{ marginBottom: '3vh'}}>
           <ListItemText sx={{ textAlign: 'start', marginLeft: '1vw' }} primary={"Username: "} />
-          <TextField autoFocus fullWidth label="Username & Tag" value={usuario_tag} onChange={(e) => [setUsuario_tag(e.target.value)]} sx={{ marginLeft: '1vw' , marginRight: '2vw', maxWidth: '70%'}} />
+          <TextField fullWidth label="Username & Tag" value={usuario_tag} onChange={(e) => [setUsuario_tag(e.target.value)]} sx={{ marginLeft: '1vw' , marginRight: '2vw', maxWidth: '70%'}} />
         </ListItem>
 
         <ListItem sx={{ marginBottom: '3vh'}}>

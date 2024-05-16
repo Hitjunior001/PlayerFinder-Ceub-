@@ -4,6 +4,7 @@ import { Avatar, Button, TextField, Grid, Box, Typography, Container, Paper, Ale
    OutlinedInput, InputAdornment, IconButton } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -13,7 +14,6 @@ import "dayjs/locale/pt-br";
 import { useNavigate } from "react-router-dom";
 import InputFileUpload from "../../components/fileUpload";
 import useAuth from "../../hooks/useAuth";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const darkTheme = createTheme({
   palette: {
@@ -57,6 +57,9 @@ const Page = () => {
       const success = await signup(usuario, nome, email, senha, nascimento, estado);
       if (success) {
         setSuccess(true);
+        setTimeout(() => {
+          handleSuccessClose()
+        }, 3500);
       } else {
         setError(
           <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
@@ -342,7 +345,7 @@ const Page = () => {
             </div>
 
             {error}
-            <Snackbar open={success} anchorOrigin={{ vertical: "top", horizontal: "center" }} autoHideDuration={3500} onClose={handleSuccessClose}>
+            <Snackbar open={success} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} autoHideDuration={3500} onClose={handleSuccessClose}>
               <Alert onClose={handleSuccessClose} severity="success" variant="filled" sx={{ width: "100%" }}>
                 Usuário cadastrado com sucesso!
               </Alert>
