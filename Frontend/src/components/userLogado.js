@@ -1,26 +1,18 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import Logout from '@mui/icons-material/Logout';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AddIcon from '@mui/icons-material/Add';
+import Logout from '@mui/icons-material/Logout';
 import useAuth from "../hooks/useAuth";
+import FriendRequests from "./FriendRequests"
 
 export default function AccountMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        console.log(user);
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -87,18 +79,23 @@ export default function AccountMenu() {
                         <Avatar /> Meu perfil
                     </MenuItem>
                 </Link>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <SportsEsportsIcon fontSize="small" />
-                    </ListItemIcon>
-                    Meus jogos
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <PeopleAltIcon fontSize="small" />
-                    </ListItemIcon>
-                    Amigos
-                </MenuItem>
+                <Link to="/meus-jogos" style={{color: 'white', textDecoration: 'none'}}>
+                    <MenuItem onClick={handleClose}>
+                        <ListItemIcon>
+                            <SportsEsportsIcon fontSize="small" />
+                        </ListItemIcon>
+                        Meus jogos
+                    </MenuItem>
+                </Link>
+                <Link to="/amigos" style={{color: 'white', textDecoration: 'none'}}>
+                    <MenuItem onClick={handleClose}>
+                        <ListItemIcon>
+                            <PeopleAltIcon fontSize="small" />
+                        </ListItemIcon>
+                        Amigos
+                    </MenuItem>
+                </Link>
+                <FriendRequests/>
                 <Link to="/adicionar-jogo" style={{color: 'white', textDecoration: 'none'}}>
                     <MenuItem onClick={handleClose}>
                         <ListItemIcon>
