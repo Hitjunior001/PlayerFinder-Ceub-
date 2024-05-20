@@ -1,44 +1,45 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, ListItemButton, ListItemText, ListItemIcon, Dialog, DialogTitle, MenuItem } from '@mui/material';
+import { MenuItem, ListItemIcon, Badge, Dialog, List, ListItem, ListItemText } from '@mui/material';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import useFriends from '../hooks/useFriends';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
+function SimpleDialog({ onClose, open }) {
+  const { friendRequests, acceptFriendRequest, rejectFriendRequest } = useFriends();
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
-  const handleListItemClick = (value) => {
-    onClose(value);
+  const handleAccept = (requestId) => {
+    acceptFriendRequest(requestId);
+  };
+
+  const handleReject = (requestId) => {
+    rejectFriendRequest(requestId);
   };
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Pedidos de amizade</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem disableGutters key={email}>
-            <ListItemButton onClick={() => handleListItemClick(email)}>
-              <ListItemText primary={email} />
-              <CheckCircleOutlineIcon/>
-              <HighlightOffIcon/>
-            </ListItemButton>
+        {friendRequests.map((request) => (
+          <ListItem disableGutters key={request.id}>
+            <ListItemText primary={request.email} />
+            <ListItemIcon>
+              <CheckCircleOutlineIcon onClick={() => handleAccept(request.id)} />
+            </ListItemIcon>
+            <ListItemIcon>
+              <HighlightOffIcon onClick={() => handleReject(request.id)} />
+            </ListItemIcon>
           </ListItem>
         ))}
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick('addAccount')}
-          >
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
+        {friendRequests.length === 0 && (
+          <ListItem disableGutters>
+            <ListItemText primary="Nenhum pedido de amizade" />
+          </ListItem>
+        )}
       </List>
     </Dialog>
   );
@@ -47,35 +48,31 @@ function SimpleDialog(props) {
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
 };
 
 export default function FriendsRequestsDialog() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const { friendRequests } = useFriends();
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setOpen(false);
-    setSelectedValue(value);
   };
 
   return (
     <div>
-        <MenuItem onClick={handleClickOpen()}>
-            <ListItemIcon>
-                <GroupAddIcon/>
-            </ListItemIcon>
-            Pedidos de amizade
-        </MenuItem>
-        <SimpleDialog
-            selectedValue={selectedValue}
-            open={open}
-            onClose={handleClose}
-        />
+      <MenuItem onClick={handleClickOpen}>
+        <ListItemIcon>
+          <Badge badgeContent={friendRequests.length} color="error">
+            <GroupAddIcon />
+          </Badge>
+        </ListItemIcon>
+        Pedidos de amizade
+      </MenuItem>
+      <SimpleDialog open={open} onClose={handleClose} />
     </div>
   );
 }

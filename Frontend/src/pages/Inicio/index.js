@@ -13,6 +13,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import jogos from "../../components/images/jogos.jpg";
+import UsersList from "../../components/usersList"
 
 const darkTheme = createTheme({
     palette: {
@@ -141,6 +142,7 @@ const Page = () => {
                                     </Card>
                                 </Link>
                             </Paper>
+                            <UsersList/>
 
                         </div>
                     </div>
