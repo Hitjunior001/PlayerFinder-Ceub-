@@ -30,10 +30,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUsernameOrEmail(String usernameOrEmail) {
+        return userRepository.findByUsernameOrEmail(usernameOrEmail);
     }
 
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
     public User getUserById(long id) {
         return userRepository.findById(id).orElse(null);
     }

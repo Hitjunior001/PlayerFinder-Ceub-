@@ -37,8 +37,11 @@ public class RelationshipController {
         if(friendshipService.checkFriends(userId, friendId)){
             throw new IllegalStateException("Amigo já adicionado");
         }
-        friendRequestService.sendFriendshipRequest(user, friend);
-        return ResponseEntity.ok().build();
+        if(friendRequestService.sendFriendshipRequest(user, friend)){
+            return ResponseEntity.ok().body("Pedido de amizade enviado com sucesso.");
+        }
+        throw new IllegalStateException("Falha ao enviar pedido de solicitação");
+
     }
 
     @PostMapping("/acceptRequest")

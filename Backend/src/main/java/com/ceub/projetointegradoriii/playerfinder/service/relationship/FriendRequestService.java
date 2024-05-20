@@ -20,16 +20,18 @@ public class FriendRequestService {
     @Autowired
     private FriendshipService friendshipService;
 
-    public void sendFriendshipRequest(User user, User friend) {
+    public boolean sendFriendshipRequest(User user, User friend) {
         Long userId = user.getId();
         Long friendId = friend.getId();
         if (hasPendingFriendRequest(userId, friendId) ) {
             throw new IllegalStateException("Já existe um pedido de amizade pendente entre os usuários.");
         }
         FriendRequest newFriendRequest = new FriendRequest();
+
         newFriendRequest.setUser(user);
         newFriendRequest.setFriend(friend);
-        createFriendRequest(newFriendRequest);
+        friendRequestRepository.save(newFriendRequest);
+        return true;
     }
 
     public boolean acceptFriendshipRequest(Long id){
