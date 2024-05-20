@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { Box, Container, Divider, Grid, Paper } from '@mui/material';
 import useFriends from '../hooks/useFriends';
 import useAuth from '../hooks/useAuth';
 
@@ -11,8 +11,8 @@ const UsersList = () => {
   const [pendingRequests, setPendingRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { sendFriendRequest, fetchFriendRequests } = useFriends(); 
-  const { user } = useAuth(); 
+  const { sendFriendRequest, fetchFriendRequests } = useFriends();
+  const { user } = useAuth();
   const api = "http://localhost:8080";
 
   const currentUser = user;
@@ -101,29 +101,33 @@ const UsersList = () => {
 
   return (
     <Container maxWidth="md">
-      <Grid container spacing={3}>
-        {users.length === 0 ? (
-          <Typography variant="h6">Nenhum usuário encontrado.</Typography>
-        ) : (
-          users.map((user) => (
-            <Grid item key={user.id} xs={12} sm={6} md={4}>
-              <Paper sx={{ p: 2 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Avatar src={user.avatar} alt={user.username} />
-                  <Typography variant="h6">{user.username}</Typography>
-                  <Button
-                    variant="contained"
-                    disabled={isRequestPending(user.id)}
-                    onClick={() => handleSendFriendRequest(user.id)}
-                  >
-                    {isRequestPending(user.id) ? 'Pedido Pendente' : 'Enviar Pedido de Amizade'}
-                  </Button>
-                </Box>
-              </Paper>
-            </Grid>
-          ))
-        )}
-      </Grid>
+      <Paper component="div" sx={{ p: 2, m: 2, bgcolor: "#202020", borderRadius: "10px", }}> 
+        <Grid container spacing={2} justifyContent={'center'}>
+          <Typography variant='h4' sx={{pt: 2}}> Usuários Online </Typography>
+          <Divider sx={{bgcolor: '#16C83D', width: '70%'}}/>
+          {users.length === 0 ? (
+            <Typography variant="h6">Nenhum usuário encontrado.</Typography>
+          ) : (
+            users.map((user) => (
+              <Grid item key={user.id} xs={12} sm={6} md={20}>
+                <Paper sx={{ p: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Avatar src={user.avatar} alt={user.username} />
+                    <Typography variant="h6">{user.username}</Typography>
+                    <Button
+                      variant="contained"
+                      disabled={isRequestPending(user.id)}
+                      onClick={() => handleSendFriendRequest(user.id)}
+                    >
+                      {isRequestPending(user.id) ? 'Pedido Pendente' : 'Enviar Pedido de Amizade'}
+                    </Button>
+                  </Box>
+                </Paper>
+              </Grid>
+            ))
+          )}
+        </Grid>
+      </Paper>
     </Container>
   );
 };

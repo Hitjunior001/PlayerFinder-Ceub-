@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuItem, ListItemIcon, Badge, Dialog, List, ListItem, ListItemText } from '@mui/material';
+import { MenuItem, ListItemIcon, Badge, Dialog, List, ListItem, ListItemText, Tooltip, IconButton } from '@mui/material';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -15,29 +15,39 @@ function SimpleDialog({ onClose, open }) {
 
   const handleAccept = (requestId) => {
     acceptFriendRequest(requestId);
+    handleClose()
   };
 
   const handleReject = (requestId) => {
     rejectFriendRequest(requestId);
+    handleClose()
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <List sx={{ pt: 0 }}>
+    <Dialog onClose={handleClose} open={open}> 
+      <List sx={{pl: 2, width: '20vw'}}>
         {friendRequests.map((request) => (
-          <ListItem disableGutters key={request.id}>
-            <ListItemText primary={request.email} />
+          <ListItem disableGutters key={request.friend.id}>
+            <ListItemText primary={request.friend.username} />
             <ListItemIcon>
-              <CheckCircleOutlineIcon onClick={() => handleAccept(request.id)} />
+              <Tooltip title="Aceitar">
+                <IconButton onClick={() => handleAccept(request.friend.id)}>
+                  <CheckCircleOutlineIcon sx={{color: '#16C83D'}} />
+                </IconButton>
+              </Tooltip>
             </ListItemIcon>
             <ListItemIcon>
-              <HighlightOffIcon onClick={() => handleReject(request.id)} />
+              <Tooltip title="Rejeitar">
+                <IconButton  onClick={() => handleReject(request.friend.id)} >
+                  <HighlightOffIcon color="error" />
+                </IconButton>
+              </Tooltip>
             </ListItemIcon>
           </ListItem>
         ))}
         {friendRequests.length === 0 && (
           <ListItem disableGutters>
-            <ListItemText primary="Nenhum pedido de amizade" />
+            <ListItemText sx={{textAlign: 'center'}} primary="Nenhum pedido de amizade" />
           </ListItem>
         )}
       </List>

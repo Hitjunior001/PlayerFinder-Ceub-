@@ -194,8 +194,8 @@ const ProfilePage = () => {
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleCloseDeleteDialog}> Não </Button>
-                    <Button onClick={handleDeleteUser} autoFocus> Sim </Button>
+                    <Button onClick={handleCloseDeleteDialog} sx={{ color: "red", "&:hover": {color: 'white', bgcolor: 'red'} }}> Não </Button>
+                    <Button onClick={handleDeleteUser} autoFocus sx={{ color: "#16C83D", "&:hover": {color: 'white', bgcolor: '#16C83D'} }}> Sim </Button>
                   </DialogActions>
                 </Dialog>
 
