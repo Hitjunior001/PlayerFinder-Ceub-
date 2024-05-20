@@ -1,13 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import useAuth from '../hooks/useAuth';
 
 export const FriendsContext = createContext({});
 
 export const FriendsProvider = ({ children }) => {
   const [friendRequests, setFriendRequests] = useState([]);
+  const [friends, setFriends] = useState([]);
+
   const api = "http://localhost:8080/api";
+  const { user } = useAuth()
 
   useEffect(() => {
-    fetchFriendRequests();
+    if(user != null){
+      fetchFriendRequests();
+    }
   }, []);
 
   const fetchFriendRequests = async () => {
@@ -29,6 +35,27 @@ export const FriendsProvider = ({ children }) => {
       
     } catch (error) {
       console.error("Erro ao buscar pedidos de amizade:", error);
+    }
+  };
+
+  const fetchFriends = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${api}/relationships/list/friends`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao buscar as amizade");
+      }
+
+      const data = await response.json();
+      return data;
+      
+    } catch (error) {
+      console.error("Erro ao buscar as amizade:", error);
     }
   };
 
@@ -58,13 +85,12 @@ export const FriendsProvider = ({ children }) => {
   const acceptFriendRequest = async (requestId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`${api}/relationships/acceptRequest`, {
+      const response = await fetch(`${api}/relationships/acceptRequest?requestId=${requestId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ requestId }),
+        }
       });
 
       if (!response.ok) {
@@ -104,8 +130,27 @@ export const FriendsProvider = ({ children }) => {
     }
   };
 
+  const deleteFriend = async (friendId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${api}/relationships/list/friends/delete?friendId=${friendId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      if(response.ok){
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error", error);
+      throw error;
+    }
+  };
+
   return (
-    <FriendsContext.Provider value={{ friendRequests, fetchFriendRequests, sendFriendRequest, acceptFriendRequest, rejectFriendRequest }}>
+    <FriendsContext.Provider value={{friendRequests, fetchFriendRequests, sendFriendRequest, acceptFriendRequest, rejectFriendRequest,fetchFriends, deleteFriend }}>
       {children}
     </FriendsContext.Provider>
   );

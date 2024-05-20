@@ -60,7 +60,7 @@ const Page = () => {
             margin="normal"
             required
             fullWidth
-            label="Usuário"
+            label="Usuário ou Email"
             id="email"
             name="email"
             autoComplete="email"

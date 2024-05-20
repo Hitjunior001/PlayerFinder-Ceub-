@@ -23,7 +23,7 @@ const Page = () => {
     if (reason === "clickaway") {
       return;
     }
-  }; //SnackBar
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
