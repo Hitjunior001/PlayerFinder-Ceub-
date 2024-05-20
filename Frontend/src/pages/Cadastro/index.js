@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Avatar, Button, TextField, Grid, Box, Typography, Container, Paper, Alert, Snackbar,
    FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select,
-   OutlinedInput, InputAdornment, IconButton } from "@mui/material";
+   OutlinedInput, InputAdornment, IconButton, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -32,15 +32,17 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [ConfirmaSenha, setConfirmaSenha] = useState("");
-  const [nascimento, setNascimento] = useState("");
+  const [nascimento, setNascimento] = useState();
   const [estado, setEstado] = useState("");
   const [genero, setGenero] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading]= useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     
     if (senha !== ConfirmaSenha) {
       setError(
@@ -55,11 +57,12 @@ const Page = () => {
     
     try {
       const success = await signup(usuario, nome, email, senha, nascimento, estado);
+      setLoading(false);
       if (success) {
         setSuccess(true);
         setTimeout(() => {
           handleSuccessClose()
-        }, 3500);
+        }, 4500);
       } else {
         setError(
           <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
@@ -110,6 +113,15 @@ const Page = () => {
   const handleChange = (event) => {
     setEstado(event.target.value);
   }; //Select Estado
+
+  const handleDateChange = (date) => {
+    if (date && date.isValid()) {
+      setNascimento(date.format("YYYY-MM-DD"));
+    } else {
+      setNascimento("");
+    }
+    setError("");
+  };
 
 
   return (
@@ -214,7 +226,7 @@ const Page = () => {
                       <DatePicker
                         label="Data de nascimento *"
                         value={dayjs(nascimento)}
-                        onChange={(date) => [setNascimento(date.isValid() ? date.format("YYYY-MM-DD") : ""), setError("")]}
+                        onChange={handleDateChange}
                         minDate={min}
                         maxDate={max}
                         sx={{ width: "100%" }}
@@ -318,8 +330,8 @@ const Page = () => {
               </Alert>
             </Snackbar>
 
-            <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2, width: "20vw", color: "white", bgcolor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" }, }} >
-              Cadastrar
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={loading}>
+              {loading ? <CircularProgress size={24} color="inherit" /> : "Cadastrar"}
             </Button>
           </Box>
         </Box>

@@ -34,15 +34,15 @@ public class AuthController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody Map<String, String> loginRequest) {
-        String username = loginRequest.get("username");
+        String usernameOrEmail = loginRequest.get("username");
         String password = loginRequest.get("password");
 
-        User user = userService.findByUsername(username);
+        User user = userService.findByUsernameOrEmail(usernameOrEmail);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
 
-        String token = tokenJWT.generateToken(username);
+        String token = tokenJWT.generateToken(user.getUsername());
 
         return ResponseEntity.ok(Map.of("token", token));
     }
@@ -53,6 +53,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
+        createdUser.setRole("USER");
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 

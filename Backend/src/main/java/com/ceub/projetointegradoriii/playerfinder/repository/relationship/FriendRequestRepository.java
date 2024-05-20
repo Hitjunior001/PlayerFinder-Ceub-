@@ -10,7 +10,7 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
     @Query("SELECT COUNT(fr) > 0 FROM FriendRequest fr WHERE (fr.user.id = :userId AND fr.friend.id = :friendId) OR (fr.user.id = :friendId AND fr.friend.id = :userId)")
     boolean existsByUserIdAndFriendId(Long userId, Long friendId);
 
-    @Query("SELECT fr FROM FriendRequest fr WHERE (fr.friend.id = :userId)")
+    @Query("SELECT fr FROM FriendRequest fr WHERE (fr.friend.id = :userId or fr.user.id = :userId)")
     List<FriendRequest> existsRequestsByUserId(Long userId);
 
     List<FriendRequest> findAll();
