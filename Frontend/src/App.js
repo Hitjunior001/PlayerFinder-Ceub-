@@ -5,6 +5,8 @@ import Routes from "./Routes";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CustomAppBar } from "./components/Header";
 import { AuthProvider } from "./contexts/auth";
+import { FriendsProvider } from "./contexts/friends";
+
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +17,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <AuthProvider>
+        <FriendsProvider>
       <ThemeProvider theme={darkTheme}>
         <BrowserRouter>
           <div
@@ -31,6 +34,7 @@ function App() {
           </div>
         </BrowserRouter>
       </ThemeProvider>
+      </FriendsProvider>
     </AuthProvider>
   );
 }

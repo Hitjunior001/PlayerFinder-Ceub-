@@ -4,6 +4,7 @@ import { Link, Routes, Route } from "react-router-dom";
 import MenuTabs from "./MenuTab";
 import UserLogado from "./userLogado";
 import useAuth from "../hooks/useAuth";
+import FriendsRequestsDialog from "./FriendRequests";
 
 export const CustomAppBar = () => {
   const { signed } = useAuth();
@@ -21,6 +22,10 @@ export const CustomAppBar = () => {
 
             <Grid item xs={7} style={{alignSelf: 'end'}}>
               <MenuTabs />
+            </Grid>
+
+            <Grid item xs style={{textAlign: 'center', paddingTop: '0', alignSelf: 'center'}}> 
+              <FriendsRequestsDialog />
             </Grid>
 
             <Grid item xs style={{textAlign: 'center', paddingTop: '0', alignSelf: 'center'}}> 
