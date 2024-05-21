@@ -54,13 +54,13 @@ const Page = () => {
                     <Typography component="h1" variant="h5">
                         Jogos
                     </Typography>
-                    <Grid container spacing={3} justifyContent="center">
+                    <Grid container spacing={3} sx={{justifyContent: 'center', width: '90vw', mt: 2}}>
                         {loading ? (
-                            <CircularProgress color="inherit" />
+                            <CircularProgress color="inherit"/>
                         ) : (
                             jogos.map((jogo) => (
                                 <Grid item key={jogo.id}>
-                                    <Paper component="div" style={{ padding: "1%", margin: "1%", width: "25vw", backgroundColor: "#202020", borderRadius: "10px", }}>
+                                    <Paper component="div" sx={{ p: 1, m: 1, width: "25vw", backgroundColor: "#202020", borderRadius: "10px", }}>
                                         <Link to={`/jogos/${jogo.id}`} style={{ textDecoration: 'none' }}>
                                             <Card sx={{ maxWidth: "100%" }}>
                                                 <CardActionArea>
