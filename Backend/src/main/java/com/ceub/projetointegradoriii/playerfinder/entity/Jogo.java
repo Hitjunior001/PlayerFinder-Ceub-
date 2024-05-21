@@ -3,6 +3,8 @@ package com.ceub.projetointegradoriii.playerfinder.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +25,7 @@ public class Jogo{
 	@Column(name = "titulo", nullable = false)
 	private String titulo;
 
-	@Column(name = "data_lancamento", nullable = false)
-	private Date dataLancamento;
-
 	@ManyToMany(mappedBy = "jogos")
+	@JsonBackReference
 	private List<User> users;
 }

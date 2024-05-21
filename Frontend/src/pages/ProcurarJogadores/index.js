@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -17,10 +18,38 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
+    const { jogoId } = useParams();
+    const [jogo, setJogo] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchJogo = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                const response = await fetch(`http://localhost:8080/api/jogos/${jogoId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setJogo(data);
+                } else {
+                    throw new Error("Erro ao buscar o jogo");
+                }
+            } catch (error) {
+                console.error("Erro ao buscar o jogo:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchJogo();
+    }, [jogoId]);
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="md">
                 <Box
                     sx={{
                         marginTop: "2vh",
@@ -33,11 +62,17 @@ const Page = () => {
                     <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
                         <SportsEsportsIcon fontSize="medium" />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Valorant
-                    </Typography>
+                    {loading ? (
+                        <Typography component="h1" variant="h5">
+                            Carregando...
+                        </Typography>
+                    ) : (
+                        <Typography component="h1" variant="h5">
+                            {jogo ? jogo.titulo : "Jogo não encontrado"}
+                        </Typography>
+                    )}
 
-                    <Typography sx={{margin: '3%'}}>
+                    <Typography sx={{ margin: '3%' }}>
                         <FilterDrawer />
                     </Typography>
                     
@@ -49,7 +84,6 @@ const Page = () => {
                             width: "75vw"
                         }}
                     >
-
                         <Paper
                             component="div"
                             style={{
@@ -62,7 +96,7 @@ const Page = () => {
                         >
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
-                                    <PlayerList />
+                                    <PlayerList jogoId={jogoId} />
                                 </Grid>
                             </Grid>
                         </Paper>

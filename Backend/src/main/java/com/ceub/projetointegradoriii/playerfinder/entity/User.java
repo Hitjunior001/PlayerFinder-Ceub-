@@ -1,5 +1,6 @@
 package com.ceub.projetointegradoriii.playerfinder.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -61,5 +62,6 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name="jogo_id")
 	)
-	private List<Jogo> jogos;
+    @JsonManagedReference
+    private List<Jogo> jogos;
 }

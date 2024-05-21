@@ -2,7 +2,10 @@ package com.ceub.projetointegradoriii.playerfinder.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
+import com.ceub.projetointegradoriii.playerfinder.service.JogoService;
 import com.ceub.projetointegradoriii.playerfinder.service.TokenService;
 import com.ceub.projetointegradoriii.playerfinder.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,6 +30,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private JogoService jogoService;
 
 	@Autowired
 	private TokenService tokenService;
@@ -113,5 +119,37 @@ public class UserController {
 		} catch (RuntimeException e) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Não foi possível excluir a conta.");
 		}
+	}
+
+	@Operation(summary = "Criar um perfil de jogo do usuário", description = "Endpoint para editar um usuário pelo nome de usuário")
+	@ApiResponse(responseCode = "200", description = "Usuário editado com sucesso")
+	@ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+	@PutMapping("/jogo/perfil")
+	public ResponseEntity<User> createPerfilJogo(@RequestHeader("Authorization") String authorizationHeader, @RequestBody Map<String, Long> payload) {
+		String token = tokenService.extractTokenFromHeader(authorizationHeader);
+		String username = tokenService.extractUsername(token);
+		User existingUser = userService.findByUsername(username);
+		Long jogoId = payload.get("jogoId");
+		Optional<Jogo> optionalJogo = jogoService.getJogoById(jogoId);
+
+		if (existingUser == null) {
+			return ResponseEntity.status(404).body(null);
+		}
+
+		if (optionalJogo.isEmpty()) {
+			return ResponseEntity.status(404).body(null);
+		}
+
+		Jogo jogo = optionalJogo.get();
+
+		if (existingUser.getJogos().contains(jogo)) {
+			return ResponseEntity.status(400).body(null);
+		}
+
+		existingUser.getJogos().add(jogo);
+
+		userService.save(existingUser);
+
+		return ResponseEntity.ok(existingUser);
 	}
 }

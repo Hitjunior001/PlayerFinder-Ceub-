@@ -31,7 +31,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<GuestRoute element={<Login />} />} />
       <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
       <Route path="/jogos" element={<ProtectedRoute element={<Jogos />} />} />
-      <Route path="/jogos/valorant" element={<ProtectedRoute element={<ProcurarJogadores />} />} />
+      <Route path="/jogos/:jogoId" element={<ProtectedRoute element={<ProcurarJogadores />} />} />
       <Route path="/perfil" element={<ProtectedRoute element={<ProfilePage />} />} />
       <Route path="/perfil/:username" element={<ProtectedRoute element={<Perfil />} />} />
       <Route path="/amigos" element={<ProtectedRoute element={<Amigos />} />} />

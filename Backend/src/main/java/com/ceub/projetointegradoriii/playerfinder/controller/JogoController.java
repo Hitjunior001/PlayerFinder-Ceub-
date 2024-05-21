@@ -3,17 +3,12 @@ package com.ceub.projetointegradoriii.playerfinder.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.ceub.projetointegradoriii.playerfinder.entity.User;
+import com.ceub.projetointegradoriii.playerfinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
 import com.ceub.projetointegradoriii.playerfinder.repository.JogoRepository;
@@ -21,7 +16,6 @@ import com.ceub.projetointegradoriii.playerfinder.repository.JogoRepository;
 @RestController
 @RequestMapping("/api/jogos")
 public class JogoController {
-
 	private final JogoRepository jogoRepository;
 
 	@Autowired
@@ -29,7 +23,10 @@ public class JogoController {
 		this.jogoRepository = jogoRepository;
 	}
 
-	@GetMapping
+	@Autowired
+	private UserService userService;
+
+	@GetMapping("/list")
 	public ResponseEntity<List<Jogo>> getAllJogos() {
 		List<Jogo> jogos = jogoRepository.findAll();
 		return new ResponseEntity<>(jogos, HttpStatus.OK);

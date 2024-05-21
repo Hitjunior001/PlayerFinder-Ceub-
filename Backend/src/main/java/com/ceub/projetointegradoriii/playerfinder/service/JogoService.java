@@ -4,16 +4,38 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
+import com.ceub.projetointegradoriii.playerfinder.entity.User;
+import com.ceub.projetointegradoriii.playerfinder.repository.JogoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface JogoService {
+@Service
+public class JogoService {
 
-	List<Jogo> getAllJogos();
+	@Autowired
+	private JogoRepository jogoRepository;
 
-	Optional<Jogo> getJogoById(Long id);
 
-	Jogo createJogo(Jogo jogo);
+	public List<Jogo> getAllJogos() {
+		return jogoRepository.findAll();
+	}
 
-	Optional<Jogo> updateJogo(Long id, Jogo jogo);
+	public Optional<Jogo> getJogoById(Long id){
+		return jogoRepository.findById(id);
+	}
 
-	void deleteJogo(Long id);
+	public Jogo createJogo(Jogo jogo){
+		return jogoRepository.save(jogo);
+	}
+
+	public List<Jogo> findJogosByUsuario(User user) {
+		return user.getJogos();
+	}
+	public List<User> findUsuariosByJogo(Jogo jogo) {
+		return jogo.getUsers();
+	}
+
+//	Optional<Jogo> updateJogo(Long id, Jogo jogo);
+//
+//	void deleteJogo(Long id);
 }
