@@ -23,6 +23,7 @@ public class UserService {
     public User createUser(User user) {
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+        user.setRole("USER");
         return userRepository.save(user);
     }
 

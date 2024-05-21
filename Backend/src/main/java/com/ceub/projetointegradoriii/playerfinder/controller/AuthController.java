@@ -53,7 +53,6 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
-        createdUser.setRole("USER");
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
