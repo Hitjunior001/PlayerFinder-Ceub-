@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Box, Container, Divider, Grid, Paper, CircularProgress } from '@mui/material';
+import { Box, Grid, Paper, CircularProgress } from '@mui/material';
 import useFriends from '../hooks/useFriends';
 import useAuth from '../hooks/useAuth';
 
@@ -128,7 +128,7 @@ const UsersList = () => {
   };
 
   if (loading) {
-    return <Typography variant="h6">Carregando...</Typography>;
+    return <Typography variant="h6" mt={2}>Carregando...</Typography>;
   }
 
   if (error) {
@@ -136,43 +136,37 @@ const UsersList = () => {
   }
 
   return (
-    <Container maxWidth="md">
-      <Paper component="div" sx={{ p: 2, m: 2, bgcolor: "#202020", borderRadius: "10px" }}> 
-        <Grid container spacing={2} justifyContent={'center'}>
-          <Typography variant='h4' sx={{pt: 2}}> Usuários Online </Typography>
-          <Divider sx={{bgcolor: '#16C83D', width: '70%'}}/>
-          {users.length === 0 ? (
-            <Typography variant="h6">Nenhum usuário encontrado.</Typography>
-          ) : (
-            users.map((user) => (
-              <Grid item key={user.id} xs={12} sm={6} md={20}>
-                <Paper sx={{ p: 2 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Avatar src={user.avatar} alt={user.username} />
-                    <Typography variant="h6">{user.username}</Typography>
-                    {isFriend(user.id) ? (
-                      <Typography variant="body2" color="text.secondary">Amigo</Typography>
+    <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '48vh', overflowY: 'scroll', }}>
+      {users.length === 0 ? (
+        <Typography variant="h6">Nenhum usuário encontrado.</Typography>
+      ) : (
+        users.map((user) => (
+          <Grid item key={user.id} xs={12}>
+            <Paper sx={{ p: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Avatar src={user.avatar} alt={user.username} />
+                <Typography variant="h6" sx={{ marginLeft: '1vw', marginInlineEnd: 'auto'}} >{user.username}</Typography>
+                {isFriend(user.id) ? (
+                  <Typography variant="body2" color="text.secondary">Amigo</Typography>
+                ) : (
+                  <Button
+                    variant="contained"
+                    disabled={isRequestPending(user.id) || requestStatus[user.id] === 'loading'}
+                    onClick={() => handleSendFriendRequest(user.id)}
+                  >
+                    {requestStatus[user.id] === 'loading' ? (
+                      <CircularProgress size={24} color="inherit" />
                     ) : (
-                      <Button
-                        variant="contained"
-                        disabled={isRequestPending(user.id) || requestStatus[user.id] === 'loading'}
-                        onClick={() => handleSendFriendRequest(user.id)}
-                      >
-                        {requestStatus[user.id] === 'loading' ? (
-                          <CircularProgress size={24} color="inherit" />
-                        ) : (
-                          isRequestPending(user.id) ? 'Pedido Pendente' : 'Enviar Pedido de Amizade'
-                        )}
-                      </Button>
+                      isRequestPending(user.id) ? 'Pedido Pendente' : 'Enviar Pedido de Amizade'
                     )}
-                  </Box>
-                </Paper>
-              </Grid>
-            ))
-          )}
-        </Grid>
-      </Paper>
-    </Container>
+                  </Button>
+                )}
+              </Box>
+            </Paper>
+          </Grid>
+        ))
+      )}
+    </Grid>
   );
 };
 

@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import { Card, CardContent, CardMedia, CardActionArea, CircularProgress, Paper, Grid, Container, Box, Typography, Avatar } from '@mui/material';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea, Button, CircularProgress } from '@mui/material';
 import valorant from "../../components/images/valorant.png";
 import CS2 from "../../components/images/CS2.png";
 import leagueOfLegends from "../../components/images/leagueOfLegends.jpg";

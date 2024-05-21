@@ -1,10 +1,17 @@
+.App{
+  min-height: 100vh;
+  height: 100%;
+  text-align: center;
+  background-color: #202020;
+}
+
 /* ===== Scrollbar CSS ===== */
   *::-webkit-scrollbar {
     width: 7px;
   }
 
   *::-webkit-scrollbar-track {
-    background: #202020;
+    background: inherit;
   }
 
   *::-webkit-scrollbar-thumb {

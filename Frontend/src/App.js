@@ -17,23 +17,15 @@ const darkTheme = createTheme({
 function App() {
   return (
     <AuthProvider>
-        <FriendsProvider>
-      <ThemeProvider theme={darkTheme}>
-        <BrowserRouter>
-          <div
-            className="App"
-            style={{
-              minHeight: "100vh",
-              height: "100%",
-              textAlign: "center",
-              backgroundColor: "#202020",
-            }}
-          >
-            <CustomAppBar />
-            <Routes />
-          </div>
-        </BrowserRouter>
-      </ThemeProvider>
+      <FriendsProvider>
+        <ThemeProvider theme={darkTheme}>
+          <BrowserRouter>
+            <div className="App">
+              <CustomAppBar />
+              <Routes />
+            </div>
+          </BrowserRouter>
+        </ThemeProvider>
       </FriendsProvider>
     </AuthProvider>
   );
