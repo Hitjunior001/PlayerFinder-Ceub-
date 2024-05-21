@@ -47,7 +47,7 @@ export const CustomAppBar = () => {
                 <Typography component="div">
                   Já tem uma conta?
                   <Link to="/" style={{ color: "white" }}>
-                    <Button color="inherit" className="cadastra-cand" sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }} >
+                    <Button color="inherit" className="cadastra-cand" sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#32D35A" } }} >
                       Login
                     </Button>
                   </Link>
@@ -58,7 +58,7 @@ export const CustomAppBar = () => {
                 <Typography component="div">
                   Não tem uma conta?
                   <Link to="/cadastro" style={{ color: "white" }}>
-                    <Button color="inherit" className="cadastra-cand" sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#16C83D" } }} >
+                    <Button color="inherit" className="cadastra-cand" sx={{ marginLeft: "1vw", width: "7vw", backgroundColor: "#16C83D", "&:hover": { backgroundColor: "#32D35A" } }} >
                       Cadastrar
                     </Button>
                   </Link>

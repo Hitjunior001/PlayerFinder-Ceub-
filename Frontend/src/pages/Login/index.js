@@ -114,7 +114,7 @@ const Page = () => {
               mb: 2,
               color: "white",
               bgcolor: "#16C83D",
-              "&:hover": { backgroundColor: "#16C83D" },
+              "&:hover": { backgroundColor: "#32D35A" },
             }}
           >
             LOGAR

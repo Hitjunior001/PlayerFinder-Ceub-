@@ -136,7 +136,7 @@ const ProfilePage = () => {
             <CircularProgress style={{ color: "#16C83D", marginTop: "20px" }} />
           ) : (
             <>
-              <Button onClick={editar ? toggleEditar : handleSubmit} variant="contained"sx={{ mt: 3, width: "8vw", color: "white", bgcolor: "#16C83D", "&:hover": {backgroundColor: "#16C83D"}, }} >
+              <Button onClick={editar ? toggleEditar : handleSubmit} variant="contained"sx={{ mt: 3, width: "8vw", color: "white", bgcolor: "#16C83D", "&:hover": {backgroundColor: "#32D35A"}, }} >
                 {editar ? "Editar" : "Salvar"}
               </Button>
 
@@ -195,7 +195,7 @@ const ProfilePage = () => {
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleCloseDeleteDialog} sx={{ color: "red", "&:hover": {color: 'white', bgcolor: 'red'} }}> Não </Button>
-                    <Button onClick={handleDeleteUser} autoFocus sx={{ color: "#16C83D", "&:hover": {color: 'white', bgcolor: '#16C83D'} }}> Sim </Button>
+                    <Button onClick={handleDeleteUser} autoFocus sx={{ color: "#16C83D", "&:hover": {color: 'white', bgcolor: '#32D35A'} }}> Sim </Button>
                   </DialogActions>
                 </Dialog>
 

@@ -330,7 +330,7 @@ const Page = () => {
               </Alert>
             </Snackbar>
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={loading}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, width: '20vw', color: 'white', bgcolor: '#16C83D', "&:hover": { backgroundColor: "#32D35A" }, }} disabled={loading}>
               {loading ? <CircularProgress size={24} color="inherit" /> : "Cadastrar"}
             </Button>
           </Box>
