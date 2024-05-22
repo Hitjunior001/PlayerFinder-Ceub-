@@ -59,6 +59,8 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
+
+  //TODOS OS FORMATOS DEVEM SEGUIR ESSE A SEGUIR!!!!
   const signup = async (usuario, nome, email, senha, dataNascimento, estado) => {
     try {
       const response = await fetch(`${api}/auth/register`, {
@@ -77,17 +79,17 @@ export const AuthProvider = ({ children }) => {
           password: senha,
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Erro ao cadastrar usuário");
-      }
-      window.location.href = '/login';
-      return true;
-    } catch (error) {
-      console.error("Erro ao cadastrar usuário:", error);
-      return false;
+  
+      return response;
+    } catch (err) {
+      console.error("Erro ao fazer requisição de cadastro:", err);
+      throw new Error("Erro ao fazer requisição de cadastro");
     }
   };
+    //TODOS OS FORMATOS DEVEM SEGUIR ESSE ACIMA!!!!
+
+
+
   const signout = () => {
     localStorage.removeItem("token");
     setUser(null);

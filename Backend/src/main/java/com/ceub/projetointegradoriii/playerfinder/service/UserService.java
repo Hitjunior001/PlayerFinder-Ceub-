@@ -2,6 +2,7 @@ package com.ceub.projetointegradoriii.playerfinder.service;
 
 
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
+import com.ceub.projetointegradoriii.playerfinder.exceptions.InvalidEmailFormatException;
 import com.ceub.projetointegradoriii.playerfinder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -20,10 +23,13 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User createUser(User user) {
+    public User createUser(User user) throws InvalidEmailFormatException{
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         user.setRole("USER");
+        if(!isValidEmail(user.getEmail())){
+            throw new InvalidEmailFormatException("Formato de email inválido.");
+        };
         return userRepository.save(user);
     }
 
@@ -74,7 +80,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Long getIdByUsername(String username) {
-        return userRepository.getIdByUsername(username);
+    public boolean isValidEmail(String email){
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
     }
 }
