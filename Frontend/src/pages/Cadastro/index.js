@@ -42,63 +42,57 @@ const Page = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true)
-    
-    if (senha !== ConfirmaSenha) {
-      setError(
-        <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
-          <Alert severity="warning" variant="filled" sx={{ width: "100%" }}>
-            As senhas precisam ser iguais!
-          </Alert>
-        </Snackbar>
-      );
-      return;
-    }
-    
+    setLoading(true);
+  
     try {
-      const success = await signup(usuario, nome, email, senha, nascimento, estado);
-      setLoading(false);
-      if (success) {
-        setSuccess(true);
-        setTimeout(() => {
-          handleSuccessClose()
-        }, 4500);
-      } else {
-        setError(
-          <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
-            <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
-              Erro ao cadastrar usuário!
-            </Alert>
-          </Snackbar>
-        );
+      if (senha !== ConfirmaSenha) {
+        setError("As senhas precisam ser iguais!");
+        setLoading(false);
+        return;
       }
+  
+      const response = await signup(usuario, nome, email, senha, nascimento, estado);
+  
+      if (!response) {
+        throw new Error("Erro ao cadastrar usuário: resposta inválida");
+      }
+  
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Erro ao cadastrar usuário: ${errorMessage}`);
+      }
+  
+      setLoading(false);
+      setSuccess("Usuário cadastrado com sucesso!");
+  
+      setTimeout(() => {
+        navigate("/login");
+      }, 3500);
     } catch (error) {
+      setError(error.message);
       console.error("Erro ao cadastrar usuário:", error);
-      setError(
-        <Snackbar open={true} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
-          <Alert severity="error" variant="filled" sx={{ width: "100%" }}>
-            Erro ao cadastrar usuário!
-          </Alert>
-        </Snackbar>
-      );
+      setLoading(false);
     }
   };
+
   
   const handleSuccessClose = (event, reason) => {
     if (reason === "clickaway") {
-      setSuccess(false);
-      navigate("/login")
-      return;
+      setSuccess("");
+      navigate("/login");
+    } else {
+      setSuccess("");
+      setError("");
     }
-  }; //SnackBar
+  };
 
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };//Mostrar Senha
+  }; // Mostrar Senha
 
-  const [cleared, setCleared] = React.useState(false);
+  const [cleared, setCleared] = useState(false);
   React.useEffect(() => {
     if (cleared) {
       const timeout = setTimeout(() => {
@@ -108,21 +102,31 @@ const Page = () => {
       return () => clearTimeout(timeout);
     }
     return () => {};
-  }); //DatePicker
+  }, [cleared]); // DatePicker
 
   const handleChange = (event) => {
     setEstado(event.target.value);
-  }; //Select Estado
+  }; // Select Estado
 
   const handleDateChange = (date) => {
     if (date && date.isValid()) {
       setNascimento(date.format("YYYY-MM-DD"));
     } else {
-      setNascimento("");
+      setNascimento(null);
     }
     setError("");
   };
 
+  const VAITOMARNOCU = () => {
+    setUsuario("123");
+    setNome("123 Teste");
+    setEmail("123"); // TESTANDO ESSA MERDA DE EMAIL PRA RECEBER MENSAGEM
+    setSenha("senha123");
+    setConfirmaSenha("senha123");
+    setNascimento("1990-01-01"); 
+    setEstado("SP - São Paulo");
+    setGenero("masculino");
+  };
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -134,6 +138,8 @@ const Page = () => {
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
+
+          <Button onClick={VAITOMARNOCU}>VAITOMARNOCU</Button>
           <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <div style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center", }} >
               <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw", backgroundColor: "#202020", borderRadius: "10px", }} >
@@ -323,16 +329,15 @@ const Page = () => {
               </Paper>
             </div>
 
-            {error}
-            <Snackbar open={success} anchorOrigin={{ vertical: "bottom", horizontal: "center" }} autoHideDuration={3500} onClose={handleSuccessClose}>
-              <Alert onClose={handleSuccessClose} severity="success" variant="filled" sx={{ width: "100%" }}>
-                Usuário cadastrado com sucesso!
+            <Snackbar open={!!error || !!success} autoHideDuration={3500} onClose={() => {setError(""); setSuccess("");}}>
+              <Alert onClose={() => {setError(""); setSuccess("");}} severity={error ? "error" : "success"} variant="filled" sx={{ width: "100%" }}>
+                {error || success}
               </Alert>
             </Snackbar>
 
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, width: '20vw', color: 'white', bgcolor: '#16C83D', "&:hover": { backgroundColor: "#32D35A" }, }} disabled={loading}>
               {loading ? <CircularProgress size={24} color="inherit" /> : "Cadastrar"}
-            </Button>
+            </Button> 
           </Box>
         </Box>
       </Container>

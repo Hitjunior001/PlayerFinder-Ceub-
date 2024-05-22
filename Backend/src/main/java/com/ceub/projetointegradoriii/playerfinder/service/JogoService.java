@@ -24,7 +24,7 @@ public class JogoService {
 		return jogoRepository.findById(id);
 	}
 
-	public Jogo createJogo(Jogo jogo){
+	public Jogo save(Jogo jogo){
 		return jogoRepository.save(jogo);
 	}
 
@@ -37,5 +37,7 @@ public class JogoService {
 
 //	Optional<Jogo> updateJogo(Long id, Jogo jogo);
 //
-//	void deleteJogo(Long id);
+	public void deleteById(Long id){
+		jogoRepository.deleteById(id);
+	}
 }
