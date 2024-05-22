@@ -2,7 +2,10 @@ package com.ceub.projetointegradoriii.playerfinder.service;
 
 
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
+import com.ceub.projetointegradoriii.playerfinder.exceptions.EmailAlreadyInUse;
 import com.ceub.projetointegradoriii.playerfinder.exceptions.InvalidEmailFormatException;
+import com.ceub.projetointegradoriii.playerfinder.exceptions.UsernameAlreadyInUse;
+import com.ceub.projetointegradoriii.playerfinder.exceptions.WeakPasswordException;
 import com.ceub.projetointegradoriii.playerfinder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,13 +26,22 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User createUser(User user) throws InvalidEmailFormatException{
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
+    public User createUser(User user) throws InvalidEmailFormatException, WeakPasswordException, UsernameAlreadyInUse, EmailAlreadyInUse {
+        if(isValidUsername(user.getUsername())){
+            throw new UsernameAlreadyInUse("Nome de usuário digitado já está em uso!");
+        }
+        if(isValidUniqueEmail(user.getEmail())){
+            throw new EmailAlreadyInUse("O email digitado já está em uso!");
+        }
+        if(!isValidEmail(user.getEmail())){
+            throw new InvalidEmailFormatException("Formato de email inválido: "+user.getEmail());
+        };
+        if(isValidPassword(user.getPassword())){
+            throw new WeakPasswordException("A senha digitada é muito fraca!");
+        }
+            String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         user.setRole("USER");
-        if(!isValidEmail(user.getEmail())){
-            throw new InvalidEmailFormatException("Formato de email inválido.");
-        };
         return userRepository.save(user);
     }
 
@@ -85,5 +97,14 @@ public class UserService {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
+    }
+    public boolean isValidPassword(String password){
+        return password.length() <= 8;
+    }
+    public boolean isValidUsername(String username){
+        return findByUsername(username) != null;
+    }
+    public boolean isValidUniqueEmail(String email){
+        return findByUsernameOrEmail(email) != null;
     }
 }
