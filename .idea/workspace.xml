@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/InvalidEmailFormatException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/JogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/JogoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/repository/JogoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/repository/JogoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/JogoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/JogoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/EmailAlreadyInUse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/EmailAlreadyInUse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/InvalidCredentialsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/InvalidCredentialsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/UsernameAlreadyInUse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/UsernameAlreadyInUse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/WeakPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/exceptions/WeakPasswordException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/contexts/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/contexts/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/Cadastro/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/Cadastro/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
