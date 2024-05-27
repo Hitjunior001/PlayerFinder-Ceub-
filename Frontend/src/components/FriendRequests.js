@@ -39,7 +39,13 @@ function SimpleDialog({ onClose, open, updateFriendRequests }) {
   return (
     <Dialog onClose={handleClose} open={open}>
       <List sx={{ pl: 2, width: '20vw' }}>
-        {friendRequests.map((request) => (
+        {friendRequests.length === 0 || friendRequests.every(request => request.user.id === userId) ? (
+          <ListItem disableGutters>
+            <ListItemText sx={{ textAlign: 'center' }} primary="Nenhum pedido de amizade" />
+          </ListItem>
+        )
+        :
+        (friendRequests.map((request) => (
           request.user.id !== userId && (
             <ListItem disableGutters key={request.id}>
               <ListItemText primary={request.user.username} />
@@ -59,12 +65,8 @@ function SimpleDialog({ onClose, open, updateFriendRequests }) {
               </ListItemIcon>
             </ListItem>
           )
-        ))}
-        {friendRequests.length === 0 || friendRequests.every(request => request.user.id === userId) && (
-          <ListItem disableGutters>
-            <ListItemText sx={{ textAlign: 'center' }} primary="Nenhum pedido de amizade" />
-          </ListItem>
-        )}
+        )))
+        }
       </List>
     </Dialog>
   );

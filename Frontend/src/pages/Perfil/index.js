@@ -175,7 +175,7 @@ const ProfilePage = () => {
                         </Grid>
                       </div>
                       </Grid>
-                      <Snackbar open={snackbarOpen} autoHideDuration={3500} onClose={handleCloseSnackbar}>
+                      <Snackbar open={snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={handleCloseSnackbar}>
                         <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
                           {snackbarMessage}
                         </Alert>

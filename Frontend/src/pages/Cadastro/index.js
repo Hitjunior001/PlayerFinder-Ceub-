@@ -75,17 +75,6 @@ const Page = () => {
     }
   };
 
-  
-  const handleSuccessClose = (event, reason) => {
-    if (reason === "clickaway") {
-      setSuccess("");
-      navigate("/login");
-    } else {
-      setSuccess("");
-      setError("");
-    }
-  };
-
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
@@ -117,17 +106,6 @@ const Page = () => {
     setError("");
   };
 
-  const VAITOMARNOCU = () => {
-    setUsuario("123");
-    setNome("123 Teste");
-    setEmail("123"); // TESTANDO ESSA MERDA DE EMAIL PRA RECEBER MENSAGEM
-    setSenha("senha123");
-    setConfirmaSenha("senha123");
-    setNascimento("1990-01-01"); 
-    setEstado("SP - São Paulo");
-    setGenero("masculino");
-  };
-
   return (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
@@ -139,7 +117,6 @@ const Page = () => {
             Cadastro
           </Typography>
 
-          <Button onClick={VAITOMARNOCU}>VAITOMARNOCU</Button>
           <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <div style={{ display: "flex", flexDirection: "row", width: "90vw", justifyContent: "center", }} >
               <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw", backgroundColor: "#202020", borderRadius: "10px", }} >
@@ -329,7 +306,7 @@ const Page = () => {
               </Paper>
             </div>
 
-            <Snackbar open={!!error || !!success} autoHideDuration={3500} onClose={() => {setError(""); setSuccess("");}}>
+            <Snackbar open={!!error || !!success} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={() => {setError(""); setSuccess("");}}>
               <Alert onClose={() => {setError(""); setSuccess("");}} severity={error ? "error" : "success"} variant="filled" sx={{ width: "100%" }}>
                 {error || success}
               </Alert>
