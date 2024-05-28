@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import { Button, CircularProgress } from '@mui/material';
+import { Button, CircularProgress, Paper, Grid, List, ListItem, ListItemText, Divider, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Link } from 'react-router-dom';
 
@@ -43,53 +38,59 @@ const PlayerList = ({ jogoId }) => {
 
   return (
     <List sx={{ width: '100%' }}>
-      {usuarios.map((usuario) => (
-        <React.Fragment key={usuario.id}>
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={
-                <Typography
-                  sx={{ display: 'inline', fontSize: '30px' }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  {usuario.username}
-                </Typography>
-              }
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
-                    component="span"
-                    variant="body2"
-                    color="text.secondary"
+      <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '40vh', overflowY: 'scroll', }}>
+        {usuarios.map((usuario) => (
+          <Grid item key={usuario.id} xs={12}>
+            <Paper sx={{ p: 2 }}>
+              <React.Fragment key={usuario.id}>
+                <ListItem alignItems="flex-start">
+                  <ListItemText
+                    primary={
+                      <Typography
+                        sx={{ display: 'inline', fontSize: '30px' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {usuario.username}
+                      </Typography>
+                    }
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Discord: {usuario.discord}
+                        </Typography>
+                        <Typography
+                          sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Email: {usuario.email}
+                        </Typography>
+                    </React.Fragment>
+                    }
+                  />
+                  <Button 
+                    component={Link}
+                    to={`/perfil/${usuario.username}`}
+                    style={{ color: 'white', backgroundColor: '#16C83D' }}
                   >
-                    Discord: {usuario.discord}
-                  </Typography>
-                  <Typography
-                    sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
-                    component="span"
-                    variant="body2"
-                    color="text.secondary"
-                  >
-                    Email: {usuario.email}
-                  </Typography>
-                </React.Fragment>
-              }
-            />
-            <Button 
-              component={Link}
-              to={`/perfil/${usuario.username}`}
-              style={{ color: 'white', backgroundColor: '#16C83D' }}
-            >
-              <OpenInNewIcon sx={{display: 'inline', marginRight: '0.3vw'}}/>
-              Ver perfil
-            </Button>
-          </ListItem>
-          <Divider variant="inset" component="li" sx={{ marginLeft: '0', bgcolor: '#16C83D' }} />
-        </React.Fragment>
-      ))}
+                    <OpenInNewIcon sx={{display: 'inline', marginRight: '0.3vw'}}/>
+                    Ver perfil
+                  </Button>
+                </ListItem>
+                <Divider variant="inset" component="li" sx={{ marginLeft: '0', bgcolor: '#16C83D' }} />
+              </React.Fragment>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
     </List>
   );
 }

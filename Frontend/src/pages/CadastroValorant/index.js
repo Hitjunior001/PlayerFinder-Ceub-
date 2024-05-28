@@ -36,7 +36,7 @@ const UsuariosPorJogo = () => {
       </Alert>
     </Snackbar>;
     alert("Jogo cadastrado com sucesso!");
-    navigate("/jogos/valorant");
+    navigate("/jogos");
   };
 
   const handleChangeFuncao = (event) => {
