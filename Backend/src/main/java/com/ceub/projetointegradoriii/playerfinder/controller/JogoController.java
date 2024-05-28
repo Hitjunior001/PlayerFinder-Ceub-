@@ -3,6 +3,9 @@ package com.ceub.projetointegradoriii.playerfinder.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.ceub.projetointegradoriii.playerfinder.entity.Attribute;
+import com.ceub.projetointegradoriii.playerfinder.repository.AttributeRepository;
+import com.ceub.projetointegradoriii.playerfinder.service.AttributeService;
 import com.ceub.projetointegradoriii.playerfinder.service.JogoService;
 import com.ceub.projetointegradoriii.playerfinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class JogoController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private AttributeService attributeService;
+
 	@GetMapping("/list")
 	public ResponseEntity<List<Jogo>> getAllJogos() {
 		List<Jogo> jogos = jogoService.getAllJogos();
@@ -34,11 +40,19 @@ public class JogoController {
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@PostMapping
+	@PostMapping("/create/jogo")
 	public ResponseEntity<Jogo> createJogo(@RequestBody Jogo jogo) {
 		Jogo savedJogo = jogoService.save(jogo);
 		return new ResponseEntity<>(savedJogo, HttpStatus.CREATED);
 	}
+
+	@PostMapping("/create/attribute")
+	public ResponseEntity<Attribute> createAttribute(@RequestBody Attribute attribute) {
+		Attribute savedAttribute = attributeService.save(attribute);
+		return new ResponseEntity<>(savedAttribute, HttpStatus.CREATED);
+	}
+
+
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Jogo> updateJogo(@PathVariable("id") Long id, @RequestBody Jogo jogo) {
@@ -59,5 +73,11 @@ public class JogoController {
 		}
 		jogoService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping("/{id}/attributes")
+	public ResponseEntity<List<Attribute>> getAttributesByJogoId(@PathVariable("id") Long jogoId) {
+		List<Attribute> attributes = attributeService.getAttributesByJogoId(jogoId);
+		return new ResponseEntity<>(attributes, HttpStatus.OK);
 	}
 }

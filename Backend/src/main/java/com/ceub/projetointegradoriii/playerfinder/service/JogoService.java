@@ -3,8 +3,10 @@ package com.ceub.projetointegradoriii.playerfinder.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.ceub.projetointegradoriii.playerfinder.entity.Attribute;
 import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
+import com.ceub.projetointegradoriii.playerfinder.repository.AttributeRepository;
 import com.ceub.projetointegradoriii.playerfinder.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,6 @@ public class JogoService {
 
 	@Autowired
 	private JogoRepository jogoRepository;
-
 
 	public List<Jogo> getAllJogos() {
 		return jogoRepository.findAll();
@@ -40,4 +41,5 @@ public class JogoService {
 	public void deleteById(Long id){
 		jogoRepository.deleteById(id);
 	}
+
 }
