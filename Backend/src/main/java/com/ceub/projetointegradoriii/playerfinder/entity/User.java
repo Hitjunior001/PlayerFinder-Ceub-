@@ -62,4 +62,5 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name="jogo_id")
 	)
     private List<Jogo> jogos;
+
 }

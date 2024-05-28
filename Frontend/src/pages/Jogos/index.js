@@ -70,7 +70,7 @@ const Page = () => {
                                                             {jogo.titulo}
                                                         </Typography>
                                                         <Typography gutterBottom variant="body1" component="div">
-                                                            Sobre o jogo: {jogo.descricao}
+                                                            Sobre o jogo: {jogo.description}
                                                         </Typography>
                                                     </CardContent>
                                                 </CardActionArea>

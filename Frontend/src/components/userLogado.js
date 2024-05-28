@@ -95,12 +95,12 @@ export default function AccountMenu() {
                     </MenuItem>
                 </Link>
                 <FriendRequests/>
-                <Link to="/adicionar-jogo" style={{color: 'white', textDecoration: 'none'}}>
+                <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>
                     <MenuItem onClick={handleClose}>
                         <ListItemIcon>
                             <AddIcon fontSize="small" />
                         </ListItemIcon>
-                        Adicionar jogo
+                        Dashboard
                     </MenuItem>
                 </Link>
                 <Divider />

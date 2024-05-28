@@ -12,6 +12,7 @@ import AdicionarJogo from "./pages/AdicionarJogo";
 import CadastroValorant from "./pages/CadastroValorant";
 import ProcurarJogadores from "./pages/ProcurarJogadores";
 import useAuth from "./hooks/useAuth";
+import Dashboard from "./pages/Dashboard";
 
 const AppRoutes = () => {
   const { signed } = useAuth();
@@ -30,6 +31,7 @@ const AppRoutes = () => {
       <Route path="/cadastro" element={<GuestRoute element={<Cadastro />} />} />
       <Route path="/login" element={<GuestRoute element={<Login />} />} />
       <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
+      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
       <Route path="/jogos" element={<ProtectedRoute element={<Jogos />} />} />
       <Route path="/jogos/:jogoId" element={<ProtectedRoute element={<ProcurarJogadores />} />} />
       <Route path="/perfil" element={<ProtectedRoute element={<ProfilePage />} />} />
