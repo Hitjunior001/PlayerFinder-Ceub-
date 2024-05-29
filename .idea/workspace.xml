@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/JogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/JogoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/Jogo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/JogoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/JogoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/GameProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/GameProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/security/TokenJWT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/security/TokenJWT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

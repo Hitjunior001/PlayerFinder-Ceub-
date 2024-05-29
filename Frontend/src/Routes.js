@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
@@ -11,24 +11,30 @@ import MeusJogos from "./pages/MeusJogos";
 import AdicionarJogo from "./pages/AdicionarJogo";
 import CadastroValorant from "./pages/CadastroValorant";
 import ProcurarJogadores from "./pages/ProcurarJogadores";
-import useAuth from "./hooks/useAuth";
 import Dashboard from "./pages/Dashboard";
+import useAuth from './hooks/useAuth';
+
+// import ProtectedRoute from "./components/protectRoute";
+
+const ProtectedRoute = ({ element }) => {
+  const { signed } = useAuth();
+  const location = useLocation();
+
+  return signed ? element : <Navigate to="/login" replace state={{ from: location }} />;
+};
+
+const GuestRoute = ({ element }) => {
+  const { signed } = useAuth();
+  const location = useLocation();
+
+  return signed ? <Navigate to="/inicio" replace state={{ from: location }} /> : element;
+};
 
 const AppRoutes = () => {
-  const { signed } = useAuth();
-
-  const ProtectedRoute = ({ element }) => {
-    return signed ? element : <Navigate to="/login" replace />;
-  };
-
-  const GuestRoute = ({ element }) => {
-    return signed ? <Navigate to="/inicio" replace /> : element;
-  };
-
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/cadastro" element={<GuestRoute element={<Cadastro />} />} />
+      <Route path="/cadastro"  element={<GuestRoute element={<Cadastro />} />} />
       <Route path="/login" element={<GuestRoute element={<Login />} />} />
       <Route path="/inicio" element={<ProtectedRoute element={<Inicio />} />} />
       <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />

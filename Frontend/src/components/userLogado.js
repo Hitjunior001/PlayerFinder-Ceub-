@@ -103,6 +103,14 @@ export default function AccountMenu() {
                         Dashboard
                     </MenuItem>
                 </Link>
+                <Link to="/adicionar-jogo/valorant" style={{color: 'white', textDecoration: 'none'}}>
+                    <MenuItem onClick={handleClose}>
+                        <ListItemIcon>
+                            <AddIcon fontSize="small" />
+                        </ListItemIcon>
+                        TesteFiltro
+                    </MenuItem>
+                </Link>
                 <Divider />
                 <MenuItem onClick={() => [signout(), navigate("/")]}>
                     <ListItemIcon>

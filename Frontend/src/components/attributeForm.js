@@ -49,16 +49,8 @@ const AttributeForm = ({ currentAttribute, onSave, jogos }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Atributo</label>
-        <input type="text" name="titulo" value={attribute.titulo} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Valor</label>
-        <textarea name="value" value={attribute.value} onChange={handleChange} required />
-      </div>
-      <Select
-        value={attribute.jogo.id || ''} // Certifica-se de que jogo.id está definido corretamente
+            <Select
+        value={attribute.jogo.id || ''} 
         name='jogoId'
         onChange={handleChange}
         displayEmpty
@@ -74,6 +66,16 @@ const AttributeForm = ({ currentAttribute, onSave, jogos }) => {
           </MenuItem>
         ))}
       </Select>
+      <div>
+        <label>Atributo</label>
+        
+        <input type="text" name="titulo" value={attribute.titulo} onChange={handleChange} required />
+      </div>
+      <div>
+        <label>Valor</label>
+        <textarea name="value" value={attribute.value} onChange={handleChange} required />
+      </div>
+
       <button type="submit">Salvar</button>
     </form>
   );

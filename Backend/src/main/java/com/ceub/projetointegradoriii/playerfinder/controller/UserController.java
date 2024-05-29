@@ -135,21 +135,15 @@ public class UserController {
 		if (existingUser == null) {
 			return ResponseEntity.status(404).body(null);
 		}
-
 		if (optionalJogo.isEmpty()) {
 			return ResponseEntity.status(404).body(null);
 		}
-
 		Jogo jogo = optionalJogo.get();
-
 		if (existingUser.getJogos().contains(jogo)) {
 			return ResponseEntity.status(400).body(null);
 		}
-
 		existingUser.getJogos().add(jogo);
-
 		userService.save(existingUser);
-
 		return ResponseEntity.ok(existingUser);
 	}
 }

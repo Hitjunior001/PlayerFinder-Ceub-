@@ -5,13 +5,41 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const api = "http://localhost:8080";
 
-  useEffect(() => {
-    checkLoggedIn();
-  }, [token]);
 
-  const signin = async (email, senha) => {
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await fetch(`${api}/perfil`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            }
+          });
+
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+          } else {
+            localStorage.removeItem("token");
+            setUser(null);
+          }
+        } catch (error) {
+          console.error("Erro ao verificar login:", error);
+          setUser(null);
+        }
+      }
+      setLoading(false);
+    };
+
+    checkLoggedIn();
+  }, []);
+
+  const signin = async (email, senha, keepLogin) => {
     try {
       const response = await fetch(`${api}/auth/login`, {
         method: "POST",
@@ -21,6 +49,7 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({
           username: email,
           password: senha,
+          keepLogin: keepLogin,
         }),
       });
 
@@ -38,27 +67,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const checkLoggedIn = async () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const response = await fetch(`${api}/perfil`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData);
-        } else {
-          localStorage.removeItem("token");
-        }
-      } catch (error) {
-        console.error("Erro ao verificar login:", error);
-      }
-    }
-  };
 
   //TODOS OS FORMATOS DEVEM SEGUIR ESSE A SEGUIR!!!!
   const signup = async (usuario, nome, email, senha, dataNascimento, estado) => {

@@ -49,7 +49,4 @@ public class GameProfileController {
         List<User> users = jogoService.findUsuariosByJogo(jogo);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
-
-
 }
