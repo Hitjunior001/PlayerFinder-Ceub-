@@ -39,4 +39,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(UserAlreadyProfileWithGame.class)
+    public ResponseEntity<?> handleUserAlreadyProfileWithGame(UserAlreadyProfileWithGame ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }

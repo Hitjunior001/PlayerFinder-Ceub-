@@ -36,8 +36,8 @@ const CreatePerfilGameForm = ({ jogoId, atributos = [], setLoading, loading, sel
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          jogoId: jogoId,
-          attributeIds: Object.values(selectedAttributes),
+          jogoId: jogoId.toString(),
+          attributeIds: Object.values(selectedAttributes).toString(),
           username: username
         })
       });

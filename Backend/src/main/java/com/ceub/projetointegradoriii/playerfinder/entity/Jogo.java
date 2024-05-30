@@ -3,6 +3,7 @@ package com.ceub.projetointegradoriii.playerfinder.entity;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -37,6 +38,7 @@ public class Jogo{
 	private List<User> users;
 
 	@OneToMany(mappedBy = "jogo")
+	@JsonBackReference
 	private List<UserGameProfile> userGameProfiles;
 
 

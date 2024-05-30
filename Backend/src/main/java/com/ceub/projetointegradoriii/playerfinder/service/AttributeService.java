@@ -31,4 +31,7 @@ public class AttributeService {
 	public List<Attribute> getAttributesByJogoId(Long jogoId) {
 		return attributeRepository.findByJogoId(jogoId);
 	}
+	public List<Attribute> getAttributesByIds(List<Long> ids) {
+		return attributeRepository.findAllById(ids);
+	}
 }

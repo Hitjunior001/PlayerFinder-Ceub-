@@ -22,6 +22,7 @@ const Page = () => {
     const [atributos, setAtributos] = useState([]);
     const [selectedAttributes, setSelectedAttributes] = useState({});
     const [username, setUsername] = useState('');
+    const [profilesGames, setProfilesGames] = useState([]);
 
 
 
@@ -29,6 +30,7 @@ const Page = () => {
     useEffect(() => {
         fetchJogosNoPerfil();
         fetchJogosDisponiveis(); 
+        fetchProfilesGames()
         if (selectedGame) {
           const selectedJogo = jogosDisponiveis.find((jogo) => jogo.id === selectedGame);
           if (selectedJogo) {
@@ -87,6 +89,58 @@ const Page = () => {
         }
     };
 
+    const fetchProfilesGames = async () => {
+        setLoading(true);
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`http://localhost:8080/perfil/jogos/perfil-jogos`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setProfilesGames(data);
+            } else {
+                throw new Error("Erro ao listar os perfil dos jogo");
+            }
+        } catch (error) {
+            console.error("Erro ao listar os perfil dos jogos:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDeleteGame = async (jogoId) => {
+        setLoading(true);
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(`http://localhost:8080/jogo/perfil/delete`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              jogoId,
+            })
+          });
+      
+          if (response.ok) {
+            console.log("Perfil de jogo excluído com sucesso!");
+            fetchProfilesGames();
+            fetchJogosNoPerfil(); 
+          } else {
+            const data = await response.json();
+            console.error("Erro ao excluir perfil de jogo:", data.message);
+          }
+        } catch (error) {
+          console.error("Erro ao excluir perfil de jogo:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
     return (
         <ThemeProvider theme={darkTheme}>
             <Container component="main" maxWidth="xs">
@@ -135,9 +189,44 @@ const Page = () => {
                                             <TableRow key={jogo.id}>
                                                 <TableCell>{jogo.id}</TableCell>
                                                 <TableCell>{jogo.titulo}</TableCell>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => handleDeleteGame(jogo.id)}
+                                                    >
+                                                    Deletar
+                                                </Button>
                                             </TableRow>
                                         ))}
                                     </TableBody>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Username</TableCell>
+                                            <TableCell>Jogo</TableCell>
+                                            <TableCell>Atributos</TableCell>
+                                            <TableCell>Excluir</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    {profilesGames.map((perfil) => (
+                                        <TableRow key={perfil.id}>
+                                            <TableCell>{perfil.username}</TableCell>
+                                            <TableCell>{perfil.jogo.titulo}</TableCell>
+                                            <TableCell>{perfil.attribute.titulo}: {perfil.attribute.value}</TableCell>
+                                            <TableCell>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => handleDeleteGame(perfil.jogo.id)}
+                                                    >
+                                                    Deletar
+                                                </Button>
+                                            
+                                            </TableCell>
+                                        </TableRow>
+                                        ))}
+                                    </TableBody>
+                                    
                                 </Table>
                             </TableContainer>
                         )}
