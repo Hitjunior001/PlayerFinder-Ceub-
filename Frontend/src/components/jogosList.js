@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton } from "@mui/material";
 
 const JogoList = ({ jogos, setSelectedJogoId }) => {

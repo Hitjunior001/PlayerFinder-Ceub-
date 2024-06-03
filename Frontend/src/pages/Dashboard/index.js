@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import JogoList from '../../components/jogosList';
 import JogoForm from '../../components/jogoForm';
 import AttributeForm from '../../components/attributeForm';
 import AttributeList from '../../components/attributeList'; 
@@ -24,10 +23,10 @@ const Dashboard = () => {
     }
   };
 
-  const handleEditJogo = (jogo) => {
-    setCurrentJogo(jogo);
-    setSelectedJogoId(jogo.id); 
-  };
+  // const handleEditJogo = (jogo) => {
+  //   setCurrentJogo(jogo);
+  //   setSelectedJogoId(jogo.id); 
+  // };
 
   const handleSaveJogo = () => {
     setCurrentJogo(null);

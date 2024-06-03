@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Avatar,
   Button,
   Grid,
   Box,
-  Typography,
   Container,
   Paper,
   CircularProgress,

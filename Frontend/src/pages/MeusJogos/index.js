@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Box, Typography, Container, Paper, MenuItem, Select, Button, CircularProgress, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
+import { Avatar, Box, Typography, Container, Paper, MenuItem, Select, Button, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import useAuth from '../../hooks/useAuth';
 import CreatePerfilGameForm from "../../components/createPerfilGameForm";
 
 
@@ -13,7 +12,6 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
-    const { user } = useAuth();
     const [selectedGame, setSelectedGame] = useState('');
     const [loading, setLoading] = useState(false);
     const [jogosDisponiveis, setJogosDisponiveis] = useState([]);

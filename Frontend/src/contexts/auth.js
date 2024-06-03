@@ -109,7 +109,6 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(`${api}/perfil`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(userData)

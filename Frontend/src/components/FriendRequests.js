@@ -56,13 +56,13 @@ function SimpleDialog({ onClose, open, updateFriendRequests }) {
                   </IconButton>
                 </Tooltip>
               </ListItemIcon>
-              {/* <ListItemIcon>
+              <ListItemIcon>
                 <Tooltip title="Rejeitar">
                   <IconButton onClick={() => handleReject(request.id)}>
                     <HighlightOffIcon color="error" />
                   </IconButton>
                 </Tooltip>
-              </ListItemIcon> */}
+              </ListItemIcon>
             </ListItem>
           )
         )))

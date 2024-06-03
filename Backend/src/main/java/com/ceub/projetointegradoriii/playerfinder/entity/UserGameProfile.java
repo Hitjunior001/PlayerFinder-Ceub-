@@ -22,7 +22,7 @@ public class UserGameProfile {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	@JsonIgnore
+	@JsonManagedReference
 	private User user;
 
 	@ManyToOne

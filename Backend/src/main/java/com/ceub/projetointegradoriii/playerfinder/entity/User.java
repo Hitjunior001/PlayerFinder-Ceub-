@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -63,4 +65,7 @@ public class User {
 	)
     private List<Jogo> jogos;
 
+	@OneToMany(mappedBy = "user")
+	@JsonBackReference
+	private List<UserGameProfile> userGameProfiles;
 }

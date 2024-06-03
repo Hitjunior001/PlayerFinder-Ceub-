@@ -20,6 +20,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import CampoDatePicker from "../../components/Datepicker";
+import SelectEstado from "../../components/SelectEstado";
+import RadioGenero from "../../components/RadioGenero";
 
 const darkTheme = createTheme({
   palette: {
@@ -34,6 +37,10 @@ const ProfilePage = () => {
     nomeCompleto: user.nomeCompleto,
     email: user.email,
     imagemPerfil: user.imagemPerfil,
+    dataNascimento: user.dataNascimento,
+    estado: user.estado,
+    genero: user.genero,
+    telefone: user.telefone,
   });
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
@@ -46,6 +53,10 @@ const ProfilePage = () => {
         nomeCompleto: user.nomeCompleto,
         email: user.email,
         imagemPerfil: user.imagemPerfil,
+        dataNascimento: user.dataNascimento,
+        estado: user.estado,
+        genero: user.genero,
+        telefone: user.telefone,
       });
     }
   }, [user, loading]);
@@ -168,21 +179,75 @@ const ProfilePage = () => {
 
                         <Grid item xs={12} >
                           <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Email:"/>
-                          <TextField fullWidth required autoComplete="email" name="email" value={userData.email} onChange={handleChange} 
+                          <TextField fullWidth value={user.email} onChange={handleChange} 
+                            InputProps={{readOnly: true}}
+                            variant={"standard"} 
+                            disabled={editar ? false : true}
+                          />
+                        </Grid>
+                      </div>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+
+                  <Paper component="div" style={{ padding: "1%", margin: "1%", width: "30vw",  backgroundColor: "#202020", borderRadius: "10px", alignContent: 'center', }} >
+                    <Grid container spacing={3}>
+                      <Grid item xs={12}>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Data nascimento:"/>
+                          {editar ?
+                            <TextField fullWidth required name="dataNascimento" value={userData.dataNascimento} onChange={handleChange} 
+                            InputProps={{readOnly: true}}
+                            variant="standard"
+                            />
+                            :
+                            <CampoDatePicker />
+                          }
+                        </Grid>
+
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Estado:"/>
+                          {editar ?
+                            <TextField fullWidth required name="estado" value={userData.estado} onChange={handleChange} 
+                            InputProps={{readOnly: true}}
+                            variant="standard"
+                            />
+                            :
+                            <SelectEstado />
+                          }
+                        </Grid>
+
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Gênero:"/>
+                          {editar ?
+                            <TextField fullWidth required name="genero" value={userData.genero} onChange={handleChange} 
+                            InputProps={{readOnly: true}}
+                            variant="standard"
+                            />
+                            :
+                            <RadioGenero />
+                          }
+                        </Grid>
+
+                        <Grid item xs={12} >
+                          <ListItemText sx={{ color: "#16C83D", paddingRight: "2vw", paddingTop: editar ?  '3vh' : '1.5vh', textAlign: 'start', }} primary="Telefone:"/>
+                          <TextField fullWidth required name="telefone" value={userData.telefone} onChange={handleChange} 
                             InputProps={{readOnly: editar ? true : false}}
                             variant={editar ? "standard" : "outlined"} 
                           />
                         </Grid>
                       </div>
                       </Grid>
-                      <Snackbar open={snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={handleCloseSnackbar}>
-                        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
-                          {snackbarMessage}
-                        </Alert>
-                      </Snackbar>
                     </Grid>
                   </Paper>
                 </div>
+
+                <Snackbar open={snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} autoHideDuration={3500} onClose={handleCloseSnackbar}>
+                  <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                  </Alert>
+                </Snackbar>
 
                 <Dialog open={DeleteAccountOpen} onClose={handleCloseDeleteDialog} aria-labelledby="delet-dialog" aria-describedby="dialog-description" >
                   <DialogTitle id="delet-dialog">
