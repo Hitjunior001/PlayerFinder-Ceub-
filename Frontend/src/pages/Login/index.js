@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Button, TextField, Grid, Box, Typography, FormControl, FormControlLabel,
-  InputLabel, OutlinedInput, InputAdornment, IconButton, Checkbox } from "@mui/material";
+  InputLabel, OutlinedInput, InputAdornment, IconButton, Checkbox, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import "dayjs/locale/pt-br";
@@ -17,26 +17,34 @@ const darkTheme = createTheme({
 const Page = () => {
   const navigate = useNavigate();
   const {signin} = useAuth()
-
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [keepLogin, setKeepLogin] = useState(false); 
   const [error, setError] = useState("");
+  const [loading, setLoading]= useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-      const success = await signin(email, senha);
+    setLoading(true);
+    const success = await signin(email, senha, keepLogin ? "yes" : "no");
       if (success) {
-        navigate("/perfil"); 
+        navigate("/Inicio");
       } else {
         setError("Credenciais inválidas");
+        setLoading(false);
       }
   };
+
+  const handleChange = async (event) =>{
+    setKeepLogin(event.target.checked);
+  }
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };//Mostrar Senha
+  };
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -96,6 +104,8 @@ const Page = () => {
             control={
               <Checkbox
                 value="lembrar"
+                checked={keepLogin}
+                onChange={handleChange}
                 color="primary"
                 sx={{ color: "#ffff" }}
               />
@@ -117,7 +127,7 @@ const Page = () => {
               "&:hover": { backgroundColor: "#32D35A" },
             }}
           >
-            LOGAR
+          {loading ? <CircularProgress size={24} color="inherit" /> : "Logar"}
           </Button>
           <Grid container>
             <Grid item xs>

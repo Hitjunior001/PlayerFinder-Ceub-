@@ -44,12 +44,13 @@ const Dashboard = () => {
       <div>
         <h2>Gerenciar Jogos</h2>
         <JogoForm currentJogo={currentJogo} onSave={handleSaveJogo} />
-        <JogoList jogos={jogos} setJogos={setJogos} onEdit={handleEditJogo} />
+        {/* <JogoList jogos={jogos} setJogos={setJogos} onEdit={handleEditJogo} /> */}
       </div>
       <div>
         <h2>Gerenciar Atributos</h2>
-        <AttributeForm currentAttribute={currentAttribute} jogos={jogos} onSave={handleSaveAtributo} />
         {selectedJogoId && <AttributeList jogoId={selectedJogoId} />}
+
+        <AttributeForm currentAttribute={currentAttribute} jogos={jogos} onSave={handleSaveAtributo} />
       </div>
     </div>
   );

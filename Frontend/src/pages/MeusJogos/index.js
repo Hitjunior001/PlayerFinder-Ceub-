@@ -3,6 +3,8 @@ import { Avatar, Box, Typography, Container, Paper, MenuItem, Select, Button, Ci
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import useAuth from '../../hooks/useAuth';
+import CreatePerfilGameForm from "../../components/createPerfilGameForm";
+
 
 const darkTheme = createTheme({
     palette: {
@@ -17,11 +19,27 @@ const Page = () => {
     const [jogosDisponiveis, setJogosDisponiveis] = useState([]);
     const [jogosNoPerfil, setJogosNoPerfil] = useState([]);
     const [perfilJogosLoaded, setPerfilJogosLoaded] = useState(false);
+    const [atributos, setAtributos] = useState([]);
+    const [selectedAttributes, setSelectedAttributes] = useState({});
+    const [username, setUsername] = useState('');
+    const [profilesGames, setProfilesGames] = useState([]);
+
+
+
 
     useEffect(() => {
         fetchJogosNoPerfil();
         fetchJogosDisponiveis(); 
-    }, []);
+        fetchProfilesGames()
+        if (selectedGame) {
+          const selectedJogo = jogosDisponiveis.find((jogo) => jogo.id === selectedGame);
+          if (selectedJogo) {
+            setSelectedAttributes({});
+            setUsername('');
+            setAtributos(selectedJogo.attributes);
+          }
+        }
+      }, [selectedGame]);
 
     const fetchJogosDisponiveis = async () => {
         setLoading(true);
@@ -71,37 +89,57 @@ const Page = () => {
         }
     };
 
-    const handleAddGame = async () => {
+    const fetchProfilesGames = async () => {
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`http://localhost:8080/jogo/perfil`, {
-                method: "PUT",
+            const response = await fetch(`http://localhost:8080/perfil/jogos/perfil-jogos`, {
                 headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({
-                    jogoId: selectedGame
-                })
             });
-
             if (response.ok) {
-                console.log("Jogo adicionado com sucesso ao perfil do usuário!");
-                fetchJogosNoPerfil(); // Atualiza a lista de jogos no perfil após adicionar
+                const data = await response.json();
+                setProfilesGames(data);
             } else {
-                throw new Error("Erro ao adicionar jogo ao perfil do usuário");
+                throw new Error("Erro ao listar os perfil dos jogo");
             }
         } catch (error) {
-            console.error("Erro ao adicionar jogo ao perfil do usuário:", error);
+            console.error("Erro ao listar os perfil dos jogos:", error);
         } finally {
             setLoading(false);
         }
     };
 
-    const jogoEstaNoPerfil = (jogoId) => {
-        return jogosNoPerfil.some(jogo => jogo.id === jogoId);
-    };
+    const handleDeleteGame = async (jogoId) => {
+        setLoading(true);
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(`http://localhost:8080/jogo/perfil/delete`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              jogoId,
+            })
+          });
+      
+          if (response.ok) {
+            console.log("Perfil de jogo excluído com sucesso!");
+            fetchProfilesGames();
+            fetchJogosNoPerfil(); 
+          } else {
+            const data = await response.json();
+            console.error("Erro ao excluir perfil de jogo:", data.message);
+          }
+        } catch (error) {
+          console.error("Erro ao excluir perfil de jogo:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
 
     return (
         <ThemeProvider theme={darkTheme}>
@@ -131,15 +169,10 @@ const Page = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                disabled={!selectedGame || loading}
-                                onClick={handleAddGame}
-                                style={{ marginTop: "1%" }}
-                            >
-                                {loading ? <CircularProgress size={24} color="inherit" /> : "Adicionar Jogo"}
-                            </Button>
+                            {selectedGame && (
+        <CreatePerfilGameForm jogoId={selectedGame} atributos={atributos} loading = {loading} setLoading = {setLoading} 
+        selectedAttributes = {selectedAttributes} setSelectedAttributes = {setSelectedAttributes} username={username} setUsername={setUsername} />
+      )}
                         </Paper>
                         {perfilJogosLoaded && (
                             <TableContainer component={Paper} style={{ padding: "1%", margin: "1%", width: "70vw", backgroundColor: "#202020", borderRadius: "10px", marginTop: "2%" }}>
@@ -156,9 +189,44 @@ const Page = () => {
                                             <TableRow key={jogo.id}>
                                                 <TableCell>{jogo.id}</TableCell>
                                                 <TableCell>{jogo.titulo}</TableCell>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => handleDeleteGame(jogo.id)}
+                                                    >
+                                                    Deletar
+                                                </Button>
                                             </TableRow>
                                         ))}
                                     </TableBody>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Username</TableCell>
+                                            <TableCell>Jogo</TableCell>
+                                            <TableCell>Atributos</TableCell>
+                                            <TableCell>Excluir</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    {profilesGames.map((perfil) => (
+                                        <TableRow key={perfil.id}>
+                                            <TableCell>{perfil.username}</TableCell>
+                                            <TableCell>{perfil.jogo.titulo}</TableCell>
+                                            <TableCell>{perfil.attribute.titulo}: {perfil.attribute.value}</TableCell>
+                                            <TableCell>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => handleDeleteGame(perfil.jogo.id)}
+                                                    >
+                                                    Deletar
+                                                </Button>
+                                            
+                                            </TableCell>
+                                        </TableRow>
+                                        ))}
+                                    </TableBody>
+                                    
                                 </Table>
                             </TableContainer>
                         )}

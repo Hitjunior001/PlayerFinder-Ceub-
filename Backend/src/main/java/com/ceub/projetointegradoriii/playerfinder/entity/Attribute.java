@@ -28,6 +28,7 @@ public class Attribute {
 	private String value;
 
 	@OneToMany(mappedBy = "attribute")
+	@JsonBackReference
 	private List<UserGameProfile> userGameProfiles;
 
 	@ManyToOne

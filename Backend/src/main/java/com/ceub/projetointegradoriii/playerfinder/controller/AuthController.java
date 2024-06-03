@@ -36,12 +36,16 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@RequestBody Map<String, String> loginRequest) {
         String usernameOrEmail = loginRequest.get("username");
         String password = loginRequest.get("password");
+        String keepLogin = loginRequest.get("keepLogin");
 
         User user = userService.findByUsernameOrEmail(usernameOrEmail);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
-
+        if(keepLogin == "yes"){
+            String token = tokenJWT.generateTokenUnlimited(user.getUsername());
+            return ResponseEntity.ok(Map.of("token", token));
+        }
         String token = tokenJWT.generateToken(user.getUsername());
 
         return ResponseEntity.ok(Map.of("token", token));

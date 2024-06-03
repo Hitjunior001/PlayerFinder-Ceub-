@@ -28,6 +28,13 @@ public class TokenJWT {
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
+
+    public String generateTokenUnlimited(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .compact();
+    }
     public boolean isTokenValid(String token) {
         try {
             Jwts.parser().setSigningKey(secretKey).build().parseSignedClaims(token).getPayload();
