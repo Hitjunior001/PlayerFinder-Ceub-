@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Data
 @NoArgsConstructor
@@ -63,9 +64,10 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name="jogo_id")
 	)
-    private List<Jogo> jogos;
+	@JsonManagedReference("user-jogo")
+	private List<Jogo> jogos;
 
 	@OneToMany(mappedBy = "user")
-	@JsonBackReference
+	@JsonManagedReference("user-userGameProfile")
 	private List<UserGameProfile> userGameProfiles;
 }
