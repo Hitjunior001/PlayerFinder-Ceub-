@@ -1,10 +1,8 @@
 package com.ceub.projetointegradoriii.playerfinder.entity;
 
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "jogos")
-public class Jogo{
+public class Jogo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,17 +28,14 @@ public class Jogo{
 	private String description;
 
 	@OneToMany(mappedBy = "jogo", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@JsonManagedReference("jogo-attribute")
 	private List<Attribute> attributes;
 
 	@ManyToMany(mappedBy = "jogos")
-	@JsonIgnore
+	@JsonBackReference("user-jogo")
 	private List<User> users;
 
 	@OneToMany(mappedBy = "jogo")
-	@JsonBackReference
+	@JsonBackReference("jogo-userGameProfile")
 	private List<UserGameProfile> userGameProfiles;
-
-
-
 }

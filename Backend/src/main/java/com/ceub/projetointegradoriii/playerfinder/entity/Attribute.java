@@ -1,13 +1,10 @@
 package com.ceub.projetointegradoriii.playerfinder.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,11 +24,8 @@ public class Attribute {
 	@Column(name = "value", nullable = false)
 	private String value;
 
-	@OneToMany(mappedBy = "attribute")
-	@JsonBackReference
-	private List<UserGameProfile> userGameProfiles;
-
 	@ManyToOne
-	@JsonBackReference
+	@JoinColumn(name = "jogo_id", nullable = false)
+	@JsonBackReference("jogo-attribute")
 	private Jogo jogo;
 }
