@@ -51,7 +51,7 @@ const Page = () => {
         return;
       }
   
-      const response = await signup(usuario, nome, email, senha, nascimento, estado);
+      const response = await signup(usuario, nome, email, senha, nascimento, estado, genero);
   
       if (!response) {
         throw new Error("Erro ao cadastrar usuário: resposta inválida");

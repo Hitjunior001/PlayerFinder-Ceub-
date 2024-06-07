@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,4 +30,8 @@ public class Attribute {
 	@JoinColumn(name = "jogo_id", nullable = false)
 	@JsonBackReference("jogo-attribute")
 	private Jogo jogo;
+
+	@OneToMany(mappedBy = "attribute")
+	@JsonBackReference("attribute-userGameProfiles")
+	private List<UserGameProfile> userGameProfiles;
 }

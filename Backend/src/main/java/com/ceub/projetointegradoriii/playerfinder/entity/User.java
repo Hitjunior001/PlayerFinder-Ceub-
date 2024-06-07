@@ -1,5 +1,6 @@
 package com.ceub.projetointegradoriii.playerfinder.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -58,6 +59,9 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
+	@Column(name = "genero")
+	private String genero;
+
 	@ManyToMany
 	@JoinTable(
 			name = "user_game",
@@ -65,9 +69,11 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name="jogo_id")
 	)
 	@JsonManagedReference("user-jogo")
+	@JsonIgnore
 	private List<Jogo> jogos;
 
 	@OneToMany(mappedBy = "user")
 	@JsonManagedReference("user-userGameProfile")
+	@JsonIgnore
 	private List<UserGameProfile> userGameProfiles;
 }
