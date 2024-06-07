@@ -23,17 +23,17 @@ public class UserGameProfile {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	@JsonBackReference("user-userGameProfile")
+	@JsonBackReference("user-userGameProfiles")
 	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "jogo_id", nullable = false)
-	@JsonManagedReference("jogo-userGameProfile")
+	@JsonManagedReference("jogo-userGameProfiles")
 	private Jogo jogo;
 
 	@ManyToOne
 	@JoinColumn(name = "attribute_id", nullable = false)
-	@JsonManagedReference("attribute-userGameProfile")
+	@JsonManagedReference("attribute-userGameProfiles")
 	private Attribute attribute;
 
 	@Column(name = "username", nullable = false)

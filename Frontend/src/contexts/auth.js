@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
 
 
   //TODOS OS FORMATOS DEVEM SEGUIR ESSE A SEGUIR!!!!
-  const signup = async (usuario, nome, email, senha, dataNascimento, estado) => {
+  const signup = async (usuario, nome, email, senha, dataNascimento, estado, genero) => {
     try {
       const response = await fetch(`${api}/auth/register`, {
         method: "POST",
@@ -85,6 +85,7 @@ export const AuthProvider = ({ children }) => {
           nomeCompleto: nome,
           email: email,
           password: senha,
+          genero: genero
         }),
       });
   
@@ -109,7 +110,9 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(`${api}/perfil`, {
         method: "PUT",
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+
         },
         body: JSON.stringify(userData)
       });

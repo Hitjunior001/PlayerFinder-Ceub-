@@ -7,13 +7,19 @@ import com.ceub.projetointegradoriii.playerfinder.exceptions.InvalidEmailFormatE
 import com.ceub.projetointegradoriii.playerfinder.exceptions.UsernameAlreadyInUse;
 import com.ceub.projetointegradoriii.playerfinder.exceptions.WeakPasswordException;
 import com.ceub.projetointegradoriii.playerfinder.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ReflectionUtils;
 
-import java.util.List;
-import java.util.Optional;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,24 +66,32 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    @Transactional
-    public User updateUser(String username, User updatedUserData) {
-        int updatedRows = userRepository.updateUserByUsername(username,
-                updatedUserData.getUsername(),
-                updatedUserData.getNomeCompleto(),
-                updatedUserData.getEmail(),
-                updatedUserData.getTelefone(),
-                updatedUserData.getDataNascimento(),
-                updatedUserData.getNacionalidade(),
-                updatedUserData.getEstado(),
-                updatedUserData.getDiscord(),
-                updatedUserData.getInstagram(),
-                updatedUserData.getImagemPerfil());
-        if (updatedRows > 0) {
-            return updatedUserData;
-        } else {
-            return null;
+    public User updateUser(String username, Map<String, Object> updates) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new IllegalArgumentException("Usuário não encontrado com o username: " + username);
         }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        User partialUser = objectMapper.convertValue(updates, User.class);
+
+        BeanUtils.copyProperties(partialUser, user, getNullPropertyNames(partialUser));
+
+        return userRepository.save(user);
+    }
+
+    private String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<>();
+        for (PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
     }
     public Optional<User> findById(Long id ){
         return userRepository.findById(id);

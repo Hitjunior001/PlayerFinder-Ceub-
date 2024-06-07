@@ -100,13 +100,14 @@ public class UserController {
 	@ApiResponse(responseCode = "200", description = "Usuário editado com sucesso")
 	@ApiResponse(responseCode = "404", description = "Usuário não encontrado")
 	@PutMapping("/perfil")
-	public ResponseEntity<User> updateUser(@RequestHeader("Authorization") String authorizationHeader, @RequestBody User userUpdate) {
+	public ResponseEntity<User> updateUser(@RequestHeader("Authorization") String authorizationHeader,  @RequestBody Map<String, Object> updates) {
 		String token = tokenService.extractTokenFromHeader(authorizationHeader);
 		String username = tokenService.extractUsername(token);
 		User existingUser = userService.findByUsername(username);
 
 		if (existingUser != null) {
-			return new ResponseEntity<>(userService.updateUser(username, userUpdate), HttpStatus.OK);
+			User updatedUser = userService.updateUser(username, updates);
+			return ResponseEntity.ok(updatedUser);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
