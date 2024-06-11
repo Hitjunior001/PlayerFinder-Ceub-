@@ -4,6 +4,7 @@ import com.ceub.projetointegradoriii.playerfinder.entity.relationship.Friendship
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
 
     boolean existsByUserIdAndFriendIdOrUserIdAndFriendId(Long userId1, Long friendId1, Long userId2, Long friendId2);
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM FriendRequest fr WHERE fr.user.id = :userId OR fr.friend.id = :userId")
+    void deleteAllByUserId(@Param("userId") Long userId);
 }

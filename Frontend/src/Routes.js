@@ -11,6 +11,8 @@ import MeusJogos from "./pages/MeusJogos";
 import AdicionarJogo from "./pages/AdicionarJogo";
 import CadastroValorant from "./pages/CadastroValorant";
 import ProcurarJogadores from "./pages/ProcurarJogadores";
+import EsquecerSenha from "./pages/EsquecerSenha";
+
 import Dashboard from "./pages/Dashboard";
 import useAuth from './hooks/useAuth';
 
@@ -46,6 +48,7 @@ const AppRoutes = () => {
       <Route path="/meus-jogos" element={<ProtectedRoute element={<MeusJogos />} />} />
       <Route path="/adicionar-jogo" element={<ProtectedRoute element={<AdicionarJogo />} />} />
       <Route path="/adicionar-jogo/valorant" element={<ProtectedRoute element={<CadastroValorant />} />} />
+      <Route path="/recuperar-senha" element={<GuestRoute element={<EsquecerSenha />} />} />
     </Routes>
   );
 };

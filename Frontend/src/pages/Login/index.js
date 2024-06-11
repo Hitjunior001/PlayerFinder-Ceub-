@@ -4,7 +4,7 @@ import { Avatar, Button, TextField, Grid, Box, Typography, FormControl, FormCont
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import "dayjs/locale/pt-br";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , redirect } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -29,7 +29,8 @@ const Page = () => {
     setLoading(true);
     const success = await signin(email, senha, keepLogin ? "yes" : "no");
       if (success) {
-        navigate("/Inicio");
+        setLoading(false);  
+        return navigate("/inicio");
       } else {
         setError("Credenciais inválidas");
         setLoading(false);
@@ -131,7 +132,7 @@ const Page = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="/nova-senha" style={{ color: "#16C83D" }}>
+              <Link to="/recuperar-senha" style={{ color: "#16C83D" }}>
                 Esqueceu a senha?
               </Link>
             </Grid>

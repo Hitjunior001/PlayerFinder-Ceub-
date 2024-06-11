@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { Email } from '../components/email';
 
 export const AuthContext = createContext({});
 
@@ -11,33 +12,64 @@ export const AuthProvider = ({ children }) => {
 
 
   useEffect(() => {
-    const checkLoggedIn = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        try {
-          const response = await fetch(`${api}/perfil`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
-          });
-
-          if (response.ok) {
-            const userData = await response.json();
-            setUser(userData);
-          } else {
-            localStorage.removeItem("token");
-            setUser(null);
-          }
-        } catch (error) {
-          console.error("Erro ao verificar login:", error);
-          setUser(null);
-        }
-      }
-      setLoading(false);
-    };
-
     checkLoggedIn();
   }, []);
+
+
+  const getUser = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const response = await fetch(`${api}/perfil`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          localStorage.removeItem("token");
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Erro ao verificar login:", error);
+        setUser(null);
+      }
+    }
+    setLoading(false);
+  };
+
+  const checkLoggedIn = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      getUser()
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  const resetPassword = async (email) => {
+    try {
+      const response = await fetch(`${api}/api/reset-password`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      });
+  
+      return response;
+    } catch (err) {
+      console.error("Erro ao fazer requisição de recuperação:", err);
+      throw new Error("Erro ao fazer requisição de recuperação");
+    }
+  };
+
 
   const signin = async (email, senha, keepLogin) => {
     try {
@@ -60,6 +92,9 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       setToken(data.token); 
+      getUser()
+      setLoading(false)
+
       return true;
     } catch (error) {
       console.error("Erro ao fazer login:", error);
@@ -154,7 +189,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signout, signup, updateUser, deleteUser }}
+      value={{ user, signed: !!user, signin, signout, signup, updateUser, deleteUser, resetPassword }}
     >
       {children}
     </AuthContext.Provider>

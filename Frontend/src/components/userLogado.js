@@ -1,15 +1,19 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
+import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Badge } from '@mui/material';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AddIcon from '@mui/icons-material/Add';
 import Logout from '@mui/icons-material/Logout';
 import useAuth from "../hooks/useAuth";
+import useFriends from '../hooks/useFriends';
 import FriendRequests from "./FriendRequests"
 
 export default function AccountMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { friendRequests } = useFriends();
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -19,12 +23,14 @@ export default function AccountMenu() {
     };
 
     const { signout, user } = useAuth();
+    const userId = user.id;
+    const isAdmin = user.role != "USER";
     const navigate = useNavigate();
 
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', placeContent: 'center' }}>
-            <Typography component="h2" sx={{ minWidth: 100 }}>Bem vindo, {user.username}</Typography>
+                <Typography component="h2" sx={{ minWidth: 100 }}>Bem vindo, {user.username}</Typography>
                 <Tooltip title="Minha conta">
                     <IconButton
                         onClick={handleClick}
@@ -34,11 +40,18 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar style={{ width: '80px', height: '80px' }} />
+                        <Badge
+                            badgeContent={friendRequests.filter(request => request.user.id !== userId).length}
+                            color="error"
+                        >
+
+                            <Avatar style={{ width: '80px', height: '80px' }} />
+                        </Badge>
 
                     </IconButton>
                 </Tooltip>
             </Box>
+
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
@@ -73,12 +86,12 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <Link to="/perfil" style={{color: 'white', textDecoration: 'none'}}>
+                <Link to="/perfil" style={{ color: 'white', textDecoration: 'none' }}>
                     <MenuItem onClick={handleClose}>
                         <Avatar /> Meu perfil
                     </MenuItem>
                 </Link>
-                <Link to="/meus-jogos" style={{color: 'white', textDecoration: 'none'}}>
+                <Link to="/meus-jogos" style={{ color: 'white', textDecoration: 'none' }}>
                     <MenuItem onClick={handleClose}>
                         <ListItemIcon>
                             <SportsEsportsIcon fontSize="small" />
@@ -86,7 +99,7 @@ export default function AccountMenu() {
                         Meus jogos
                     </MenuItem>
                 </Link>
-                <Link to="/amigos" style={{color: 'white', textDecoration: 'none'}}>
+                <Link to="/amigos" style={{ color: 'white', textDecoration: 'none' }}>
                     <MenuItem onClick={handleClose}>
                         <ListItemIcon>
                             <PeopleAltIcon fontSize="small" />
@@ -94,23 +107,25 @@ export default function AccountMenu() {
                         Amigos
                     </MenuItem>
                 </Link>
-                <FriendRequests/>
-                <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <AddIcon fontSize="small" />
-                        </ListItemIcon>
-                        Dashboard
-                    </MenuItem>
-                </Link>
-                <Link to="/adicionar-jogo/valorant" style={{color: 'white', textDecoration: 'none'}}>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <AddIcon fontSize="small" />
-                        </ListItemIcon>
-                        TesteFiltro
-                    </MenuItem>
-                </Link>
+                <FriendRequests />
+                {isAdmin && (
+                    <><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none' }}>
+                        <MenuItem onClick={handleClose}>
+                            <ListItemIcon>
+                                <AddIcon fontSize="small" />
+                            </ListItemIcon>
+                            Dashboard
+                        </MenuItem>
+                    </Link><Link to="/adicionar-jogo/valorant" style={{ color: 'white', textDecoration: 'none' }}>
+                            <MenuItem onClick={handleClose}>
+                                <ListItemIcon>
+                                    <AddIcon fontSize="small" />
+                                </ListItemIcon>
+                                TesteFiltro
+                            </MenuItem>
+                        </Link></>
+                )}
+
                 <Divider />
                 <MenuItem onClick={() => [signout(), navigate("/")]}>
                     <ListItemIcon>

@@ -52,6 +52,15 @@ public class RelationshipController {
          }
         throw new IllegalStateException("Erro ao aceitar.");
     }
+    @PostMapping("/rejectRequest")
+    public ResponseEntity<String> rejectFriendshipRequest(@RequestParam Long requestId) {
+        FriendRequest friendRequest = friendRequestService.getRequestById(requestId);
+        boolean request = friendRequestService.deleteRequest(friendRequest);
+        if(request){
+            return ResponseEntity.ok().build();
+        }
+        throw new IllegalStateException("Erro ao recusar.");
+    }
 
     @GetMapping("/list/requests")
     public ResponseEntity<List<FriendRequest>> existsRequestsByUserId(@RequestHeader("Authorization") String authorizationHeader){

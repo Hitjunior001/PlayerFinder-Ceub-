@@ -50,6 +50,11 @@ const Page = () => {
         setLoading(false);
         return;
       }
+      if(nascimento == null){
+        setError("Data de nascimento invalida")
+        setLoading(false);
+        return;
+      }
   
       const response = await signup(usuario, nome, email, senha, nascimento, estado, genero);
   
@@ -103,6 +108,8 @@ const Page = () => {
     } else {
       setNascimento(null);
     }
+    console.log(nascimento)
+
     setError("");
   };
 

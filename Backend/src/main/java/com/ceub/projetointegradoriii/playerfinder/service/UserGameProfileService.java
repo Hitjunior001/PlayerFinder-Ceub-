@@ -26,6 +26,11 @@ public class UserGameProfileService {
         userGameProfileRepository.deleteByUserIdAndJogoId(userId, jogoId);
     }
 
+    public void deleteAllProfileByUserId(Long userId){
+        userGameProfileRepository.deleteAllByUserId(userId);
+    }
+
+
     public void save(UserGameProfile userGameProfile) {
         userGameProfileRepository.save(userGameProfile);
     }

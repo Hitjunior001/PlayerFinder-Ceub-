@@ -37,6 +37,8 @@ public class SecurityFilter extends OncePerRequestFilter {
         ignorePatterns.add("/v3/api-docs/**");
         ignorePatterns.add("/swagger-ui/**");
         ignorePatterns.add("/swagger-resources/**");
+        ignorePatterns.add("/api/reset-password");
+
         ignorePatterns.add("/webjars/**");
         ignorePatterns.add("/swagger-ui/swagger-ui.css");
         ignorePatterns.add("/swagger-ui/index.css");

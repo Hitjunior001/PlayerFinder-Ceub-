@@ -109,7 +109,7 @@ export const FriendsProvider = ({ children }) => {
   const rejectFriendRequest = async (requestId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`${api}/relationships/acceptRequest`, {
+      const response = await fetch(`${api}/relationships/rejectRequest?requestId=${requestId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
