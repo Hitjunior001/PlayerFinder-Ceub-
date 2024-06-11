@@ -9,6 +9,10 @@ import com.ceub.projetointegradoriii.playerfinder.entity.UserGameProfile;
 import com.ceub.projetointegradoriii.playerfinder.service.*;
 import com.ceub.projetointegradoriii.playerfinder.service.relationship.FriendRequestService;
 import com.ceub.projetointegradoriii.playerfinder.service.relationship.FriendshipService;
+import com.resend.core.exception.ResendException;
+import com.resend.services.apikeys.model.CreateApiKeyResponse;
+import com.resend.services.emails.model.CreateEmailOptions;
+import com.resend.services.emails.model.CreateEmailResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
 import com.ceub.projetointegradoriii.playerfinder.security.TokenJWT;
+
+import com.resend.Resend;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization"})
@@ -226,6 +232,25 @@ public class UserController {
 		} catch (RuntimeException e) {
 			response.put("message", "Erro ao excluir perfil de jogo");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+		}
+	}
+	@PutMapping("/api/reset-password")
+	public void recoverPassword(@RequestBody Map<String, String> payload){
+		String email = payload.get("email");
+		User userToRecover = userService.findByUsernameOrEmail(email);
+		Resend resend = new Resend("re_BoKbLsmc_EhzC9Uoi4F3U8xqkJCheLGa5");
+		CreateEmailOptions sendData = CreateEmailOptions.builder()
+				.from("onboarding@resend.dev")
+				.to("juninhorf8@hotmail.com")
+				.subject("it works!")
+				.html("<p>Para redefinir sua senha, clique no link abaixo:</p><a href=\"" + "http://localhost:3000" + "\">Redefinir Senha</a>" + userToRecover)
+				.build();
+
+		try {
+			CreateEmailResponse data = resend.emails().send(sendData);
+		} catch (ResendException e) {
+			e.printStackTrace();
+
 		}
 	}
 }

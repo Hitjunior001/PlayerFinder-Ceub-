@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { Email } from '../components/email';
 
 export const AuthContext = createContext({});
 
@@ -50,6 +51,24 @@ export const AuthProvider = ({ children }) => {
       return false
     }
   }
+  const resetPassword = async (email) => {
+    try {
+      const response = await fetch(`${api}/api/reset-password`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      });
+  
+      return response;
+    } catch (err) {
+      console.error("Erro ao fazer requisição de recuperação:", err);
+      throw new Error("Erro ao fazer requisição de recuperação");
+    }
+  };
 
 
   const signin = async (email, senha, keepLogin) => {
@@ -170,7 +189,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signout, signup, updateUser, deleteUser }}
+      value={{ user, signed: !!user, signin, signout, signup, updateUser, deleteUser, resetPassword }}
     >
       {children}
     </AuthContext.Provider>

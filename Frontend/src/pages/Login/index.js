@@ -132,7 +132,7 @@ const Page = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="/nova-senha" style={{ color: "#16C83D" }}>
+              <Link to="/recuperar-senha" style={{ color: "#16C83D" }}>
                 Esqueceu a senha?
               </Link>
             </Grid>
