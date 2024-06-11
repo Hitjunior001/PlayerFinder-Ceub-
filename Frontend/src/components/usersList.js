@@ -141,7 +141,7 @@ const UsersList = () => {
 
   return (
     <List sx={{ width: '100%' }}>
-    <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '48vh', overflowY: 'scroll', }}>
+    <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '46vh', overflowY: 'scroll', }}>
       {users.length === 0 ? (
         <Typography variant="h6">Nenhum usuário encontrado.</Typography>
       ) : (
