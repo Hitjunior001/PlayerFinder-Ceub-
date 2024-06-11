@@ -33,7 +33,9 @@ const UsersList = () => {
 
         if (response.ok) {
           const data = await response.json();
-          setUsers(data);
+          const filteredUsers = data.filter(userD => userD.id != user.id)
+          setUsers(filteredUsers);
+
         } else {
           throw new Error("Erro ao listar usuários");
         }
@@ -71,7 +73,7 @@ const UsersList = () => {
     };
 
     fetchData();
-  }, [currentUser.id]);
+  }, [currentUser.id], fetchFriendRequests);
 
   useEffect(() => {
     const fetchFriendsList = async () => {

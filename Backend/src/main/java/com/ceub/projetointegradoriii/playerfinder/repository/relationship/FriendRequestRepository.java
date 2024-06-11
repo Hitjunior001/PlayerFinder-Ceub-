@@ -3,6 +3,7 @@ package com.ceub.projetointegradoriii.playerfinder.repository.relationship;
 import com.ceub.projetointegradoriii.playerfinder.entity.relationship.FriendRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
     List<FriendRequest> existsRequestsByUserId(Long userId);
 
     List<FriendRequest> findAll();
+
+    @Transactional
+    void deleteAllByUserId(Long userId);
 }

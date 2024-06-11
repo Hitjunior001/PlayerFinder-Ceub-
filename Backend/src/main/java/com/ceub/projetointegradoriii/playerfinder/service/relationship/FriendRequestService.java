@@ -61,10 +61,30 @@ public class FriendRequestService {
                 friendRequestRepository.existsByUserIdAndFriendId(friendId, userId);
     }
 
-    public void deleteRequest(FriendRequest friendRequest){
-        friendRequestRepository.delete(friendRequest);
+    public boolean deleteRequest(FriendRequest friendRequest){
+        try{
+            friendRequestRepository.delete(friendRequest);
+            return true;
+        }catch(Exception e){
+            throw new RuntimeException();
+        }
     }
+
     public List<FriendRequest> existsRequestsByUserId(Long id){
         return friendRequestRepository.existsRequestsByUserId(id);
     }
+
+    public void deleteAllFriendRequestByUserId(Long userId){
+        try{
+            friendRequestRepository.deleteAllByUserId(userId);
+
+        }catch(Exception e){
+            throw new RuntimeException();
+        }
+    }
+
+    public FriendRequest getRequestById(Long id){
+        return friendRequestRepository.findById(id).orElse(null);
+    }
+
 }

@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.sql.Delete;
 
 import java.time.LocalDateTime;
+
+import static jakarta.persistence.CascadeType.REMOVE;
 
 @Data
 @NoArgsConstructor

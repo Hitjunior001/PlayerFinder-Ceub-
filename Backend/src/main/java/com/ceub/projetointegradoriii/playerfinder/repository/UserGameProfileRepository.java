@@ -19,4 +19,7 @@ public interface UserGameProfileRepository extends JpaRepository<UserGameProfile
     @Query("DELETE FROM UserGameProfile ugp WHERE ugp.user.id = :userId AND ugp.jogo.id = :jogoId")
     void deleteByUserIdAndJogoId(Long userId, Long jogoId);
 
+    @Transactional
+    void deleteAllByUserId(Long userId);
+
 }

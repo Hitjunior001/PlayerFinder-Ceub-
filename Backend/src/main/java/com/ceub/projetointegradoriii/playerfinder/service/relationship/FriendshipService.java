@@ -21,6 +21,10 @@ public class FriendshipService {
         return friendshipRepository.findByUserIdOrFriendId(userId, userId);
     }
 
+    public void deleteAllFriendShipByUserId(Long userId){
+        friendshipRepository.deleteAllByUserId(userId);
+    }
+
     public void deleteFriendship(Long userId, Long friendId) {
         if (!friendshipRepository.existsByUserIdAndFriendIdOrUserIdAndFriendId(userId, friendId, friendId, userId)) {
             throw new IllegalStateException("Amizade não encontrada " + userId + " com " + friendId);

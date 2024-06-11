@@ -7,6 +7,8 @@ import com.ceub.projetointegradoriii.playerfinder.entity.Attribute;
 import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
 import com.ceub.projetointegradoriii.playerfinder.entity.UserGameProfile;
 import com.ceub.projetointegradoriii.playerfinder.service.*;
+import com.ceub.projetointegradoriii.playerfinder.service.relationship.FriendRequestService;
+import com.ceub.projetointegradoriii.playerfinder.service.relationship.FriendshipService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -40,7 +42,13 @@ public class UserController {
 	private AttributeService attributeService;
 
 	@Autowired
+	private FriendshipService friendshipService;
+
+	@Autowired
 	private UserGameProfileService userGameProfileService;
+
+	@Autowired
+	private FriendRequestService friendRequestService;
 
 	@Operation(summary = "Obter todos os usuários", description = "Endpoint para obter todos os usuários cadastrados")
 	@ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso")
@@ -120,6 +128,10 @@ public class UserController {
 		try {
 			String token = tokenService.extractTokenFromHeader(authorizationHeader);
 			String username = tokenService.extractUsername(token);
+			Long userId = userService.findByUsername(username).getId();
+			friendshipService.deleteAllFriendShipByUserId(userId);
+			userGameProfileService.deleteAllProfileByUserId(userId);
+			friendRequestService.deleteAllFriendRequestByUserId(userId);
 			userService.deleteUserByUsername(username);
 			return ResponseEntity.ok().build();
 		} catch (RuntimeException e) {

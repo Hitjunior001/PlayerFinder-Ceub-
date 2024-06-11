@@ -1,15 +1,19 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
+import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Badge } from '@mui/material';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AddIcon from '@mui/icons-material/Add';
 import Logout from '@mui/icons-material/Logout';
 import useAuth from "../hooks/useAuth";
+import useFriends from '../hooks/useFriends';
 import FriendRequests from "./FriendRequests"
 
 export default function AccountMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { friendRequests} = useFriends();
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -19,6 +23,8 @@ export default function AccountMenu() {
     };
 
     const { signout, user } = useAuth();
+    const userId = user.id;
+
     const navigate = useNavigate();
 
     return (
@@ -34,12 +40,19 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
+                                    <Badge
+                                    badgeContent={friendRequests.filter(request => request.user.id !== userId).length}
+                                    color="error"
+                                  >
+
                         <Avatar style={{ width: '80px', height: '80px' }} />
+                                  </Badge>
 
                     </IconButton>
                 </Tooltip>
             </Box>
-            <Menu
+
+            <Menu                                     
                 anchorEl={anchorEl}
                 id="account-menu"
                 open={open}
