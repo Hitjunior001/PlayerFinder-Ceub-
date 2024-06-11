@@ -48,10 +48,10 @@ public class GameProfileController {
     }
 
     @GetMapping("jogo/usuarios")
-    public ResponseEntity<List<User>> getAllUsuariosByJogo(@RequestParam Long jogoId) {
+    public ResponseEntity<List<UserGameProfile>> getAllUsuariosByJogo(@RequestParam Long jogoId) {
         Optional<Jogo> jogoOptional = jogoService.getJogoById(jogoId);
         Jogo jogo = jogoOptional.get();
-        List<User> users = jogoService.findUsuariosByJogo(jogo);
+        List<UserGameProfile> users = userGameProfileService.getAllProfilePerGame(jogo.getId());
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

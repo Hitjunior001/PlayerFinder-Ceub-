@@ -4,7 +4,7 @@ import { Avatar, Grid, Box, Container, Typography, Paper, Divider } from "@mui/m
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PlayerList from "../../components/playerlist";
-import FilterDrawer from "../../components/filterDrawer";
+import FilterPerGame from "../../components/FilterPerGame";
 
 const darkTheme = createTheme({
     palette: {
@@ -13,6 +13,7 @@ const darkTheme = createTheme({
 });
 
 const Page = () => {
+    const [ attributes, setAttributes ] = useState([]) 
     const { jogoId } = useParams();
     const [jogo, setJogo] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ const Page = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setJogo(data);
+                    setAttributes(data.attributes)
                 } else {
                     throw new Error("Erro ao buscar o jogo");
                 }
@@ -60,15 +62,15 @@ const Page = () => {
                     )}
 
                     <Typography sx={{ margin: '3%' }}>
-                        <FilterDrawer />
+                        <FilterPerGame jogoId={jogoId} atributos={attributes}/>
                     </Typography>
                     
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "75vw" }} >
                         <Paper component="div" sx={{ p: 2, m: 2, width: "95%", bgcolor: "#202020", borderRadius: "10px", }} >
-                            <Grid container spacing={3}>
-                                <Grid item>
-                                    <Grid container spacing={2} justifyContent={'center'} mb={2}>
-                                        <Typography variant='h4' sx={{pt: 2}}> Jogadores Valorant </Typography>
+                            <Grid container spacing={3} justifyContent={'center'} >
+                                <Grid item xs>
+                                    <Grid container spacing={2} sx={{mb: 2, justifyContent: 'center' }}>
+                                        <Typography variant='h4' sx={{pt: 2}}> {loading ? "Carregando jogadores..." : jogo ? `Jogadores de {jogo.titulo}` : "Jogadores não encontrados"} </Typography>
                                         <Divider sx={{bgcolor: '#16C83D', width: "80%"}}/>
                                     </Grid>
                                     <PlayerList jogoId={jogoId} />

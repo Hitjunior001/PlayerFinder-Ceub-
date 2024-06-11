@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Box, Grid, Paper, CircularProgress } from '@mui/material';
+import { Avatar, Box, Typography, Grid, Paper, CircularProgress, Tooltip, IconButton, List, ListItem, ListItemText, Divider, Button } from '@mui/material';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PendingIcon from '@mui/icons-material/Pending';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import useFriends from '../hooks/useFriends';
 import useAuth from '../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -138,37 +140,86 @@ const UsersList = () => {
   }
 
   return (
+    <List sx={{ width: '100%' }}>
     <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '48vh', overflowY: 'scroll', }}>
       {users.length === 0 ? (
         <Typography variant="h6">Nenhum usuário encontrado.</Typography>
       ) : (
         users.map((user) => (
           <Grid item key={user.id} xs={12}>
-            <Paper sx={{ p: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Avatar src={user.avatar} alt={user.username} />
-                <Typography variant="h6" sx={{ marginLeft: '1vw', marginInlineEnd: 'auto'}} >{user.username}</Typography>
-                {isFriend(user.id) ? (
-                  <Typography variant="body2" color="text.secondary">Amigo</Typography>
+            <Paper sx={{ p: 1.5 }}>
+              <React.Fragment key={user.id}>
+                <ListItem alignItems="flex-start">
+                  <Avatar src={user.avatar} alt={user.username} sx={{mr: 1}} />
+                  <ListItemText
+                    primary={
+                      <Typography
+                        sx={{ display: 'inline', fontSize: '30px' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {user.username}
+                      </Typography>
+                    }
+                    // secondary={
+                    //   <React.Fragment>
+                    //       <div style={{display: 'inline'}}>
+                    //         <Typography
+                    //           sx={{ fontSize: '20px' }}
+                    //           component="span"
+                    //           variant="body2"
+                    //           color="text.secondary"
+                    //         >
+                    //           {user.email}
+                    //         </Typography>
+                    //       </div>
+                    //   </React.Fragment>
+                    // }
+                  />
+                  {isFriend(user.id) ? (
+                  <Tooltip title="Amigo">
+                    <PeopleAltIcon/>
+                  </Tooltip>
                 ) : (
-                  <Button
-                    variant="contained"
-                    disabled={isRequestPending(user.id) || requestStatus[user.id] === 'loading'}
-                    onClick={() => handleSendFriendRequest(user.id)}
-                  >
-                    {requestStatus[user.id] === 'loading' ? (
+                  requestStatus[user.id] === 'loading' ? (
+                    <Tooltip title="Enviando pedido de amizade">
                       <CircularProgress size={24} color="inherit" />
-                    ) : (
-                      isRequestPending(user.id) ? 'Pedido Pendente' : 'Enviar Pedido de Amizade'
-                    )}
-                  </Button>
+                    </Tooltip>
+                  ) : (
+                    isRequestPending(user.id) ? 
+                    <Tooltip title="Pedido de amizade pendente">
+                      <PendingIcon/>
+                    </Tooltip> 
+                    : 
+                    <IconButton
+                      variant="contained"
+                      onClick={() => isRequestPending(user.id) || requestStatus[user.id] === 'loading' ? false : handleSendFriendRequest(user.id)}
+                    >
+                      <Tooltip title="Enviar pedido de amizade">
+                        <PersonAddIcon/>
+                      </Tooltip>
+                    </IconButton>
+                  )
                 )}
-              </Box>
+                  <IconButton
+                    component={Link}
+                    to={`/perfil/${user.username}`}
+                    sx={{ ml: 1 , color: 'white', bgcolor: '#16C83D', "&:hover": {color: 'white', bgcolor: '#32D35A'} }}
+                  >
+                    <Tooltip title="Ver perfil">
+                      <OpenInNewIcon sx={{ display: 'inline'}} />
+                    </Tooltip>
+                  </IconButton>
+                </ListItem>
+                <Divider variant="inset" component="li" sx={{ marginLeft: '0', bgcolor: '#16C83D' }} />
+              </React.Fragment>
             </Paper>
           </Grid>
         ))
       )}
     </Grid>
+    </List>
   );
 };
 

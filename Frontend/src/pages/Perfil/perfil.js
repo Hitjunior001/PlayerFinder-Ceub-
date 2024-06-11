@@ -3,7 +3,6 @@ import { Avatar, Box, Typography, Container, CircularProgress } from "@mui/mater
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { useParams } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 const darkTheme = createTheme({
   palette: {
@@ -12,7 +11,6 @@ const darkTheme = createTheme({
 });
 
 const Perfil = () => {
-  const { user } = useAuth();
   const { username } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [perfilData, setPerfilData] = useState(null);

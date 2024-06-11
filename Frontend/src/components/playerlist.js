@@ -4,7 +4,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Link } from 'react-router-dom';
 
 const PlayerList = ({ jogoId }) => {
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,15 @@ const PlayerList = ({ jogoId }) => {
         });
         if (response.ok) {
           const data = await response.json();
-          setUsuarios(data);
+          // Agrupar perfis por nome de usuário
+          const groupedUsuarios = data.reduce((acc, usuario) => {
+            if (!acc[usuario.username]) {
+              acc[usuario.username] = [];
+            }
+            acc[usuario.username].push(usuario);
+            return acc;
+          }, {});
+          setUsuarios(groupedUsuarios);
         } else {
           throw new Error("Erro ao buscar usuários do jogo");
         }
@@ -38,11 +46,11 @@ const PlayerList = ({ jogoId }) => {
 
   return (
     <List sx={{ width: '100%' }}>
-      <Grid container spacing={2} sx={{justifyContent: 'center', maxHeight: '40vh', overflowY: 'scroll', }}>
-        {usuarios.map((usuario) => (
-          <Grid item key={usuario.id} xs={12}>
+      <Grid container spacing={2} sx={{ justifyContent: 'center', maxHeight: '40vh', overflowY: 'scroll' }}>
+        {Object.keys(usuarios).map((username) => (
+          <Grid item key={username} xs={12}>
             <Paper sx={{ p: 2 }}>
-              <React.Fragment key={usuario.id}>
+              <React.Fragment key={username}>
                 <ListItem alignItems="flex-start">
                   <ListItemText
                     primary={
@@ -52,38 +60,34 @@ const PlayerList = ({ jogoId }) => {
                         variant="body2"
                         color="text.primary"
                       >
-                        {usuario.username}
+                        {username}
                       </Typography>
                     }
                     secondary={
                       <React.Fragment>
-                        <Typography
-                          sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
-                          component="span"
-                          variant="body2"
-                          color="text.secondary"
-                        >
-                          Discord: {usuario.discord}
-                        </Typography>
-                        <Typography
-                          sx={{ display: 'inline', marginLeft: '2vw', fontSize: '20px' }}
-                          component="span"
-                          variant="body2"
-                          color="text.secondary"
-                        >
-                          Email: {usuario.email}
-                        </Typography>
-                    </React.Fragment>
+                        {usuarios[username].map((usuario, index) => (
+                          <div key={index} style={{display: 'inline'}}>
+                            <Typography
+                              sx={{ marginLeft: '2vw', fontSize: '20px' }}
+                              component="span"
+                              variant="body2"
+                              color="text.secondary"
+                            >
+                              {usuario.attribute.titulo}: {usuario.attribute.value}
+                            </Typography>
+                          </div>
+                        ))}
+                      </React.Fragment>
                     }
                   />
-                  <Button 
+                  {/* <Button
                     component={Link}
-                    to={`/perfil/${usuario.username}`}
+                    to={`/perfil/${username}`}
                     style={{ color: 'white', backgroundColor: '#16C83D' }}
                   >
-                    <OpenInNewIcon sx={{display: 'inline', marginRight: '0.3vw'}}/>
+                    <OpenInNewIcon sx={{ display: 'inline', marginRight: '0.3vw' }} />
                     Ver perfil
-                  </Button>
+                  </Button> */}
                 </ListItem>
                 <Divider variant="inset" component="li" sx={{ marginLeft: '0', bgcolor: '#16C83D' }} />
               </React.Fragment>
@@ -93,6 +97,6 @@ const PlayerList = ({ jogoId }) => {
       </Grid>
     </List>
   );
-}
+};
 
 export default PlayerList;

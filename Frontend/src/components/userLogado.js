@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Badge } from '@mui/material';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AddIcon from '@mui/icons-material/Add';

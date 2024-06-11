@@ -78,7 +78,7 @@ const Page = () => {
       console.error("Erro ao cadastrar usuário:", error);
       setLoading(false);
     }
-  };
+  }; // HandleSubmit
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -92,26 +92,23 @@ const Page = () => {
       const timeout = setTimeout(() => {
         setCleared(false);
       }, 1500);
-
       return () => clearTimeout(timeout);
     }
     return () => {};
-  }, [cleared]); // DatePicker
+  }, [cleared]); 
+  const handleDateChange = (date) => {
+    if (date && date.isValid()) {
+      setNascimento(date.format("DD/MM/YYYY"));
+      }
+    else {
+      setNascimento(null);
+    }
+    setError("");
+  };// DatePicker
 
   const handleChange = (event) => {
     setEstado(event.target.value);
   }; // Select Estado
-
-  const handleDateChange = (date) => {
-    if (date && date.isValid()) {
-      setNascimento(date.format("YYYY-MM-DD"));
-    } else {
-      setNascimento(null);
-    }
-    console.log(nascimento)
-
-    setError("");
-  };
 
   return (
     <ThemeProvider theme={darkTheme}>

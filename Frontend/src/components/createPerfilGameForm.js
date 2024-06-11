@@ -142,7 +142,7 @@ const CreatePerfilGameForm = ({ jogoId, atributos = [], setLoading, loading, sel
               <Button
                 variant="contained"
                 color="primary"
-                disabled={!Object.keys(selectedAttributes).length || !username || loading}
+                // disabled={!Object.keys(selectedAttributes).length || !username || loading}
                 onClick={handleCreateProfile}
                 style={{ marginTop: "1%" }}
               >

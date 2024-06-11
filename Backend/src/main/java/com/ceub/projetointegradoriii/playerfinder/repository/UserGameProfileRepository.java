@@ -22,4 +22,6 @@ public interface UserGameProfileRepository extends JpaRepository<UserGameProfile
     @Transactional
     void deleteAllByUserId(Long userId);
 
+    List<UserGameProfile> findByJogoId(long jogoId);
+
 }

@@ -34,4 +34,9 @@ public class UserGameProfileService {
     public void save(UserGameProfile userGameProfile) {
         userGameProfileRepository.save(userGameProfile);
     }
+
+    public List<UserGameProfile> getAllProfilePerGame(Long jogoId){
+        return userGameProfileRepository.findByJogoId(jogoId);
+    }
+
 }

@@ -55,11 +55,11 @@ export default function FilterDrawer() {
                 value={funcao}
                 onChange={handleChangeFuncao}
               >
-                <MenuItem value={"duelista"}> Duelista </MenuItem>
-                <MenuItem value={"smoke"}> Smoke </MenuItem>
-                <MenuItem value={"controlador"}> Controlador </MenuItem>
-                <MenuItem value={"sentinela"}> Sentinela </MenuItem>
-                <MenuItem value={"iniciador"}> Iniciador </MenuItem>
+                <MenuItem value={"Duelista"}> Duelista </MenuItem>
+                <MenuItem value={"Smoke"}> Smoke </MenuItem>
+                <MenuItem value={"Controlador"}> Controlador </MenuItem>
+                <MenuItem value={"Sentinela"}> Sentinela </MenuItem>
+                <MenuItem value={"Iniciador"}> Iniciador </MenuItem>
               </Select>
             </FormControl>
         </ListItem>
@@ -75,41 +75,41 @@ export default function FilterDrawer() {
               value={rank}
               onChange={handleChangeRank}
             >
-              <MenuItem value={"ferro 1"}>Ferro 1</MenuItem>
-              <MenuItem value={"ferro 2"}>Ferro 2</MenuItem>
-              <MenuItem value={"ferro 3"}>Ferro 3</MenuItem>
-              <MenuItem value={"ferro 4"}>Ferro 4</MenuItem>
+              <MenuItem value={"Ferro 1"}>Ferro 1</MenuItem>
+              <MenuItem value={"Ferro 2"}>Ferro 2</MenuItem>
+              <MenuItem value={"Ferro 3"}>Ferro 3</MenuItem>
+              <MenuItem value={"Ferro 4"}>Ferro 4</MenuItem>
               <Divider />
-              <MenuItem value={"bronze 1"}>Bronze 1</MenuItem>
-              <MenuItem value={"bronze 2"}>Bronze 2</MenuItem>
-              <MenuItem value={"bronze 3"}>Bronze 3</MenuItem>
-              <MenuItem value={"bronze 4"}>Bronze 4</MenuItem>
+              <MenuItem value={"Bronze 1"}>Bronze 1</MenuItem>
+              <MenuItem value={"Bronze 2"}>Bronze 2</MenuItem>
+              <MenuItem value={"Bronze 3"}>Bronze 3</MenuItem>
+              <MenuItem value={"Bronze 4"}>Bronze 4</MenuItem>
               <Divider />
-              <MenuItem value={"prata 1"}>Prata 1</MenuItem>
-              <MenuItem value={"prata 2"}>Prata 2</MenuItem>
-              <MenuItem value={"prata 3"}>Prata 3</MenuItem>
-              <MenuItem value={"prata 4"}>Prata 4</MenuItem>
+              <MenuItem value={"Prata 1"}>Prata 1</MenuItem>
+              <MenuItem value={"Prata 2"}>Prata 2</MenuItem>
+              <MenuItem value={"Prata 3"}>Prata 3</MenuItem>
+              <MenuItem value={"Prata 4"}>Prata 4</MenuItem>
               <Divider />
-              <MenuItem value={"ouro 1"}>Ouro 1</MenuItem>
-              <MenuItem value={"ouro 2"}>Ouro 2</MenuItem>
-              <MenuItem value={"ouro 3"}>Ouro 3</MenuItem>
-              <MenuItem value={"ouro 4"}>Ouro 4</MenuItem>
+              <MenuItem value={"Ouro 1"}>Ouro 1</MenuItem>
+              <MenuItem value={"Ouro 2"}>Ouro 2</MenuItem>
+              <MenuItem value={"Ouro 3"}>Ouro 3</MenuItem>
+              <MenuItem value={"Ouro 4"}>Ouro 4</MenuItem>
               <Divider />
-              <MenuItem value={"platina 1"}>Platina 1</MenuItem>
-              <MenuItem value={"platina 2"}>Platina 2</MenuItem>
-              <MenuItem value={"platina 3"}>Platina 3</MenuItem>
-              <MenuItem value={"platina 4"}>Platina 4</MenuItem>
+              <MenuItem value={"Platina 1"}>Platina 1</MenuItem>
+              <MenuItem value={"Platina 2"}>Platina 2</MenuItem>
+              <MenuItem value={"Platina 3"}>Platina 3</MenuItem>
+              <MenuItem value={"Platina 4"}>Platina 4</MenuItem>
               <Divider />
-              <MenuItem value={"diamante 1"}>Diamante 1</MenuItem>
-              <MenuItem value={"diamante 2"}>Diamante 2</MenuItem>
-              <MenuItem value={"diamante 3"}>Diamante 3</MenuItem>
-              <MenuItem value={"diamante 4"}>Diamante 4</MenuItem>
+              <MenuItem value={"Diamante 1"}>Diamante 1</MenuItem>
+              <MenuItem value={"Diamante 2"}>Diamante 2</MenuItem>
+              <MenuItem value={"Diamante 3"}>Diamante 3</MenuItem>
+              <MenuItem value={"Diamante 4"}>Diamante 4</MenuItem>
               <Divider />
-              <MenuItem value={"imortal 1"}>Imortal 1</MenuItem>
-              <MenuItem value={"imortal 2"}>Imortal 2</MenuItem>
-              <MenuItem value={"imortal 3"}>Imortal 3</MenuItem>
+              <MenuItem value={"Imortal 1"}>Imortal 1</MenuItem>
+              <MenuItem value={"Imortal 2"}>Imortal 2</MenuItem>
+              <MenuItem value={"Imortal 3"}>Imortal 3</MenuItem>
               <Divider />
-              <MenuItem value={"radiante"}>Radiante</MenuItem>
+              <MenuItem value={"Radiante"}>Radiante</MenuItem>
             </Select>
           </FormControl>
         </ListItem>
@@ -125,22 +125,22 @@ export default function FilterDrawer() {
               value={campeao}
               onChange={handleChangeCampeao}
             >
-              <MenuItem value={"jett"}>Jett</MenuItem>
-              <MenuItem value={"phoenix"}>Phoenix</MenuItem>
-              <MenuItem value={"raze"}>Raze</MenuItem>
-              <MenuItem value={"reyna"}>Reyna</MenuItem>
-              <MenuItem value={"yoru"}>Yoru</MenuItem>
-              <MenuItem value={"killjoy"}>Killjoy</MenuItem>
-              <MenuItem value={"cypher"}>Cypher</MenuItem>
-              <MenuItem value={"sage"}>Sage</MenuItem>
-              <MenuItem value={"brimstone"}>Brimstone</MenuItem>
-              <MenuItem value={"omen"}>Omen</MenuItem>
-              <MenuItem value={"viper"}>Viper</MenuItem>
-              <MenuItem value={"astra"}>Astra</MenuItem>
-              <MenuItem value={"breach"}>Breach</MenuItem>
-              <MenuItem value={"skye"}>Skye</MenuItem>
-              <MenuItem value={"sova"}>Sova</MenuItem>
-              <MenuItem value={"kayo"}>KAY/O</MenuItem>
+              <MenuItem value={"Jett"}>Jett</MenuItem>
+              <MenuItem value={"Phoenix"}>Phoenix</MenuItem>
+              <MenuItem value={"Raze"}>Raze</MenuItem>
+              <MenuItem value={"Reyna"}>Reyna</MenuItem>
+              <MenuItem value={"Yoru"}>Yoru</MenuItem>
+              <MenuItem value={"Killjoy"}>Killjoy</MenuItem>
+              <MenuItem value={"Cypher"}>Cypher</MenuItem>
+              <MenuItem value={"Sage"}>Sage</MenuItem>
+              <MenuItem value={"Brimstone"}>Brimstone</MenuItem>
+              <MenuItem value={"Omen"}>Omen</MenuItem>
+              <MenuItem value={"Viper"}>Viper</MenuItem>
+              <MenuItem value={"Astra"}>Astra</MenuItem>
+              <MenuItem value={"Breach"}>Breach</MenuItem>
+              <MenuItem value={"Skye"}>Skye</MenuItem>
+              <MenuItem value={"Sova"}>Sova</MenuItem>
+              <MenuItem value={"KAY/O"}>KAY/O</MenuItem>
             </Select>
           </FormControl>
         </ListItem>

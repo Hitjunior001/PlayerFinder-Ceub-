@@ -4,7 +4,7 @@ import { Avatar, Button, TextField, Grid, Box, Typography, FormControl, FormCont
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import "dayjs/locale/pt-br";
-import { Link, useNavigate , redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 

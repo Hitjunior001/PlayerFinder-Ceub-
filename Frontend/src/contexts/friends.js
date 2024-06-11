@@ -5,7 +5,7 @@ export const FriendsContext = createContext({});
 
 export const FriendsProvider = ({ children }) => {
   const [friendRequests, setFriendRequests] = useState([]);
-  const [friends, setFriends] = useState([]);
+  // const [friends, setFriends] = useState([]);
 
   const api = "http://localhost:8080/api";
   const { user } = useAuth()

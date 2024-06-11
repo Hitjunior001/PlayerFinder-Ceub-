@@ -9,9 +9,11 @@ import {
   Paper,
   CircularProgress,
   FormControl,
+  Input,
   InputLabel,
   MenuItem,
   Select,
+  Drawer
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -23,11 +25,10 @@ const darkTheme = createTheme({
 });
 
 const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({ username: "" });
 
   const handleFilterChange = (event) => {
     setFilters({ ...filters, [event.target.name]: event.target.value });
-    console.log(filters)
   };
 
   const handleSubmit = async (event) => {
@@ -43,7 +44,12 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
     return acc;
   }, {});
 
-  return (
+  const [open, setOpen] = React.useState(false);
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  const DrawerList = (
     <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
         <Box
@@ -73,6 +79,7 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
                   justifyContent: "center",
                 }}
               >
+
                 <Paper
                   component="div"
                   style={{
@@ -83,9 +90,19 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
                     borderRadius: "10px",
                   }}
                 >
-                  <Grid container spacing={3}>
+                  <Grid container spacing={4}>
+                  <FormControl sx={{ minWidth: "100%" }}>
+                  <InputLabel htmlFor="username-input">Nome de Usuário</InputLabel>
+                  <Input
+                    id="username-input"
+                    name="username"
+                    value={filters.username}
+                    onChange={handleFilterChange}
+                  />
+                </FormControl>
                     {Object.keys(groupedAttributes).map((titulo) => (
                       <Grid item xs={12} key={titulo}>
+
                         <FormControl sx={{ minWidth: "100%" }}>
                           <InputLabel id={`${titulo}-label`}>
                             {titulo}
@@ -127,6 +144,15 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
         </Box>
       </Container>
     </ThemeProvider>
+  );
+
+  return (
+    <div>
+      <Button onClick={toggleDrawer(true)} style={{ color: 'white', backgroundColor: '#16C83D' }}>Filtros</Button>
+      <Drawer open={open} anchor='right' onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
+    </div>
   );
 };
 
