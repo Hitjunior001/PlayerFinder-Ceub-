@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="" />
+    <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/GameProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/GameProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserGameProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserGameProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/FilterPerGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/FilterPerGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/playerlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/playerlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/ProcurarJogadores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/ProcurarJogadores/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

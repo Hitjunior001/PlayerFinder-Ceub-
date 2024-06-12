@@ -3,8 +3,8 @@ import { Button, CircularProgress, Paper, Grid, List, ListItem, ListItemText, Di
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Link } from 'react-router-dom';
 
-const PlayerList = ({ jogoId }) => {
-  const [usuarios, setUsuarios] = useState({});
+const PlayerList = ({ jogoId, filtersUsers }) => {
+  const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,15 +18,7 @@ const PlayerList = ({ jogoId }) => {
         });
         if (response.ok) {
           const data = await response.json();
-          // Agrupar perfis por nome de usuário
-          const groupedUsuarios = data.reduce((acc, usuario) => {
-            if (!acc[usuario.username]) {
-              acc[usuario.username] = [];
-            }
-            acc[usuario.username].push(usuario);
-            return acc;
-          }, {});
-          setUsuarios(groupedUsuarios);
+          setUsuarios(data);
         } else {
           throw new Error("Erro ao buscar usuários do jogo");
         }
@@ -47,10 +39,10 @@ const PlayerList = ({ jogoId }) => {
   return (
     <List sx={{ width: '100%' }}>
       <Grid container spacing={2} sx={{ justifyContent: 'center', maxHeight: '40vh', overflowY: 'scroll' }}>
-        {Object.keys(usuarios).map((username) => (
-          <Grid item key={username} xs={12}>
+        {usuarios.map((usuario) => (
+          <Grid item key={usuario.username} xs={12}>
             <Paper sx={{ p: 2 }}>
-              <React.Fragment key={username}>
+              <React.Fragment>
                 <ListItem alignItems="flex-start">
                   <ListItemText
                     primary={
@@ -60,20 +52,20 @@ const PlayerList = ({ jogoId }) => {
                         variant="body2"
                         color="text.primary"
                       >
-                        {username}
+                        {usuario.username}
                       </Typography>
                     }
                     secondary={
                       <React.Fragment>
-                        {usuarios[username].map((usuario, index) => (
-                          <div key={index} style={{display: 'inline'}}>
+                        {Object.entries(usuario.attributes).map(([key, value], index) => (
+                          <div key={index} style={{ display: 'inline' }}>
                             <Typography
                               sx={{ marginLeft: '2vw', fontSize: '20px' }}
                               component="span"
                               variant="body2"
                               color="text.secondary"
                             >
-                              {usuario.attribute.titulo}: {usuario.attribute.value}
+                              {key}: {value}
                             </Typography>
                           </div>
                         ))}
@@ -82,7 +74,7 @@ const PlayerList = ({ jogoId }) => {
                   />
                   {/* <Button
                     component={Link}
-                    to={`/perfil/${username}`}
+                    to={`/perfil/${usuario.username}`}
                     style={{ color: 'white', backgroundColor: '#16C83D' }}
                   >
                     <OpenInNewIcon sx={{ display: 'inline', marginRight: '0.3vw' }} />

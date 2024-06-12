@@ -1,5 +1,6 @@
 package com.ceub.projetointegradoriii.playerfinder.controller;
 
+import com.ceub.projetointegradoriii.playerfinder.dto.ConsolidatedUserGameProfile;
 import com.ceub.projetointegradoriii.playerfinder.entity.Jogo;
 import com.ceub.projetointegradoriii.playerfinder.entity.User;
 import com.ceub.projetointegradoriii.playerfinder.entity.UserGameProfile;
@@ -16,7 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Tag(name = "Jogos do usuário", description = "Endpoints para listar os jogos do usuário")
@@ -48,11 +51,39 @@ public class GameProfileController {
     }
 
     @GetMapping("jogo/usuarios")
-    public ResponseEntity<List<UserGameProfile>> getAllUsuariosByJogo(@RequestParam Long jogoId) {
+    public ResponseEntity<List<ConsolidatedUserGameProfile>> getAllUsuariosByJogo(@RequestParam Long jogoId) {
         Optional<Jogo> jogoOptional = jogoService.getJogoById(jogoId);
         Jogo jogo = jogoOptional.get();
-        List<UserGameProfile> users = userGameProfileService.getAllProfilePerGame(jogo.getId());
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        List<ConsolidatedUserGameProfile> consolidatedProfiles = userGameProfileService.getConsolidatedProfilesByGame(jogoId);
+        return new ResponseEntity<>(consolidatedProfiles, HttpStatus.OK);
+    }
+
+
+    @PostMapping("jogo/filter/usuario")
+    public ResponseEntity<List<ConsolidatedUserGameProfile>> getFilteredUsuariosByJogo(
+            @RequestParam Long jogoId, @RequestBody Map<String, String> filters) {
+
+        List<ConsolidatedUserGameProfile> consolidatedProfiles = userGameProfileService.getConsolidatedProfilesByGame(jogoId);
+
+        List<ConsolidatedUserGameProfile> filteredProfiles = consolidatedProfiles.stream()
+                .filter(profile -> matchesFilters(profile, filters))
+                .toList();
+        return new ResponseEntity<>(filteredProfiles, HttpStatus.OK);
+    }
+
+    private boolean matchesFilters(ConsolidatedUserGameProfile profile, Map<String, String> filters) {
+        // Verificar o filtro de username separadamente
+        if (filters.containsKey("username") && !filters.get("username").isEmpty()) {
+            if (!profile.getUsername().toLowerCase().contains(filters.get("username").toLowerCase())) {
+                return false;
+            }
+        }
+
+        // Verificar os demais filtros no mapa de atributos
+        return filters.entrySet().stream()
+                .filter(entry -> !"username".equals(entry.getKey())) // Excluir username do stream
+                .allMatch(entry -> entry.getValue().isEmpty() || // Aceitar filtros vazios
+                        entry.getValue().equals(profile.getAttributes().get(entry.getKey())));
     }
 
     @ApiResponse(responseCode = "200", description = "Perfil de jogos listados com sucesso")
