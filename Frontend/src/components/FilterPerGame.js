@@ -24,7 +24,7 @@ const darkTheme = createTheme({
   },
 });
 
-const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
+const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUsers, setFiltersUsers }) => {
   const [filters, setFilters] = useState({ username: "" });
 
   const handleFilterChange = (event) => {
@@ -34,6 +34,29 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(filters);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:8080/jogo/filter/usuario?jogoId=${jogoId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(filters)
+      });
+
+      if (response.ok) {
+        console.log("Perfil de jogo filtrado com sucesso!");
+        const data = await response.json();
+        setFiltersUsers(data)
+
+      } else {
+        throw new Error("Erro ao filtrar perfil de jogo");
+      }
+    } catch (error) {
+      console.error("Erro ao filtrar perfil de jogo:", error);
+    } finally {
+    }
   };
 
   const groupedAttributes = atributos.reduce((acc, curr) => {
@@ -75,7 +98,7 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  width: "90vw",
+                  width: "20vw",
                   justifyContent: "center",
                 }}
               >
@@ -90,19 +113,21 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading }) => {
                     borderRadius: "10px",
                   }}
                 >
-                  <Grid container spacing={4}>
                   <FormControl sx={{ minWidth: "100%" }}>
-                  <InputLabel htmlFor="username-input">Nome de Usuário</InputLabel>
-                  <Input
-                    id="username-input"
-                    name="username"
-                    value={filters.username}
-                    onChange={handleFilterChange}
-                  />
-                </FormControl>
+                    <InputLabel htmlFor="username-input">Nome de Usuário</InputLabel>
+                    <Input
+                      id="username-input"
+                      name="username"
+                      value={filters.username}
+                      onChange={handleFilterChange}
+                      style={{
+                        marginBottom:"15px"
+                      }}
+                    />
+                  </FormControl>
+                  <Grid container spacing={3}>
                     {Object.keys(groupedAttributes).map((titulo) => (
                       <Grid item xs={12} key={titulo}>
-
                         <FormControl sx={{ minWidth: "100%" }}>
                           <InputLabel id={`${titulo}-label`}>
                             {titulo}

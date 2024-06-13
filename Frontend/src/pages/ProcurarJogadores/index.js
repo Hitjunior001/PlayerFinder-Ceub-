@@ -17,6 +17,7 @@ const Page = () => {
     const { jogoId } = useParams();
     const [jogo, setJogo] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [filtersUsers, setFiltersUsers] = useState([]) 
 
     useEffect(() => {
         const fetchJogo = async () => {
@@ -62,7 +63,7 @@ const Page = () => {
                     )}
 
                     <Typography sx={{ margin: '3%' }}>
-                        <FilterPerGame jogoId={jogoId} atributos={attributes}/>
+                        <FilterPerGame jogoId={jogoId} atributos={attributes} filterUsers={filtersUsers}  setFiltersUsers={setFiltersUsers}/>
                     </Typography>
                     
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "75vw" }} >
@@ -73,7 +74,7 @@ const Page = () => {
                                         <Typography variant='h4' sx={{pt: 2}}> {loading ? "Carregando jogadores..." : jogo ? `Jogadores de {jogo.titulo}` : "Jogadores não encontrados"} </Typography>
                                         <Divider sx={{bgcolor: '#16C83D', width: "80%"}}/>
                                     </Grid>
-                                    <PlayerList jogoId={jogoId} />
+                                    <PlayerList jogoId={jogoId} filtersUsers={filtersUsers} />
                                 </Grid>
                             </Grid>
                         </Paper>
