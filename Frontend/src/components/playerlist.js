@@ -64,6 +64,7 @@ const PlayerList = ({ jogoId, filtersUsers, setLoading, loading  }) => {
                         </Typography>
                       }
                       secondary={
+                        usuario.attribute === null ? (<Typography> Sem atributos </Typography>) : (
                         <React.Fragment>
                           {Object.entries(usuario.attributes).map(([key, value], index) => (
                             <div key={index} style={{ display: 'inline' }}>
@@ -78,7 +79,8 @@ const PlayerList = ({ jogoId, filtersUsers, setLoading, loading  }) => {
                             </div>
                           ))}
                         </React.Fragment>
-                      }
+                    )
+                    }
                     />
                     {/* <Button
                       component={Link}

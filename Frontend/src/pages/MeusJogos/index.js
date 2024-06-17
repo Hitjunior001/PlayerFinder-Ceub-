@@ -3,6 +3,8 @@ import { Avatar, Box, Typography, Container, Paper, MenuItem, Select, Button, Ta
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import CreatePerfilGameForm from "../../components/createPerfilGameForm";
+import { useSnackbar } from '../../contexts/snackbar';
+
 
 
 const darkTheme = createTheme({
@@ -21,6 +23,7 @@ const Page = () => {
     const [selectedAttributes, setSelectedAttributes] = useState({});
     const [username, setUsername] = useState('');
     const [profilesGames, setProfilesGames] = useState([]);
+    
 
 
 

@@ -178,6 +178,20 @@ public class UserController {
 			return ResponseEntity.status(400).body(response);
 		}
 
+		if(attributes.isEmpty()){
+			UserGameProfile userGameProfile = new UserGameProfile();
+			userGameProfile.setUser(existingUser);
+			userGameProfile.setJogo(jogo);
+			userGameProfile.setUsername(usernameProfile);
+			userGameProfile.setAttribute(null);
+			userGameProfileService.save(userGameProfile);
+
+			existingUser.getJogos().add(jogo);
+			userService.save(existingUser);
+
+			response.put("message", "Perfil de jogo criado com sucesso");
+			return ResponseEntity.ok(response);
+		}
 		List<Long> attributeIds = Arrays.stream(attributes.split(","))
 				.map(Long::parseLong)
 				.toList();

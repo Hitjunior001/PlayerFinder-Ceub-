@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import { useSnackbar } from "../contexts/snackbar";
 
 const darkTheme = createTheme({
   palette: {
@@ -23,6 +24,9 @@ const darkTheme = createTheme({
 });
 
 const CreatePerfilGameForm = ({ jogoId, atributos = [], setLoading, loading, selectedAttributes, setSelectedAttributes,username,setUsername }) => {
+
+  const showSnackbar = useSnackbar();
+
 
   const handleCreateProfile = async () => {
     setLoading(true);
@@ -42,10 +46,10 @@ const CreatePerfilGameForm = ({ jogoId, atributos = [], setLoading, loading, sel
       });
 
       if (response.ok) {
-        console.log("Perfil de jogo criado com sucesso!");
         setSelectedAttributes({});
         setUsername('');
       } else {
+        console.log(response.text, response.message)
         throw new Error("Erro ao criar perfil de jogo");
       }
     } catch (error) {
