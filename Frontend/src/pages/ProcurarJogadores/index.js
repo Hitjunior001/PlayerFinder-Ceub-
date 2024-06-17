@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Avatar, Grid, Box, Container, Typography, Paper, Divider } from "@mui/material";
+import { Avatar, Grid, Box, Container, Typography, Paper, Divider, CircularProgress  } from "@mui/material";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PlayerList from "../../components/playerlist";
@@ -17,10 +17,12 @@ const Page = () => {
     const { jogoId } = useParams();
     const [jogo, setJogo] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [filtersUsers, setFiltersUsers] = useState([]) 
+    const [loadingGame, setLoadingGame] = useState(true);
+    const [filtersUsers, setFiltersUsers] = useState(null) 
 
     useEffect(() => {
         const fetchJogo = async () => {
+            setLoadingGame(true)
             try {
                 const token = localStorage.getItem("token");
                 const response = await fetch(`http://localhost:8080/api/jogos/${jogoId}`, {
@@ -38,7 +40,7 @@ const Page = () => {
             } catch (error) {
                 console.error("Erro ao buscar o jogo:", error);
             } finally {
-                setLoading(false);
+                setLoadingGame(false);
             }
         };
 
@@ -52,7 +54,7 @@ const Page = () => {
                     <Avatar sx={{ m: 1, bgcolor: "#16C83D" }}>
                         <SportsEsportsIcon fontSize="medium" />
                     </Avatar>
-                    {loading ? (
+                    {loadingGame ? (
                         <Typography component="h1" variant="h5">
                             Carregando...
                         </Typography>
@@ -63,7 +65,7 @@ const Page = () => {
                     )}
 
                     <Typography sx={{ margin: '3%' }}>
-                        <FilterPerGame jogoId={jogoId} atributos={attributes} filterUsers={filtersUsers}  setFiltersUsers={setFiltersUsers}/>
+                        <FilterPerGame jogoId={jogoId} atributos={attributes} filtersUsers={filtersUsers} setLoading={setLoading} setFiltersUsers={setFiltersUsers} loading={loading}/>
                     </Typography>
                     
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "75vw" }} >
@@ -71,10 +73,10 @@ const Page = () => {
                             <Grid container spacing={3} justifyContent={'center'} >
                                 <Grid item xs>
                                     <Grid container spacing={2} sx={{mb: 2, justifyContent: 'center' }}>
-                                        <Typography variant='h4' sx={{pt: 2}}> {loading ? "Carregando jogadores..." : jogo ? `Jogadores de {jogo.titulo}` : "Jogadores não encontrados"} </Typography>
+                                        <Typography variant='h4' sx={{pt: 2}}> {loadingGame ? "Carregando jogadores..." : jogo ? `Jogadores de ${jogo.titulo}` : "Jogadores não encontrados"} </Typography>
                                         <Divider sx={{bgcolor: '#16C83D', width: "80%"}}/>
                                     </Grid>
-                                    <PlayerList jogoId={jogoId} filtersUsers={filtersUsers} />
+                                    <PlayerList jogoId={jogoId} filtersUsers={filtersUsers} setLoading={setLoading} loading={loading}/>
                                 </Grid>
                             </Grid>
                         </Paper>

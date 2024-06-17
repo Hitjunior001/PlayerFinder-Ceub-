@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CustomAppBar } from "./components/Header";
 import { AuthProvider } from "./contexts/auth";
 import { FriendsProvider } from "./contexts/friends";
+import { SnackbarProvider } from "./contexts/snackbar"; 
+
 
 
 const darkTheme = createTheme({
@@ -16,18 +18,20 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <AuthProvider>
-      <FriendsProvider>
-        <ThemeProvider theme={darkTheme}>
-          <BrowserRouter>
-            <div className="App">
-              <CustomAppBar />
-              <Routes />
-            </div>
-          </BrowserRouter>
-        </ThemeProvider>
-      </FriendsProvider>
-    </AuthProvider>
+    <SnackbarProvider>
+      <AuthProvider>
+        <FriendsProvider>
+          <ThemeProvider theme={darkTheme}>
+            <BrowserRouter>
+              <div className="App">
+                <CustomAppBar />
+                <Routes />
+              </div>
+            </BrowserRouter>
+          </ThemeProvider>
+        </FriendsProvider>
+      </AuthProvider>
+    </SnackbarProvider>
   );
 }
 

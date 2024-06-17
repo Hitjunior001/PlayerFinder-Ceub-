@@ -32,7 +32,7 @@ public class UserGameProfile {
 	private Jogo jogo;
 
 	@ManyToOne
-	@JoinColumn(name = "attribute_id", nullable = false)
+	@JoinColumn(name = "attribute_id", nullable = true)
 	@JsonManagedReference("attribute-userGameProfiles")
 	private Attribute attribute;
 

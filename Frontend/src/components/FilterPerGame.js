@@ -24,7 +24,7 @@ const darkTheme = createTheme({
   },
 });
 
-const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUsers, setFiltersUsers }) => {
+const FilterPerGame = ({ jogoId, atributos = [],setLoading, setFiltersUsers, loading  }) => {
   const [filters, setFilters] = useState({ username: "" });
 
   const handleFilterChange = (event) => {
@@ -33,7 +33,7 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(filters);
+    setLoading(true)
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(`http://localhost:8080/jogo/filter/usuario?jogoId=${jogoId}`, {
@@ -46,7 +46,6 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
       });
 
       if (response.ok) {
-        console.log("Perfil de jogo filtrado com sucesso!");
         const data = await response.json();
         setFiltersUsers(data)
 
@@ -55,7 +54,9 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
       }
     } catch (error) {
       console.error("Erro ao filtrar perfil de jogo:", error);
-    } finally {
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -90,9 +91,7 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
           <Typography component="h1" variant="h5">
             Filtrar Jogo
           </Typography>
-          {loading ? (
-            <CircularProgress sx={{ mt: 2 }} />
-          ) : (
+
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <div
                 style={{
@@ -150,6 +149,7 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
                   </Grid>
                 </Paper>
               </div>
+
               <Button
                 type="submit"
                 variant="contained"
@@ -162,10 +162,13 @@ const FilterPerGame = ({ jogoId, atributos = [], setLoading, loading, filtersUse
                   "&:hover": { backgroundColor: "#16C83D" },
                 }}
               >
-                Filtrar
+              {loading ? (
+            <CircularProgress sx={{ height: "10px", height: "10px" }} />
+          ) : ( "Filtrar")} 
               </Button>
+                         
             </Box>
-          )}
+
         </Box>
       </Container>
     </ThemeProvider>

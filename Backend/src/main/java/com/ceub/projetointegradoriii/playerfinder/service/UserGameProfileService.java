@@ -57,7 +57,11 @@ public class UserGameProfileService {
             Map<Long, Map<String, String>> userGameMap = consolidatedMap.getOrDefault(username, new HashMap<>());
             Map<String, String> attributes = userGameMap.getOrDefault(gameId, new HashMap<>());
 
-            attributes.put(profile.getAttribute().getTitulo(), profile.getAttribute().getValue());
+            if (profile.getAttribute() != null) {
+                attributes.put(profile.getAttribute().getTitulo(), profile.getAttribute().getValue());
+            } else {
+                attributes.put("Sem atributos", "None");
+            }
 
             userGameMap.put(gameId, attributes);
             consolidatedMap.put(username, userGameMap);
