@@ -41,7 +41,7 @@ const PlayerList = ({ jogoId, filtersUsers, setLoading, loading  }) => {
 
   return (
     <List sx={{ width: '100%' }}>
-      {filtersUsers != null && filtersUsers.length === 0  || usuarios.length === 0 ? (
+      {(filtersUsers != null && filtersUsers.length === 0) || usuarios.length === 0 ? (
         <Typography component="h1" variant="h5">
           Não foi encontrado nenhum jogador
         </Typography>

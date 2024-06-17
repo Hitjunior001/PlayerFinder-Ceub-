@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Avatar, Grid, Box, Container, Typography, Paper, Divider, CircularProgress  } from "@mui/material";
+import { Avatar, Grid, Box, Container, Typography, Paper, Divider } from "@mui/material";
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PlayerList from "../../components/playerlist";

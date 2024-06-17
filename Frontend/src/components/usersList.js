@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Box, Typography, Grid, Paper, CircularProgress, Tooltip, IconButton, List, ListItem, ListItemText, Divider, Button } from '@mui/material';
+import { Avatar, Typography, Grid, Paper, CircularProgress, Tooltip, IconButton, List, ListItem, ListItemText, Divider } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PendingIcon from '@mui/icons-material/Pending';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -35,7 +35,7 @@ const UsersList = () => {
 
         if (response.ok) {
           const data = await response.json();
-          const filteredUsers = data.filter(userD => userD.id != user.id)
+          const filteredUsers = data.filter(userD => userD.id !== user.id)
           setUsers(filteredUsers);
 
         } else {
@@ -162,46 +162,38 @@ const UsersList = () => {
                         {user.username}
                       </Typography>
                     }
-                    // secondary={
-                    //   <React.Fragment>
-                    //       <div style={{display: 'inline'}}>
-                    //         <Typography
-                    //           sx={{ fontSize: '20px' }}
-                    //           component="span"
-                    //           variant="body2"
-                    //           color="text.secondary"
-                    //         >
-                    //           {user.email}
-                    //         </Typography>
-                    //       </div>
-                    //   </React.Fragment>
-                    // }
                   />
                   {isFriend(user.id) ? (
-                  <Tooltip title="Amigo">
-                    <PeopleAltIcon/>
-                  </Tooltip>
-                ) : (
-                  requestStatus[user.id] === 'loading' ? (
-                    <Tooltip title="Enviando pedido de amizade">
-                      <CircularProgress size={24} color="inherit" />
-                    </Tooltip>
-                  ) : (
-                    isRequestPending(user.id) ? 
-                    <Tooltip title="Pedido de amizade pendente">
-                      <PendingIcon/>
-                    </Tooltip> 
-                    : 
-                    <IconButton
-                      variant="contained"
-                      onClick={() => isRequestPending(user.id) || requestStatus[user.id] === 'loading' ? false : handleSendFriendRequest(user.id)}
-                    >
-                      <Tooltip title="Enviar pedido de amizade">
-                        <PersonAddIcon/>
+                    <IconButton disableRipple> 
+                      <Tooltip title="Amigo">
+                        <PeopleAltIcon/>
                       </Tooltip>
-                    </IconButton>
-                  )
-                )}
+                    </IconButton>  
+                  ) : (
+                    requestStatus[user.id] === 'loading' ? (
+                      <IconButton disableRipple> 
+                        <Tooltip title="Enviando pedido de amizade">
+                          <CircularProgress size={24} color="inherit" />
+                        </Tooltip>
+                      </IconButton>  
+                    ) : (
+                      isRequestPending(user.id) ?
+                      <IconButton disableRipple> 
+                        <Tooltip title="Pedido de amizade pendente">
+                          <PendingIcon/>
+                        </Tooltip>
+                      </IconButton>  
+                      : 
+                      <IconButton
+                        variant="contained"
+                        onClick={() => isRequestPending(user.id) || requestStatus[user.id] === 'loading' ? false : handleSendFriendRequest(user.id)}
+                      >
+                        <Tooltip title="Enviar pedido de amizade">
+                          <PersonAddIcon/>
+                        </Tooltip>
+                      </IconButton>
+                    )
+                  )}
                   <IconButton
                     component={Link}
                     to={`/perfil/${user.username}`}
