@@ -17,14 +17,29 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-export default function InputFileUpload() {
-    return (
+export default function InputFileUpload({ handleFileUpload }) {
+    const [imagePreview, setImagePreview] = React.useState(""); // Estado para armazenar a URL da imagem selecionada
 
-        <Grid container spacing={1} columns={1} style={{textAlign: '-webkit-center'}}>
+    const handleChange = (event) => {
+        const file = event.target.files[0]; // Captura o primeiro arquivo selecionado
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result); // Define a URL da imagem no estado para exibição
+            };
+            reader.readAsDataURL(file);
+
+            handleFileUpload(file); // Chama a função passada com o arquivo selecionado
+        }
+    };
+
+    return (
+        <Grid container spacing={1} columns={1} style={{ textAlign: '-webkit-center' }}>
             <Grid item xs={8}>
-                <Avatar src="/broken-image.jpg" style={{ width: '150px', height: '150px'}}/>
+                <Avatar src={imagePreview} style={{ width: '150px', height: '150px' }} />
             </Grid>
-            <Grid item xs={8} style={{alignSelf: 'center'}}>
+            <Grid item xs={8} style={{ alignSelf: 'center' }}>
                 <Button
                     component="label"
                     role={undefined}
@@ -33,7 +48,7 @@ export default function InputFileUpload() {
                     startIcon={<CloudUploadIcon />}
                 >
                     Enviar arquivo
-                    <VisuallyHiddenInput type="file" />
+                    <VisuallyHiddenInput type="file" onChange={handleChange} />
                 </Button>
             </Grid>
         </Grid>

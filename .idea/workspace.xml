@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6861aa9a-91e0-430d-be9f-57c2ee801e2b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/UserGameProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/entity/UserGameProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserGameProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/ceub/projetointegradoriii/playerfinder/service/UserGameProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/createPerfilGameForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/createPerfilGameForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/playerlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/playerlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/MeusJogos/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/MeusJogos/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/fileUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/fileUpload.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
