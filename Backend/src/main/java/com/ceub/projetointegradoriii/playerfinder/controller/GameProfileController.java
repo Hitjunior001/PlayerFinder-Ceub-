@@ -72,17 +72,15 @@ public class GameProfileController {
     }
 
     private boolean matchesFilters(ConsolidatedUserGameProfile profile, Map<String, String> filters) {
-        // Verificar o filtro de username separadamente
         if (filters.containsKey("username") && !filters.get("username").isEmpty()) {
             if (!profile.getUsername().toLowerCase().contains(filters.get("username").toLowerCase())) {
                 return false;
             }
         }
 
-        // Verificar os demais filtros no mapa de atributos
         return filters.entrySet().stream()
-                .filter(entry -> !"username".equals(entry.getKey())) // Excluir username do stream
-                .allMatch(entry -> entry.getValue().isEmpty() || // Aceitar filtros vazios
+                .filter(entry -> !"username".equals(entry.getKey()))
+                .allMatch(entry -> entry.getValue().isEmpty() ||
                         entry.getValue().equals(profile.getAttributes().get(entry.getKey())));
     }
 
