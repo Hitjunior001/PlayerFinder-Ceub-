@@ -255,7 +255,7 @@ const ProfilePage = () => {
                   </DialogTitle>
                   <DialogContent>
                     <DialogContentText id="dialog-description">
-                      Clicando em SIM, sua conta será excluída dos nossos registros. <br/> Deseja prosseguir?
+                      Clicando em <b>SIM</b>, sua conta será excluída dos nossos registros. <br/> Deseja prosseguir?
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>

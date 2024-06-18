@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Avatar, Typography, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Badge } from '@mui/material';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AddIcon from '@mui/icons-material/Add';
@@ -23,7 +23,7 @@ export default function AccountMenu() {
 
     const { signout, user } = useAuth();
     const userId = user.id;
-    const isAdmin = user.role != "USER";
+    const isAdmin = user.role !== "USER";
     const navigate = useNavigate();
 
     return (
@@ -85,46 +85,43 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <Link to="/perfil" style={{ color: 'white', textDecoration: 'none' }}>
-                    <MenuItem onClick={handleClose}>
-                        <Avatar /> Meu perfil
-                    </MenuItem>
-                </Link>
-                <Link to="/meus-jogos" style={{ color: 'white', textDecoration: 'none' }}>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <SportsEsportsIcon fontSize="small" />
-                        </ListItemIcon>
-                        Meus jogos
-                    </MenuItem>
-                </Link>
-                <Link to="/amigos" style={{ color: 'white', textDecoration: 'none' }}>
-                    <MenuItem onClick={handleClose}>
-                        <ListItemIcon>
-                            <PeopleAltIcon fontSize="small" />
-                        </ListItemIcon>
-                        Amigos
-                    </MenuItem>
-                </Link>
+                <MenuItem component={Link} to="/perfil" onClick={handleClose}>
+                    <Avatar /> Meu perfil
+                </MenuItem>
+                <MenuItem component={Link} to="/meus-jogos" onClick={handleClose}>
+                    <ListItemIcon>
+                        <SportsEsportsIcon fontSize="small" />
+                    </ListItemIcon>
+                    Meus jogos
+                </MenuItem>
+                <MenuItem component={Link} to="/amigos" onClick={handleClose}>
+                    <ListItemIcon>
+                        <PeopleAltIcon fontSize="small" />
+                    </ListItemIcon>
+                    Amigos
+                </MenuItem>
                 <FriendRequests />
-                {isAdmin && (
-                    <><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none' }}>
-                        <MenuItem onClick={handleClose}>
+                <MenuItem component={Link} to="/adicionar-jogo" onClick={handleClose}>
+                    <ListItemIcon>
+                        <AddIcon fontSize="small" />
+                    </ListItemIcon>
+                    Adicionar jogo
+                </MenuItem>
+                {isAdmin && (<>
+                    <Divider/>
+                        <MenuItem component={Link} to="/dashboard" onClick={handleClose}>
                             <ListItemIcon>
-                                <AddIcon fontSize="small" />
+                                <AdminPanelSettingsIcon fontSize="small" />
                             </ListItemIcon>
                             Dashboard
                         </MenuItem>
-                    </Link><Link to="/adicionar-jogo/valorant" style={{ color: 'white', textDecoration: 'none' }}>
-                            <MenuItem onClick={handleClose}>
-                                <ListItemIcon>
-                                    <AddIcon fontSize="small" />
-                                </ListItemIcon>
-                                TesteFiltro
-                            </MenuItem>
-                        </Link></>
-                )}
-
+                        {/* <MenuItem component={Link} to="/adicionar-jogo/valorant" onClick={handleClose}>
+                            <ListItemIcon>
+                                <AddIcon fontSize="small" />
+                            </ListItemIcon>
+                            TesteFiltro
+                        </MenuItem> */}
+                </>)}
                 <Divider />
                 <MenuItem onClick={() => [signout(), navigate("/")]}>
                     <ListItemIcon>
